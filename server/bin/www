@@ -1,0 +1,17 @@
+const app = require('../build/app')
+
+const http = require('http')
+
+app.set('5000')
+
+const server = http.createServer(app)
+
+
+const onListening = () => {
+  console.log('we are listening!')
+}
+
+
+
+server.listen('5000')
+server.on('listening', onListening)

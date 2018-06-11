@@ -1,0 +1,12 @@
+module.exports = {
+  "type": "service_account",
+  "project_id": "phoenix-parts-8eeea",
+  "private_key_id": "391273f49346e03cd88bec15cf190bebcfaad164",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCdO4G7aJEgT4j0\naDf9Be74ucnL5Vq7CXNwU9QBpvcA1/6UwxLtMBglq3Pn076/8v4D7q0a1A3hwVpx\nVmAhdCWMjikTjw/lhntEZWex8pY3A/qbgqyvuKsSTyvZbWn1l9Zyd6WZrfRKb0DT\nqV1wS6IQs1VOkQCu7QpHLyUaHAPcKycwh/Lr9ZDhdYWSX/lceOrYHebBcVNI5kHn\nos1dGgHyye/sKn6pMbe2JsjBWJ3HTBbfgwbgKSbn7+4uO10YCMmLyXp7w+hij8EL\nvsKyCXgjxDtFPy190LnPY/CxykVeV1Kz2K8xbOHcxidbPkzM8gpL8Sq37E9oI8W4\nTn5cZwWNAgMBAAECggEACTsOnTmA16RDtpGNw+l+w5Ror/M5leRypgQN3MD4HFER\n7ZrcOBeMO13q8o/AUZWK6yEugXY0kG3hCOlYwG4IrE1GRRMvjDqObxAC+/PxdK5j\nnpCX4cMWK/+A5AVj5Jqy6Mp0aubHAj2w0RxO04JlM9TLa87geuSIp3AxnexKH7lD\nRWKQisyOuDsJPyWYNvHLXV/+eQ1uGpIwDMq77gtRCQzDxPTaKSQ+jfNWLZYXMMsj\npCMU4w+uGgtyHrrAJv9KdOIZt7GdPYyPpBKjwNVvWAoYxbGBwfSlzuClpqdZeXxa\nKUn0TJil+zApfy2QjJbBTtdF4Qme/pFH1Hafbeyp8wKBgQDOMJiVLUoMFhIYWNWJ\nEJ8rOTATnCcQ2EQkjiIXtgz79HBzdyHypOEJg2PYrsiUQfk7kRNpX7XGGigeeqBg\nf1z/9uKcL4N2STVaeQx1yvOfu6BBNKdgTS7MfUwtjdOX9iIKfMXUF4j6IN6kta9p\nqztzzqieBHlbzsWdM89jOEpK4wKBgQDDNzzraRje3bPFcLXUbnL2RPsTYj6BYjVr\nO3FKpJsbdeVkQaAtIsuYD9ZCFYn2w+EmV2dUb1inHkDlrihznTMGwCWbE4HSiHuO\nfHRdxYFKUcE/tZ5kVKKbra7/ka6+HmWtggUCp2JR3vWrnFa3Ev0GGSxsV+2Cku3A\nVo5ZnasozwKBgBjZ/JoGUmVwh4/NrTcO/NA93VCPwpmiJ1xskSlgdOItTRxtoHbZ\nbpIx9ufX8S8FYJ/QVZGeyo7s+ibqSsg2saPcQuXmSCcKndagvmK4KnL3L1KMoRvX\nUaut8m+PJ5CqRuIStdlhWM4lBhC+IT1QOSM1JledXG83VdQjuXxQ/YtXAoGAP7k7\nUJkY/j8enLfDExoOuucfkl9CiheV2nAn9javTxJ4E/b8I1+1V+jrhtzjEUM1rr9f\nQoeqR7svcgocuEi7TFvSqsF+YkwdERD9J1L+dlUjoPlXP+cEwY67jj9u7C6eADpu\nCkS7aoA+b4t0HwS6xY/YGXHGXRY7N8rJYuV95q8CgYEAl14WKCiwXRorrif6mGGm\n+aQWW9kX9xImw3iBaWzD01vWwYRfXkPwZkC+CEnMCbt8kKM+rHzinw/FzqeCZnIi\nf8XetntisjCOBelf2oZr6CNu6WGvuuLhHODyfxLgczgQgx18ZWyJTYunsQz9FvBn\njQhNLHaFSkR06kXL4yDivD4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-brjx4@phoenix-parts-8eeea.iam.gserviceaccount.com",
+  "client_id": "103501173947004955911",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-brjx4%40phoenix-parts-8eeea.iam.gserviceaccount.com"
+}
