@@ -1,3 +1,9 @@
-import { ADD_ARTICLE } from '../constants/action-types'
-
-export const addArticle = article => ({ type: ADD_ARTICLE, payload: article })
+export function addPart(part) {
+  // selectBook is an ActionCreator, it needs to return an action,
+  // an object with a type property.
+  console.log('part is: ', part)
+  return {
+    type: "ADD_PART",
+    payload: 'Part 5'
+  };
+}

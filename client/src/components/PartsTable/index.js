@@ -1,13 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 // import { selectBook } from "../actions/index";
+import { addPart } from "../../store/actions";
 import { bindActionCreators } from "redux";
 
 class PartsTable extends Component {
-  render () {
+
+  constructor(props) {
+    super(props);
+    // this.state = { isToggleOn: true };
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    this.props.addPart('test')
+  }
+
+  render() {
+
+    const partsNames = this.props.parts.map((part) => {
+      return <li key={part.id}> {part.id} </li>
+    })
+
     return (
       <div>
         Hi, parts table
+        <br />
+        <ul>
+          {partsNames}
+        </ul>
+        <button onClick={this.handleClick}>HI</button>
       </div>
     )
   }
@@ -16,10 +40,9 @@ class PartsTable extends Component {
 
 function mapStateToProps(state) {
   // Whatever is returned will show up as props
-  // inside of BookList
-  console.log('state is: ', state);
+  console.log('state is: ', state)
   return {
-    books: state.books
+    parts: state.parts
   };
 }
 
@@ -28,7 +51,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   // Whenever selectBook is called, the result shoudl be passed
   // to all of our reducers
-  // return bindActionCreators({ selectBook: selectBook }, dispatch);
+  return bindActionCreators({ addPart }, dispatch);
   return {}
 }
 
