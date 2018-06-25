@@ -28,7 +28,7 @@ class SimpleMenu extends React.Component {
       <div className={this.buttonStyles.display}>
         <ButtonBase
           aria-owns={anchorEl ? 'simple-menu' : null}
-          centerRipple="false"
+          centerRipple={false}
           aria-haspopup="true"
           onClick={this.handleClick}
         >

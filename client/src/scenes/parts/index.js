@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
-
+import Grid from "@material-ui/core/Grid"
 class Parts extends Component {
   state = {}
+
+
+
+
   render() {
-    return <h1>Parts Page</h1>
+    return (<div>
+      <Grid container xs={12} styles={{backgroundColor: 'red'}}>
+asdfafd
+      </Grid>
+
+
+    </div>)
   }
 }
 

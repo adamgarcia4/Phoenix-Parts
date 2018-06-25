@@ -26,10 +26,10 @@ const Category = () => {
 class App extends React.Component {
   componentWillMount() {
     console.log('fetching parts')
-    axios
-      .get('http://localhost:5000/parts')
-      .then(res => res.data)
-      .then(console.log)
+    // axios
+    //   .get('http://localhost:5000/parts')
+    //   .then(res => res.data)
+    //   .then(console.log)
   }
 
   render() {
