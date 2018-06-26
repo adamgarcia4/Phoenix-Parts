@@ -35,11 +35,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route path="/parts" component={Parts} />
-        </Header>
+        {/* <Header> */}
+        <Route exact path="/" component={Home} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route path="/parts" component={Parts} />
+        {/* </Header> */}
       </div>
     )
   }

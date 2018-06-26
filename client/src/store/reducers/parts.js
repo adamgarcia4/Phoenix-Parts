@@ -11,16 +11,36 @@ function getRandomArbitrary(min, max) {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_PART':
-      return [...state, {id: `Part ${getRandomArbitrary(1,100)}`}]
-      break;
+      return [
+        ...state,
+        {
+          'Part Name': 'Part 3',
+          'Part Number': '4-2019-100-103',
+          Qty: 1,
+          Location: 'B12',
+          Action: 'none'
+        }
+      ]
+      break
 
     default:
-      return [{
-        id: 'Part 1'
-      }, {
-        id: 'Part 2'
-      }]
-      break;
+      return [
+        {
+          'Part Name': 'Part 1',
+          'Part Number': '4-2019-100-101',
+          Qty: 1,
+          Location: 'B12',
+          Action: 'none'
+        },
+        {
+          'Part Name': 'Part 2',
+          'Part Number': '4-2019-100-102',
+          Qty: 3,
+          Location: 'B24',
+          Action: 'yes'
+        }
+      ]
+      break
   }
 
   // switch (action.type) {
