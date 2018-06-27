@@ -13,36 +13,36 @@ import Home from './scenes/home'
 
 import Avatar from './components/Avatar'
 import AvatarHeader from './components/AvatarHeader'
-let axios = require('axios')
+import { connect } from 'react-redux'
 
-const Category = () => {
-  return (
-    <div>
-      <h2>category</h2>
-    </div>
-  )
-}
+let axios = require('axios')
 
 class App extends React.Component {
   componentWillMount() {
-    console.log('fetching parts')
-    // axios
-    //   .get('http://localhost:5000/parts')
-    //   .then(res => res.data)
-    //   .then(console.log)
+    // console.log('state is', this.props.state)
   }
 
   render() {
     return (
       <div>
-        {/* <Header> */}
-        <Route exact path="/" component={Home} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route path="/parts" component={Parts} />
-        {/* </Header> */}
+        <Header>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="/parts" component={Parts} />
+        </Header>
       </div>
     )
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    state
+  }
+}
+
 export default App
+// export default connect(
+//   mapStateToProps,
+//   null
+// )(App)

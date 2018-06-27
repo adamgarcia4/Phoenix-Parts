@@ -1,10 +1,26 @@
 import React, { Component } from 'react'
-import PartsTable from '../../components/PartsTable'
-import Button from '@material-ui/core/Button'
-import AddIcon from '@material-ui/icons/Add'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withStyles } from '@material-ui/core/styles'
 import { addPart } from '../../store/actions'
+
+import Button from '@material-ui/core/Button'
+import AddIcon from '@material-ui/icons/Add'
+
+import PartsTable from '../../components/PartsTable'
+
+const styles = {
+  partTable: {
+    marginBottom: 100,
+    marginRight: 10,
+    marginLeft: 10
+  },
+  buttonStyle: {
+    position: 'fixed',
+    bottom: '30px',
+    right: '30px'
+  }
+}
 
 class Dashboard extends Component {
   constructor(props) {
@@ -17,17 +33,16 @@ class Dashboard extends Component {
     this.props.addPart('test')
   }
 
-  state = {}
-
   render() {
     return (
       <div>
-        <h1>Dashboard Page</h1>
-        <PartsTable />
-
+        <h1>Parts Dashboard</h1>
+        <div className={this.props.classes.partTable}>
+          <PartsTable />
+        </div>
         <Button
           variant="fab"
-          style={{ position: 'absolute', bottom: '50px', right: '50px' }}
+          className={this.props.classes.buttonStyle}
           color={'primary'}
           onClick={this.handleClick}
         >
@@ -47,7 +62,11 @@ function mapDispatchToProps(dispatch) {
   return {}
 }
 
+const styledDashboard = withStyles(styles)(Dashboard)
+
 export default connect(
   null,
   mapDispatchToProps
-)(Dashboard)
+)(styledDashboard)
+
+// export default withStyles(styles)(LetterAvatars)

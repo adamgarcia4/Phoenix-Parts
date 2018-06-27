@@ -55,9 +55,9 @@ class PartsTable extends Component {
       return (
         <TableRow key={index}>
           <TableCell component="th" scope="row">
-            {part['Part Name']}
+            {part['partName']}
           </TableCell>
-          <TableCell>{part['Part Number']}</TableCell>
+          <TableCell>{part['partNumber']}</TableCell>
           <TableCell>{part['Qty']}</TableCell>
           <TableCell>{part['location']}</TableCell>
           <TableCell>{part['Action']}</TableCell>

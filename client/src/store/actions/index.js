@@ -3,7 +3,7 @@ export function addPart(part) {
   // an object with a type property.
   console.log('part is: ', part)
   return {
-    type: "ADD_PART",
-    payload: 'Part 5'
-  };
+    type: 'ADD_PART',
+    payload: part
+  }
 }

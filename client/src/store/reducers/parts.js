@@ -11,11 +11,12 @@ function getRandomArbitrary(min, max) {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_PART':
+      console.log('payload is: ', action)
       return [
         ...state,
         {
-          'Part Name': 'Part 3',
-          'Part Number': '4-2019-100-103',
+          partName: action.payload.partName || 'Part 3',
+          partNumber: action.payload.partNumber || '4-2019-100-103',
           Qty: 1,
           Location: 'B12',
           Action: 'none'
@@ -26,15 +27,15 @@ const rootReducer = (state = initialState, action) => {
     default:
       return [
         {
-          'Part Name': 'Part 1',
-          'Part Number': '4-2019-100-101',
+          partName: 'Part 1',
+          partNumber: '4-2019-100-101',
           Qty: 1,
           Location: 'B12',
           Action: 'none'
         },
         {
-          'Part Name': 'Part 2',
-          'Part Number': '4-2019-100-102',
+          partName: 'Part 2',
+          partNumber: '4-2019-100-102',
           Qty: 3,
           Location: 'B24',
           Action: 'yes'
