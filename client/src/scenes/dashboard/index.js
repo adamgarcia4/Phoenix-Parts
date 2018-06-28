@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { withStyles } from '@material-ui/core/styles'
 import { addPart } from '../../store/actions'
 
+import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 
@@ -38,7 +39,9 @@ class Dashboard extends Component {
       <div>
         <h1>Parts Dashboard</h1>
         <div className={this.props.classes.partTable}>
-          <PartsTable />
+          <Grid item xs={12}>
+            <PartsTable />
+          </Grid>
         </div>
         <Button
           variant="fab"

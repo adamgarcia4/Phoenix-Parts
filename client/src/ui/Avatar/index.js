@@ -35,21 +35,17 @@ function LetterAvatars(props) {
   const getInitials = (first, last) => {
     return `${first.charAt(0)}${last.charAt(0)}`
   }
-  const clg = () => {
-    console.log('hi')
-  }
 
   const renderedComponent = user => {
     if (!user) user = {}
-    if (user.auth && user.imgUrl) {
-      console.log('auth')
+    if (user.imgUrl) {
       return (
         <div>
-            <Avatar
-              alt={getInitials(user.firstName, user.lastName)}
-              src={user.imgUrl}
-              className={classes.avatar}
-            />
+          <Avatar
+            alt={getInitials(user.firstName, user.lastName)}
+            src={user.imgUrl}
+            className={classes.avatar}
+          />
         </div>
       )
     }

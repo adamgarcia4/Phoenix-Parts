@@ -41,7 +41,7 @@ class Parts extends Component {
 
   render() {
     const { classes } = this.props
-    console.log('state', this.state)
+
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField

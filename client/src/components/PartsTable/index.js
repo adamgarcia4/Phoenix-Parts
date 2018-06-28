@@ -27,7 +27,7 @@ const styles = theme => ({
 const columnFields = ['Part Name', 'Part Number', 'Qty', 'location', 'Action']
 
 const columnHeaders = columnFields.map(field => {
-  return <TableCell id={field}>{field}</TableCell>
+  return <TableCell key={field}>{field}</TableCell>
 })
 
 let id = 0
@@ -42,7 +42,6 @@ class PartsTable extends Component {
     // this.state = { isToggleOn: true };
     this.classes = props.classes
     // This binding is necessary to make `this` work in the callback
-    console.log('partssss', this.props.parts)
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -54,13 +53,13 @@ class PartsTable extends Component {
     const columnRows = this.props.parts.map((part, index) => {
       return (
         <TableRow key={index}>
-          <TableCell component="th" scope="row">
+          <TableCell key={part['partName']} component="th" scope="row">
             {part['partName']}
           </TableCell>
-          <TableCell>{part['partNumber']}</TableCell>
-          <TableCell>{part['Qty']}</TableCell>
-          <TableCell>{part['location']}</TableCell>
-          <TableCell>{part['Action']}</TableCell>
+          <TableCell key={part['partNumber']}>{part['partNumber']}</TableCell>
+          <TableCell key={part['Qty']}>{part['Qty']}</TableCell>
+          <TableCell key={part['location']}>{part['location']}</TableCell>
+          <TableCell key={part['Action']}>{part['Action']}</TableCell>
         </TableRow>
       )
     })

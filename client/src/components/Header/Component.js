@@ -20,7 +20,7 @@ const drawerWidth = 240
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 1000,
+    height: '100vh',
     zIndex: 1,
     overflow: 'scroll',
     position: 'relative',
@@ -110,8 +110,46 @@ class MiniDrawer extends React.Component {
   render() {
     const { classes, theme } = this.props
 
+    const HeaderBar = props => {
+      return (
+        <AppBar
+          position="absolute"
+          className={classNames(
+            classes.appBar,
+            this.state.open && classes.appBarShift
+          )}
+        >
+          {this.props.children}
+        </AppBar>
+      )
+    }
+
     return (
       <div className={classes.root}>
+        {/* <HeaderBar> */}
+        {/* <Toolbar disableGutters={!this.state.open}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={this.handleDrawerOpen}
+              className={classNames(
+                classes.menuButton,
+                this.state.open && classes.hide
+              )}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="title"
+              color="inherit"
+              noWrap
+              style={{ flex: 1 }}
+            >
+              Phoenix Parts
+            </Typography>
+            <AvatarHeader user={this.userObj} style={{ marginRight: '50px' }} />
+          </Toolbar> */}
+        {/* </HeaderBar> */}
         <AppBar
           position="absolute"
           className={classNames(
@@ -169,7 +207,7 @@ class MiniDrawer extends React.Component {
 
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {this.props.children}
+          {/* {this.props.children} */}
         </main>
       </div>
     )

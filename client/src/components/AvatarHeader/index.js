@@ -2,8 +2,13 @@ import React from 'react'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import Avatar from '../Avatar'
+import Avatar from '../../ui/Avatar'
+
+import { connect } from 'react-redux'
 class SimpleMenu extends React.Component {
+  constructor(props) {
+    super(props)
+  }
   state = {
     anchorEl: null
   }
@@ -49,4 +54,12 @@ class SimpleMenu extends React.Component {
   }
 }
 
-export default SimpleMenu
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+export default connect(
+  mapStateToProps,
+  null
+)(SimpleMenu)
