@@ -12,8 +12,6 @@ import Parts from './scenes/parts'
 import Dashboard from './scenes/dashboard'
 import Home from './scenes/home'
 
-import Avatar from './components/Avatar'
-import AvatarHeader from './components/AvatarHeader'
 import { connect } from 'react-redux'
 
 let axios = require('axios')
@@ -26,13 +24,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Grid container>
-          <Header>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route path="/parts" component={Parts} />
-          </Header>
-        </Grid>
+        <Header>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="/parts" component={Parts} />
+        </Header>
       </div>
     )
   }

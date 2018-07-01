@@ -79,7 +79,8 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
-    height: '100vh'
+    height: '100vh',
+    overflow: 'auto'
   },
   avatar: {
     marginLeft: '100px'
@@ -126,30 +127,6 @@ class MiniDrawer extends React.Component {
 
     return (
       <div className={classes.root}>
-        {/* <HeaderBar> */}
-        {/* <Toolbar disableGutters={!this.state.open}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(
-                classes.menuButton,
-                this.state.open && classes.hide
-              )}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="title"
-              color="inherit"
-              noWrap
-              style={{ flex: 1 }}
-            >
-              Phoenix Parts
-            </Typography>
-            <AvatarHeader user={this.userObj} style={{ marginRight: '50px' }} />
-          </Toolbar> */}
-        {/* </HeaderBar> */}
         <AppBar
           position="absolute"
           className={classNames(
@@ -207,7 +184,7 @@ class MiniDrawer extends React.Component {
 
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {/* {this.props.children} */}
+          {this.props.children}
         </main>
       </div>
     )
