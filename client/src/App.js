@@ -8,7 +8,7 @@ import Header from './components/Header/'
 import Typography from '@material-ui/core/Typography'
 import PartCard from './components/partCard'
 import { Route } from 'react-router-dom'
-import Parts from './scenes/parts'
+import PartsEntry from './scenes/partsEntry'
 import Dashboard from './scenes/dashboard'
 import Home from './scenes/home'
 
@@ -27,7 +27,7 @@ class App extends React.Component {
         <Header>
           <Route exact path="/" component={Home} />
           <Route exact path="/dashboard" component={Dashboard} />
-          <Route path="/parts" component={Parts} />
+          <Route path="/parts" component={PartsEntry} />
         </Header>
       </div>
     )

@@ -7,3 +7,20 @@ export function addPart(part) {
     payload: part
   }
 }
+
+export function addMachine(machine) {
+  return {
+    type: 'ADD_MACHINE',
+    payload: machine
+  }
+}
+
+export function updatePartForm(field, newValue) {
+  return {
+    type: 'UPDATE_PART_FORM',
+    payload: {
+      field,
+      newValue
+    }
+  }
+}
