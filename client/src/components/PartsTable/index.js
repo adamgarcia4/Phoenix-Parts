@@ -1,100 +1,114 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-// import { selectBook } from "../actions/index";
-import { addPart } from '../../store/actions'
-import { bindActionCreators } from 'redux'
-import { withStyles } from '@material-ui/core/styles'
+import React from 'react'
+import { render } from 'react-dom'
+import ReactTable from 'react-table'
+import PartsTableDetails from '../PartsTableDetails'
+import './Styles.css'
+import 'react-table/react-table.css'
+import AvatarGroup from '../../ui/AvatarGroup'
+import Avatar from '../../ui/Avatar'
 
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
+const utils = require('./utils')
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto'
+const columns = [
+  {
+    Header: 'Part Name',
+    accessor: 'partName'
   },
-  table: {
-    minWidth: 700
+  {
+    Header: 'Part Number',
+    accessor: 'partNumber'
+  },
+  {
+    Header: 'Parts Per Robot',
+    accessor: 'partsPerRobot'
+  },
+  {
+    Header: 'Total Quantity',
+    accessor: 'partsTotal'
+  },
+  {
+    Header: 'Stock Material',
+    accessor: 'stockMaterial'
+  },
+  {
+    Header: 'Cut Length',
+    accessor: 'cutLg'
+  },
+  {
+    Header: 'Status',
+    accessor: 'status'
+  },
+  {
+    Header: 'Drawn By',
+    accessor: 'Adam',
+    Cell: row => (
+      <AvatarGroup>
+        <Avatar isImage={false} />
+        <Avatar />
+      </AvatarGroup>
+    )
+  },
+  {
+    Header: 'Machines Needed',
+    accessor: 'machinesNeeded'
+  },
+  {
+    Header: 'Stock Ordered?',
+    accessor: 'stockOrdered'
   }
-})
+]
 
-// TODO action is conditional
-const columnFields = ['Part Name', 'Part Number', 'Qty', 'location', 'Action']
-
-const columnHeaders = columnFields.map(field => {
-  return <TableCell key={field}>{field}</TableCell>
-})
-
-let id = 0
-function createData(name, calories, fat, carbs, protein) {
-  id += 1
-  return { id, name, calories, fat, carbs, protein }
-}
-
-class PartsTable extends Component {
-  constructor(props) {
-    super(props)
-    // this.state = { isToggleOn: true };
-    this.classes = props.classes
-    // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick() {
-    this.props.addPart('test')
+export default class PartsTable extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      data: utils.makeData()
+    }
   }
 
   render() {
-    const columnRows = this.props.parts.map((part, index) => {
+    const { data } = this.state
+
+    // const subcomponentFactory = row => {
+    //   return (
+    //     <div style={{ padding: '20px' }}>
+    //       <em>You can put any component you want here, even another React Table!</em>
+    //       <br />
+    //       <br />
+    //       <ReactTable
+    //         data={data}
+    //         columns={columns}
+    //         defaultPageSize={3}
+    //         showPagination={false}
+    //         SubComponent={row => {
+    //           return <div style={{ padding: '20px' }}>Another Sub Component!</div>
+    //         }}
+    //       />
+    //     </div>
+    //   )
+    // }
+
+    const partViewSubcomponent = row => {
+      console.log('row:', row)
       return (
-        <TableRow key={index}>
-          <TableCell key={part['partName']} component="th" scope="row">
-            {part['partName']}
-          </TableCell>
-          <TableCell key={part['partNumber']}>{part['partNumber']}</TableCell>
-          <TableCell key={part['Qty']}>{part['Qty']}</TableCell>
-          <TableCell key={part['location']}>{part['location']}</TableCell>
-          <TableCell key={part['Action']}>{part['Action']}</TableCell>
-        </TableRow>
+        <div className={'part-details'}>
+          <PartsTableDetails />
+        </div>
       )
-    })
+    }
 
     return (
-      <Paper className={this.classes.root}>
-        <Table className={this.classes.table}>
-          <TableHead>
-            <TableRow>{columnHeaders}</TableRow>
-          </TableHead>
-          <TableBody>{columnRows}</TableBody>
-        </Table>
-      </Paper>
+      <div>
+        <PartsTableDetails />
+        <ReactTable
+          data={data}
+          columns={columns}
+          defaultPageSize={10}
+          className="-striped -highlight"
+          SubComponent={partViewSubcomponent}
+        />
+        <br />
+      </div>
     )
   }
 }
-
-function mapStateToProps(state) {
-  // Whatever is returned will show up as props
-  return {
-    parts: state.parts
-  }
-}
-
-// Anything returned from this function will end up as props
-// on the BookList container
-function mapDispatchToProps(dispatch) {
-  // Whenever selectBook is called, the result shoudl be passed
-  // to all of our reducers
-  return bindActionCreators({ addPart }, dispatch)
-  return {}
-}
-
-const styledComponent = withStyles(styles)(PartsTable)
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(styledComponent)

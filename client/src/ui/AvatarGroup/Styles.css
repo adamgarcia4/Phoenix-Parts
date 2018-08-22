@@ -1,0 +1,8 @@
+.avatarGroup {
+  display: inline-block;
+  /* overflow: hidden; */
+}
+
+.avatarGroup:hover .avatar {
+  margin-left: 0px;
+}

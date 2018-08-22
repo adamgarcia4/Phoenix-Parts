@@ -1,0 +1,31 @@
+.avatar {
+  display: inline-block;
+  text-align: center;
+  line-height: 50px;
+  width: 50px;
+  height: 50px;
+  background-color: aqua;
+  font-size: 24px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-sizing: border-box;
+  vertical-align: top;
+  overflow: hidden;
+  position: relative;
+  margin-right: 0px;
+  margin-left: -15px;
+  transition: margin-left .15s ease-in;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar img {
+  width: 50px;
+  height: 50px;
+  vertical-align: top;
+  position: absolute;
+  top: -3px;
+  left: -3px;
+}

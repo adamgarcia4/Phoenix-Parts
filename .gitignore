@@ -63,3 +63,5 @@ typings/
 server/build/
 
 \.DS_Store
+
+client/package-lock\.json

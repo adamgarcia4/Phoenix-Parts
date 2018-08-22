@@ -1,0 +1,23 @@
+div.button {
+  /* display: inline-block; */
+  background: rgb(70, 136, 241);
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Roboto';
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 32px;
+  font-size: 14px;
+  margin: 5px 10px;
+  /* .md-chip {
+    display: inline-block;
+    background: $md-chip-color;
+    padding: 0 12px;
+    border-radius: 32px;
+    font-size: 13px;
+    &.md-chip-hover:hover {
+      background: #ccc;
+    }
+  } */
+}

@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux'
 import { addPart, updatePartForm } from '../../store/actions'
 import { withStyles } from '@material-ui/core'
 import { withRouter } from 'react-router-dom'
-import { FormControl, Button, TextField, Grid } from '@material-ui/core'
+import { FormControl, Button, Grid } from '@material-ui/core'
+import TextField from '../../ui/textField'
 import ProcessPicker from '../../components/processPicker'
 
 import { Form, Field } from 'react-final-form'
@@ -24,12 +25,11 @@ class PartsEntry extends Component {
     super(props)
 
     this.state = {
-      partName: '',
+      partName: 'test',
       partNumber: ''
     }
     this.submit = this.submit.bind(this)
   }
-  state = {}
 
   handleChange = name => event => {
     this.props.updatePartForm(name, event.target.value)
@@ -41,43 +41,56 @@ class PartsEntry extends Component {
     this.props.history.push('/dashboard')
   }
 
-  render() {
-    const { classes, state } = this.props
+  onSubmit = values => {
+    console.log('hi', values)
+  }
 
+  getForm = () => {
     return (
       <Grid container spacing={16}>
         <Grid item xs={6}>
-          {/* <form className={classes.container} noValidate autoComplete="off"> */}
-          <FormControl fullWidth={true} style={{ margin: '10 10' }}>
-            <TextField
-              id="partName"
-              label="Part Name"
-              className={classes.textField}
-              value={this.state.partName}
-              onChange={this.handleChange('partName')}
-              fullWidth={true}
-            />
-            <br />
-            <TextField
-              id="partNames"
-              label="Part Number"
-              className={classes.textField}
-              value={this.state.partNumber}
-              onChange={this.handleChange('partNumber')}
-            />
-            <br />
-            <Button variant="raised" color="primary" onClick={this.submit}>
-              Submit
-            </Button>
-            {JSON.stringify(this.state)}
-          </FormControl>
-          {/* </form> */}
+          <Form
+            onSubmit={this.onSubmit}
+            initialValues={this.initialState}
+            render={({ handleSubmit, values }) => (
+              <form>
+                <Field
+                  name="partName"
+                  component={TextField}
+                  type="text"
+                  label="Part Name"
+                />
+                <Field
+                  name="partNumber"
+                  component={TextField}
+                  type="text"
+                  label="Part Number"
+                />
+                <br />
+                <Button variant="raised" color="primary" onClick={handleSubmit}>
+                  alskdf
+                </Button>
+
+                <pre>{JSON.stringify(values, null, 2)}</pre>
+              </form>
+            )}
+          />
         </Grid>
         <Grid item xs={6}>
           <ProcessPicker />
         </Grid>
       </Grid>
     )
+  }
+
+  initialState = {
+    partName: '',
+    partNumber: ''
+  }
+  render() {
+    const { classes, state } = this.props
+
+    return this.getForm()
   }
 }
 
