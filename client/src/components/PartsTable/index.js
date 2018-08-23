@@ -2,10 +2,15 @@ import React from 'react'
 import { render } from 'react-dom'
 import ReactTable from 'react-table'
 import PartsTableDetails from '../PartsTableDetails'
-import './Styles.css'
 import 'react-table/react-table.css'
 import AvatarGroup from '../../ui/AvatarGroup'
 import Avatar from '../../ui/Avatar'
+import Paper from '../../ui/Paper'
+import styled from 'styled-components'
+
+const PartDetailsContainer = styled(Paper)`
+  margin: 10px 15px;
+`
 
 const utils = require('./utils')
 
@@ -91,9 +96,9 @@ export default class PartsTable extends React.Component {
     const partViewSubcomponent = row => {
       console.log('row:', row)
       return (
-        <div className={'part-details'}>
+        <PartDetailsContainer>
           <PartsTableDetails />
-        </div>
+        </PartDetailsContainer>
       )
     }
 

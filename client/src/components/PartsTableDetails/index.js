@@ -15,7 +15,7 @@ const Container = styled.div`
 `
 
 const BackgroundBlue = styled.div`
-  background-color: lightBlue;
+  /* background-color: lightBlue; */
 `
 
 class PartsTableDetails extends Component {
@@ -24,13 +24,13 @@ class PartsTableDetails extends Component {
       <div className="row">
         <BackgroundBlue className="col-12">
           <div className="row">
-            <div className="col-sm-4">
+            <div className="col-md-4">
               <Pill> Part Name</Pill> Drive Shaft <br />
             </div>
-            <div className="col-sm-4">
+            <div className="col-md-4">
               <Pill> Part Number</Pill> 04-101-100
             </div>
-            <div className="col-sm-4">
+            <div className="col-md-4">
               <Pill> Status </Pill> 04-101-100
             </div>
           </div>
@@ -106,27 +106,36 @@ class PartsTableDetails extends Component {
     )
   }
 
-  getComment() {
+  getComment(otherSide) {
     const CommentContainer = styled.div`
-      display: block;
+      display: flex;
       /* background-color: lightblue; */
       text-align: center;
       justify-content: center;
       margin-bottom: 10px;
+      align-items: center;
     `
 
     const CommentAvatar = styled.div`
       margin-right: 10px;
       display: inline-block;
       vertical-align: middle;
+      /* order: ${props => (props.otherSide ? '2' : '1')}; */
     `
 
     return (
       <CommentContainer>
-        <CommentAvatar>
+        <CommentAvatar otherSide={otherSide}>
           <Avatar />
         </CommentAvatar>
-        <Paper>This is a comment!</Paper>
+        <Paper>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.
+        </Paper>
       </CommentContainer>
     )
   }
@@ -144,7 +153,7 @@ class PartsTableDetails extends Component {
         <Surface fullWidth>
           <h3>Comments</h3>
           {this.getComment()}
-          {this.getComment('reversed')}
+          {this.getComment(true)}
         </Surface>
       </div>
     )
@@ -156,7 +165,7 @@ class PartsTableDetails extends Component {
         {this.getHeader()}
         <br />
         <div className="row">
-          <div className="col-4" style={{ backgroundColor: 'lightBlue' }}>
+          <div className="col-4">
             <div className="btn btn-md btn-secondary">Upload PDFs</div>
             responsibilities
           </div>

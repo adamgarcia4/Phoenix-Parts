@@ -2,8 +2,7 @@ import styled from 'styled-components'
 
 const Paper = styled.div`
   display: inline-block;
-  width: ${props => (props.fullWidth ? '100%' : '300px')};
-  /* height: 200px; */
+  width: ${props => (props.fullWidth ? '100%' : '')};
   padding-bottom: 30px;
   background-color: #fff;
   /* margin: 4px 0px; */

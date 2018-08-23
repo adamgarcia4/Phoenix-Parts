@@ -4,18 +4,18 @@ import { bindActionCreators } from 'redux'
 import { withStyles } from '@material-ui/core/styles'
 import { addPart } from '../../store/actions'
 
-import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
-
+import Fab from '../../ui/Fab'
 import PartsTable from '../../components/PartsTable'
+import styled from 'styled-components'
+import Paper from '../../ui/Paper'
+
+const PartTableContainer = styled.div`
+  margin: 0px 10px 100px 10px;
+`
 
 const styles = {
-  partTable: {
-    marginBottom: 100,
-    marginRight: 10,
-    marginLeft: 10
-  },
   buttonStyle: {
     position: 'fixed',
     bottom: '30px',
@@ -38,17 +38,16 @@ class Dashboard extends Component {
     return (
       <div>
         <h1>Parts Dashboard</h1>
-        <div className={this.props.classes.partTable}>
-          <Grid item xs={12}>
+        <Fab>
+          <AddIcon />
+        </Fab>
+        <Paper>
+          <PartTableContainer>
             <PartsTable />
-          </Grid>
-        </div>
-        <Button
-          variant="fab"
-          className={this.props.classes.buttonStyle}
-          color={'primary'}
-          onClick={this.handleClick}
-        >
+          </PartTableContainer>
+        </Paper>
+
+        <Button variant="fab" className={this.props.classes.buttonStyle} color={'primary'} onClick={this.handleClick}>
           <AddIcon />
         </Button>
       </div>
