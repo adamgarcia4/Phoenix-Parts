@@ -159,29 +159,76 @@ class PartsTableDetails extends Component {
     )
   }
 
+  getInfo() {
+    const InfoContainer = styled.div`
+      display: flex;
+      /* background-color: lightblue; */
+      text-align: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      /* align-items: center; */
+    `
+
+    const InfoItem = styled(Paper)`
+      width: 30%;
+    `
+
+    const getPdfSection = () => {
+      return (
+        <InfoItem>
+          {/* <div className="col-4"> */}
+          <div className="btn btn-md btn-secondary">Upload PDFs</div>
+          responsibilities
+        </InfoItem>
+      )
+    }
+
+    const getGeneralInfo = () => {
+      return (
+        <InfoItem>
+          General <br />
+          Part Per robot <br />
+          Part Quantity <br />
+          total stock material <br />
+          Cut Lg. in <br />
+          stock ordered <br />
+        </InfoItem>
+      )
+    }
+
+    const getMachineList = () => {
+      return (
+        <InfoItem>
+          <h4> Machine List</h4>
+          {this.getMachinesNeeded()}
+        </InfoItem>
+      )
+    }
+
+    // const CommentAvatar = styled.div`
+    //   margin-right: 10px;
+    //   display: inline-block;
+    //   vertical-align: middle;
+    //   /* order: ${props => (props.otherSide ? '2' : '1')}; */
+    // `
+
+    return (
+      <InfoContainer>
+        {getPdfSection()}
+        {getGeneralInfo()}
+        {getMachineList()}
+      </InfoContainer>
+    )
+  }
+
   render() {
     return (
       <Container>
         {this.getHeader()}
         <br />
-        <div className="row">
-          <div className="col-4">
-            <div className="btn btn-md btn-secondary">Upload PDFs</div>
-            responsibilities
-          </div>
-          <div className="col-4" style={{ backgroundColor: 'yellow' }}>
-            General <br />
-            Part Per robot <br />
-            Part Quantity <br />
-            total stock material <br />
-            Cut Lg. in <br />
-            stock ordered <br />
-          </div>
-          <div className="col-4">
-            <h4> Machine List</h4>
-            {this.getMachinesNeeded()}
-          </div>
-        </div>
+        {this.getInfo()}
+
         <div className="row">
           <div className="col-md-12">{this.getCommentsSection()}</div>
         </div>
