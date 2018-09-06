@@ -24,29 +24,29 @@ const styles = theme => ({
     zIndex: 1,
     overflow: 'scroll',
     position: 'relative',
-    display: 'flex'
+    display: 'flex',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
     marginLeft: 12,
-    marginRight: 36
+    marginRight: 36,
   },
   hide: {
-    display: 'none'
+    display: 'none',
   },
   drawerPaper: {
     position: 'relative',
@@ -54,42 +54,42 @@ const styles = theme => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   drawerPaperClose: {
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+      duration: theme.transitions.duration.leavingScreen,
     }),
     width: theme.spacing.unit * 7,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9
-    }
+      width: theme.spacing.unit * 9,
+    },
   },
   toolbar: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
-    ...theme.mixins.toolbar
+    ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     height: '100vh',
-    overflow: 'auto'
+    overflow: 'auto',
   },
   avatar: {
-    marginLeft: '100px'
-  }
+    marginLeft: '100px',
+  },
 })
 
 class MiniDrawer extends React.Component {
   state = {
-    open: false
+    open: false,
   }
 
   handleDrawerOpen = () => {
@@ -105,53 +105,42 @@ class MiniDrawer extends React.Component {
     imgUrl:
       'https://media.licdn.com/dms/image/C5103AQHoTTrJ1xgdvA/profile-displayphoto-shrink_200_200/0?e=1528732800&v=beta&t=eLFcdSXLBD4qkK8nsRozMOSucy5UPPPFFRMB4ULDIgs',
     firstName: 'Adam',
-    lastName: 'Garcia'
+    lastName: 'Garcia',
   }
 
   render() {
     const { classes, theme } = this.props
 
-    const HeaderBar = props => {
-      return (
-        <AppBar
-          position="absolute"
-          className={classNames(
-            classes.appBar,
-            this.state.open && classes.appBarShift
-          )}
-        >
-          {this.props.children}
-        </AppBar>
-      )
-    }
+    // const HeaderBar = props => {
+    //   return (
+    //     <AppBar
+    //       position="absolute"
+    //       className={classNames(
+    //         classes.appBar,
+    //         this.state.open && classes.appBarShift
+    //       )}
+    //     >
+    //       {this.props.children}
+    //     </AppBar>
+    //   )
+    // }
 
     return (
       <div className={classes.root}>
         <AppBar
           position="absolute"
-          className={classNames(
-            classes.appBar,
-            this.state.open && classes.appBarShift
-          )}
+          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
         >
           <Toolbar disableGutters={!this.state.open}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               onClick={this.handleDrawerOpen}
-              className={classNames(
-                classes.menuButton,
-                this.state.open && classes.hide
-              )}
+              className={classNames(classes.menuButton, this.state.open && classes.hide)}
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              variant="title"
-              color="inherit"
-              noWrap
-              style={{ flex: 1 }}
-            >
+            <Typography variant="title" color="inherit" noWrap style={{ flex: 1 }}>
               Phoenix Parts
             </Typography>
             <AvatarHeader user={this.userObj} style={{ marginRight: '50px' }} />
@@ -160,20 +149,13 @@ class MiniDrawer extends React.Component {
         <Drawer
           variant="permanent"
           classes={{
-            paper: classNames(
-              classes.drawerPaper,
-              !this.state.open && classes.drawerPaperClose
-            )
+            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
           }}
           open={this.state.open}
         >
           <div className={classes.toolbar}>
             <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </div>
           <Divider />
@@ -193,7 +175,7 @@ class MiniDrawer extends React.Component {
 
 MiniDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 }
 
 export default withStyles(styles, { withTheme: true })(MiniDrawer)

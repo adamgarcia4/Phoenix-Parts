@@ -9,20 +9,33 @@
     "classnames": "^2.2.6",
     "create-react-class": "^15.6.3",
     "final-form": "^4.8.3",
+    "formik": "^1.1.1",
     "mdbreact": "^4.6.1",
     "namor": "^1.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-final-form": "^3.6.4",
+    "react-flexbox-grid": "^2.1.2",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-    "react-table": "^6.8.6"
+    "react-table": "^6.8.6",
+    "redux": "^4.0.0",
+    "styled-components": "^3.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1"
   }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 
-import Button from '../../ui/Button'
+import styled from 'styled-components'
+import { Grid, Row, Col } from 'react-flexbox-grid'
+// import Button from '../../ui/Button'
 import Pill from '../../ui/Pill'
 import Paper from '../../ui/Paper'
 import Surface from '../../ui/Surface'
-
-import styled from 'styled-components'
 
 import Avatar from '../../ui/Avatar'
 
@@ -19,78 +19,64 @@ const BackgroundBlue = styled.div`
 `
 
 class PartsTableDetails extends Component {
-  getHeader = () => {
+  getHeader() {
     return (
-      <div className="row">
-        <BackgroundBlue className="col-12">
-          <div className="row">
-            <div className="col-md-4">
-              <Pill> Part Name</Pill> Drive Shaft <br />
-            </div>
-            <div className="col-md-4">
-              <Pill> Part Number</Pill> 04-101-100
-            </div>
-            <div className="col-md-4">
-              <Pill> Status </Pill> 04-101-100
-            </div>
-          </div>
+      <Grid fluid>
+        <BackgroundBlue>
+          <Row>
+            <Col sm={12} md={4}>
+              <Pill> Part Name</Pill>
+              Drive Shaft
+            </Col>
+            <Col sm={12} md={4}>
+              <Pill> Part Number</Pill>
+              04-101-100
+            </Col>
+            <Col sm={12} md={4}>
+              <Pill> Status </Pill>
+              04-101-100
+            </Col>
+          </Row>
         </BackgroundBlue>
-      </div>
+      </Grid>
     )
   }
 
   getMachinesNeeded() {
+    // TODO: Small "Go to" link
     const columns = [
       {
         Header: '#',
         accessor: 'processNumber',
-        width: 40
+        width: 40,
       },
       {
         Header: 'Machine Name',
-        accessor: 'machineName'
+        accessor: 'machineName',
       },
-      {
-        Header: 'See Details',
-        Cell: row => {
-          return <div className="btn btn-sm btn-outline-blue"> See More!</div>
-        }
-      }
     ]
 
     const data = [
       {
         processNumber: 0,
-        machineName: 'Lathe'
+        machineName: 'CNC Bandsaw',
       },
       {
         processNumber: 1,
-        machineName: 'Mill'
+        machineName: 'Manual Mill',
       },
       {
         processNumber: 2,
-        machineName: 'Lathe'
+        machineName: 'CNC Mill',
       },
       {
         processNumber: 3,
-        machineName: 'Mill'
+        machineName: 'Debur',
       },
       {
-        processNumber: 0,
-        machineName: 'Lathe'
+        processNumber: 4,
+        machineName: 'Anodize',
       },
-      {
-        processNumber: 1,
-        machineName: 'Mill'
-      },
-      {
-        processNumber: 2,
-        machineName: 'Lathe'
-      },
-      {
-        processNumber: 3,
-        machineName: 'Mill'
-      }
     ]
 
     return (
@@ -100,7 +86,7 @@ class PartsTableDetails extends Component {
         defaultPageSize={data.length}
         showPagination={false}
         style={{
-          height: '300px' // This will force the table body to overflow and scroll, since there is not enough room
+          maxHeight: '250px', // This will force the table body to overflow and scroll, since there is not enough room
         }}
       />
     )
@@ -129,11 +115,12 @@ class PartsTableDetails extends Component {
           <Avatar />
         </CommentAvatar>
         <Paper>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+          been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+          a galley of type and scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting, remaining essentially
+          unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
           PageMaker including versions of Lorem Ipsum.
         </Paper>
       </CommentContainer>
@@ -141,15 +128,15 @@ class PartsTableDetails extends Component {
   }
 
   getCommentsSection() {
-    const CommentList = styled.div`
-      display: flex;
-      flex-direction: column;
-      background-color: rgb(238, 238, 238);
-      height: 400px;
-    `
+    // const CommentList = styled.div`
+    //   display: flex;
+    //   flex-direction: column;
+    //   background-color: rgb(238, 238, 238);
+    //   height: 400px;
+    // `
 
     return (
-      <div className={'col-md-12'}>
+      <div className="col-md-12">
         <Surface fullWidth>
           <h3>Comments</h3>
           {this.getComment()}
@@ -161,22 +148,27 @@ class PartsTableDetails extends Component {
 
   getInfo() {
     const InfoContainer = styled.div`
+      /* display: block; */
       display: flex;
       /* background-color: lightblue; */
       text-align: center;
       justify-content: space-between;
       margin-bottom: 10px;
-
-      /* align-items: center; */
+      flex-wrap: wrap;
     `
 
     const InfoItem = styled(Paper)`
-      width: 30%;
+      flex: 0 1 30%;
+
+      @media (max-width: 48em) {
+        flex: 0 1 100%;
+      }
     `
 
     const getPdfSection = () => {
       return (
         <InfoItem>
+          <h4>PDF Upload</h4>
           {/* <div className="col-4"> */}
           <div className="btn btn-md btn-secondary">Upload PDFs</div>
           responsibilities
@@ -187,12 +179,25 @@ class PartsTableDetails extends Component {
     const getGeneralInfo = () => {
       return (
         <InfoItem>
-          General <br />
-          Part Per robot <br />
-          Part Quantity <br />
-          total stock material <br />
-          Cut Lg. in <br />
-          stock ordered <br />
+          <h4>General Details</h4>
+          General
+          {' '}
+          <br />
+          Part Per robot
+          {' '}
+          <br />
+          Part Quantity
+          {' '}
+          <br />
+          total stock material
+          {' '}
+          <br />
+          Cut Lg. in
+          {' '}
+          <br />
+          stock ordered
+          {' '}
+          <br />
         </InfoItem>
       )
     }
@@ -226,16 +231,11 @@ class PartsTableDetails extends Component {
     return (
       <Container>
         {this.getHeader()}
-        <br />
         {this.getInfo()}
 
         <div className="row">
           <div className="col-md-12">{this.getCommentsSection()}</div>
         </div>
-
-        <Button size={'sm'} color={'primary'}>
-          I AM A BUTTON
-        </Button>
       </Container>
     )
   }

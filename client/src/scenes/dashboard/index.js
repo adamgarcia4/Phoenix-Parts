@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withStyles } from '@material-ui/core/styles'
-import { addPart } from '../../store/actions'
-
+import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
+import styled from 'styled-components'
+import { addPart } from '../../store/actions'
 import Fab from '../../ui/Fab'
 import PartsTable from '../../components/PartsTable'
-import styled from 'styled-components'
 import Paper from '../../ui/Paper'
 
 const PartTableContainer = styled.div`
@@ -19,8 +19,8 @@ const styles = {
   buttonStyle: {
     position: 'fixed',
     bottom: '30px',
-    right: '30px'
-  }
+    right: '30px',
+  },
 }
 
 class Dashboard extends Component {
@@ -31,10 +31,13 @@ class Dashboard extends Component {
   }
 
   handleClick() {
-    this.props.addPart('test')
+    const { addPart } = this.props
+    addPart('test')
   }
 
   render() {
+    const { classes: { buttonStyle } = {} } = this.props
+
     return (
       <div>
         <h1>Parts Dashboard</h1>
@@ -47,12 +50,17 @@ class Dashboard extends Component {
           </PartTableContainer>
         </Paper>
 
-        <Button variant="fab" className={this.props.classes.buttonStyle} color={'primary'} onClick={this.handleClick}>
+        <Button variant="fab" className={buttonStyle} color="primary" onClick={this.handleClick}>
           <AddIcon />
         </Button>
       </div>
     )
   }
+}
+
+Dashboard.propTypes = {
+  addPart: PropTypes.func.isRequired,
+  classes: PropTypes.shape.isRequired,
 }
 
 // Anything returned from this function will end up as props
@@ -61,14 +69,13 @@ function mapDispatchToProps(dispatch) {
   // Whenever selectBook is called, the result shoudl be passed
   // to all of our reducers
   return bindActionCreators({ addPart }, dispatch)
-  return {}
 }
 
 const styledDashboard = withStyles(styles)(Dashboard)
 
 export default connect(
   null,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(styledDashboard)
 
 // export default withStyles(styles)(LetterAvatars)

@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 require('./style.css')
 
-export default class Pill extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return <div className="button">{this.props.children}</div>
-  }
+const Pill = (props) => {
+  const { children } = props
+  return <div className="button">{children}</div>
 }
+
+Pill.propTypes = {
+  children: PropTypes.isRequired,
+}
+
+export default Pill

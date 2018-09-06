@@ -1,29 +1,25 @@
 // import { ADD_ARTICLE } from '../constants/action-types'
 
 const initialState = {
-  machines: []
+  machines: [],
 }
 
 const rootReducer = (state = initialState, action) => {
   console.log('payload is: ', action)
+
+  const isMachinePresent = state.machines.filter(machine => machine === action.payload).length !== 0
+
   switch (action.type) {
     case 'ADD_MACHINE':
-      const isMachinePresent =
-        state.machines.filter(machine => machine === action.payload).length !==
-        0
-
       if (isMachinePresent) {
         return state
-      } else {
-        return Object.assign({}, state, {
-          machines: [...state.machines, action.payload]
-        })
       }
-      break
+      return Object.assign({}, state, {
+        machines: [...state.machines, action.payload],
+      })
 
     default:
       return state
-      break
   }
 }
 

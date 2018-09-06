@@ -2,13 +2,11 @@ import React from 'react'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import Avatar from '../../ui/Avatar'
-
 import { connect } from 'react-redux'
+import Avatar from '../../ui/Avatar'
+import PropTypes from 'prop-types'
+
 class SimpleMenu extends React.Component {
-  constructor(props) {
-    super(props)
-  }
   state = {
     anchorEl: null
   }
@@ -39,12 +37,7 @@ class SimpleMenu extends React.Component {
         >
           <Avatar user={user} />
         </ButtonBase>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
+        <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
           <MenuItem onClick={this.handleClose}>Profile</MenuItem>
           <MenuItem onClick={this.handleClose}>My account</MenuItem>
           <MenuItem onClick={this.handleClose}>Logout</MenuItem>
@@ -52,6 +45,10 @@ class SimpleMenu extends React.Component {
       </div>
     )
   }
+}
+
+SimpleMenu.propTypes = {
+  user: PropTypes.isRequired
 }
 
 const mapStateToProps = state => {

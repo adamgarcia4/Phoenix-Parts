@@ -1,47 +1,48 @@
 import React from 'react'
-import { render } from 'react-dom'
+// import { render } from 'react-dom'
 import ReactTable from 'react-table'
+import styled from 'styled-components'
+
 import PartsTableDetails from '../PartsTableDetails'
 import 'react-table/react-table.css'
 import AvatarGroup from '../../ui/AvatarGroup'
 import Avatar from '../../ui/Avatar'
 import Paper from '../../ui/Paper'
-import styled from 'styled-components'
 
 const PartDetailsContainer = styled(Paper)`
   margin: 10px 15px;
 `
 
-const utils = require('./utils')
+const utils = require('./utils').default
 
 const columns = [
   {
     Header: 'Part Name',
-    accessor: 'partName'
+    accessor: 'partName',
   },
   {
     Header: 'Part Number',
-    accessor: 'partNumber'
+    accessor: 'partNumber',
   },
   {
     Header: 'Parts Per Robot',
-    accessor: 'partsPerRobot'
+    accessor: 'partsPerRobot',
   },
   {
     Header: 'Total Quantity',
-    accessor: 'partsTotal'
+    accessor: 'partsTotal',
   },
   {
     Header: 'Stock Material',
-    accessor: 'stockMaterial'
+    accessor: 'stockMaterial',
   },
   {
     Header: 'Cut Length',
-    accessor: 'cutLg'
+    accessor: 'cutLg',
   },
   {
     Header: 'Status',
-    accessor: 'status'
+    accessor: 'status',
   },
   {
     Header: 'Drawn By',
@@ -51,49 +52,30 @@ const columns = [
         <Avatar isImage={false} />
         <Avatar />
       </AvatarGroup>
-    )
+    ),
   },
   {
     Header: 'Machines Needed',
-    accessor: 'machinesNeeded'
+    accessor: 'machinesNeeded',
   },
   {
     Header: 'Stock Ordered?',
-    accessor: 'stockOrdered'
-  }
+    accessor: 'stockOrdered',
+  },
 ]
 
 export default class PartsTable extends React.Component {
   constructor() {
     super()
     this.state = {
-      data: utils.makeData()
+      data: utils.makeData(),
     }
   }
 
   render() {
     const { data } = this.state
 
-    // const subcomponentFactory = row => {
-    //   return (
-    //     <div style={{ padding: '20px' }}>
-    //       <em>You can put any component you want here, even another React Table!</em>
-    //       <br />
-    //       <br />
-    //       <ReactTable
-    //         data={data}
-    //         columns={columns}
-    //         defaultPageSize={3}
-    //         showPagination={false}
-    //         SubComponent={row => {
-    //           return <div style={{ padding: '20px' }}>Another Sub Component!</div>
-    //         }}
-    //       />
-    //     </div>
-    //   )
-    // }
-
-    const partViewSubcomponent = row => {
+    const partViewSubcomponent = (row) => {
       console.log('row:', row)
       return (
         <PartDetailsContainer>

@@ -1,114 +1,147 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addPart, updatePartForm } from '../../store/actions'
-import { withStyles } from '@material-ui/core'
 import { withRouter } from 'react-router-dom'
-import { FormControl, Button, Grid } from '@material-ui/core'
+import { Formik } from 'formik'
+import { addPart, updatePartForm } from '../../store/actions'
+import Paper from '../../ui/Paper'
 import TextField from '../../ui/textField'
-import ProcessPicker from '../../components/processPicker'
+// import { withStyles } from '@material-ui/core'
+// import styled from 'styled-components'
+// import { Grid, Row, Col } from 'react-flexbox-grid'
+// import TextField from '@material-ui/core/TextField'
+// import Input from '../../ui/Input'
+// import ProcessPicker from '../../components/processPicker'
 
-import { Form, Field } from 'react-final-form'
-
-const styles = {
-  container: {},
-  textField: {
-    // marginLeft: 10,
-    // marginRight: 10
-  }
-}
-
-const process = ['CNC Mill', 'CNC Lathe']
+// const process = ['CNC Mill', 'CNC Lathe']
 
 class PartsEntry extends Component {
-  constructor(props, context) {
-    super(props)
+  // submit = () => {
+  //   this.props.addPart(this.state)
+  //   this.props.history.push('/dashboard')
+  // }
 
-    this.state = {
-      partName: 'test',
-      partNumber: ''
+  getFormikForm() {
+    const initialValues = {
+      partName: 'test name',
+      partNumber: '04-100-101',
+      partsPerRobot: 6,
+      totalQuantity: 12,
+      stock: '60601 T6',
+      cutLg: '4in',
+      status: 'inProgress',
+      machinesNeeded: 'Lathe, Mill',
+      stockOrdered: 'yes',
     }
-    this.submit = this.submit.bind(this)
+
+    const onSubmit = (values, formikBag) => {
+      console.log('Submit!')
+      console.log('values:', values)
+      console.log('formikBag:', formikBag)
+    }
+
+    const getForm = () => {
+      return (
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          render={({
+            values,
+            handleChange,
+            handleSubmit,
+            // errors,
+            // touched,
+            // handleBlur,
+            // isSubmitting,
+          }) => (
+            <form onSubmit={handleSubmit}>
+              <TextField
+                name="partName"
+                label="Part Name"
+                value={values.partName}
+                onChange={handleChange}
+              />
+
+              <TextField
+                name="partNumber"
+                label="Part Number"
+                value={values.partNumber}
+                onChange={handleChange}
+              />
+
+              <TextField
+                name="partsPerRobot"
+                label="Parts Per Robot"
+                value={values.partsPerRobot}
+                onChange={handleChange}
+                type="number"
+              />
+
+              <TextField
+                name="totalQuantity"
+                label="Total Quantity"
+                value={values.totalQuantity}
+                onChange={handleChange}
+              />
+
+              <TextField name="stock" label="Stock" value={values.stock} onChange={handleChange} />
+
+              <TextField
+                name="cutLg"
+                label="Cut Length"
+                value={values.cutLg}
+                onChange={handleChange}
+              />
+
+              <TextField
+                name="status"
+                label="Status"
+                value={values.status}
+                onChange={handleChange}
+              />
+
+              <TextField
+                name="machinesNeeded"
+                label="Machines Needed"
+                value={values.machinesNeeded}
+                onChange={handleChange}
+              />
+
+              <TextField
+                name="stockOrdered"
+                label="Stock Ordered?"
+                value={values.stockOrdered}
+                onChange={handleChange}
+              />
+
+              <button type="submit"> Submit </button>
+            </form>
+          )}
+        />
+      )
+    }
+
+    return <Paper style={{ width: '500px' }}>{getForm()}</Paper>
   }
 
-  handleChange = name => event => {
-    this.props.updatePartForm(name, event.target.value)
-    this.setState({ [name]: event.target.value })
-  }
-
-  submit = () => {
-    this.props.addPart(this.state)
-    this.props.history.push('/dashboard')
-  }
-
-  onSubmit = values => {
-    console.log('hi', values)
-  }
-
-  getForm = () => {
-    return (
-      <Grid container spacing={16}>
-        <Grid item xs={6}>
-          <Form
-            onSubmit={this.onSubmit}
-            initialValues={this.initialState}
-            render={({ handleSubmit, values }) => (
-              <form>
-                <Field
-                  name="partName"
-                  component={TextField}
-                  type="text"
-                  label="Part Name"
-                />
-                <Field
-                  name="partNumber"
-                  component={TextField}
-                  type="text"
-                  label="Part Number"
-                />
-                <br />
-                <Button variant="raised" color="primary" onClick={handleSubmit}>
-                  alskdf
-                </Button>
-
-                <pre>{JSON.stringify(values, null, 2)}</pre>
-              </form>
-            )}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <ProcessPicker />
-        </Grid>
-      </Grid>
-    )
-  }
-
-  initialState = {
-    partName: '',
-    partNumber: ''
-  }
   render() {
-    const { classes, state } = this.props
-
-    return this.getForm()
+    return this.getFormikForm()
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    partEdit: state.partEdit
+    partEdit: state.partEdit,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ addPart, updatePartForm }, dispatch)
 }
-
-const styledParts = withStyles(styles)(PartsEntry)
 
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
-  )(styledParts)
+    mapDispatchToProps,
+  )(PartsEntry),
 )
