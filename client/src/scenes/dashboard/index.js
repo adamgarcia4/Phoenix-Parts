@@ -15,28 +15,27 @@ const PartTableContainer = styled.div`
   margin: 0px 10px 100px 10px;
 `
 
-const styles = {
-  buttonStyle: {
-    position: 'fixed',
-    bottom: '30px',
-    right: '30px',
-  },
-}
+// const styles = {
+//   buttonStyle: {
+//     position: 'fixed',
+//     bottom: '30px',
+//     right: '30px'
+//   }
+// }
 
 class Dashboard extends Component {
   constructor(props) {
     super(props)
 
-    this.handleClick = this.handleClick.bind(this)
+    // this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick() {
-    const { addPart } = this.props
-    addPart('test')
+    // const { addPart } = this.props
   }
 
   render() {
-    const { classes: { buttonStyle } = {} } = this.props
+    // const { classes: { buttonStyle } = {} } = this.props
 
     return (
       <div>
@@ -49,8 +48,8 @@ class Dashboard extends Component {
             <PartsTable />
           </PartTableContainer>
         </Paper>
-
-        <Button variant="fab" className={buttonStyle} color="primary" onClick={this.handleClick}>
+        <Button variant="fab" color="primary" onClick={this.handleClick}>
+          {/* <Button variant="fab" className={buttonStyle} color="primary" onClick={this.handleClick}> */}
           <AddIcon />
         </Button>
       </div>
@@ -58,10 +57,10 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.propTypes = {
-  addPart: PropTypes.func.isRequired,
-  classes: PropTypes.shape.isRequired,
-}
+// Dashboard.propTypes = {
+//   // addPart: PropTypes.func.isRequired,
+//   // classes: PropTypes.object.isRequired
+// }
 
 // Anything returned from this function will end up as props
 // on the BookList container
@@ -71,11 +70,13 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addPart }, dispatch)
 }
 
-const styledDashboard = withStyles(styles)(Dashboard)
+const styledDashboard = Dashboard
+// const styledDashboard = withStyles(styles)(Dashboard)
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(styledDashboard)
+// export default connect(
+//   null,
+//   mapDispatchToProps
+// )(styledDashboard)
+export default Dashboard
 
 // export default withStyles(styles)(LetterAvatars)

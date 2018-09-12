@@ -7,6 +7,7 @@ import PartsEntry from './scenes/partsEntry'
 import Dashboard from './scenes/dashboard'
 import Home from './scenes/home'
 import PartNumbering from './scenes/partNumbering'
+import PartsTable from './components/PartsTable'
 // import logo from './logo.svg'
 
 // const axios = require('axios')
@@ -24,6 +25,7 @@ class App extends React.Component {
           <Route exact path="/partNumbering" component={PartNumbering} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/parts" component={PartsEntry} />
+          <Route path="/partsTest" component={PartsTable} />
         </Header>
       </div>
     )

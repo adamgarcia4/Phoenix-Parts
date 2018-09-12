@@ -48,7 +48,7 @@ class SimpleMenu extends React.Component {
 }
 
 SimpleMenu.propTypes = {
-  user: PropTypes.isRequired
+  user: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => {

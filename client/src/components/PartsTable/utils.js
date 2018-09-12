@@ -1,6 +1,6 @@
 // import namor from 'namor';
 
-const range = (len) => {
+const range = len => {
   const arr = []
   for (let i = 0; i < len; i + 1) {
     arr.push(i)
@@ -18,16 +18,17 @@ const newPart = {
   status: 'inProgress',
   drawnBy: 'Adam',
   machinesNeeded: 'Lathe, Mill',
-  stockOrdered: 'yes',
+  stockOrdered: 'yes'
 }
 
-const makeData = (len = 100) => range(len).map(() => {
-  return {
-    ...newPart(),
-    children: range(10).map(newPart),
-  }
-})
+const makeData = (len = 100) =>
+  range(len).map(() => {
+    return {
+      ...newPart()
+      // children: range(10).map(newPart),
+    }
+  })
 
-export default {
-  makeData,
+module.exports = {
+  makeData
 }
