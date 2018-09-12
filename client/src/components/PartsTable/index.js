@@ -1,21 +1,19 @@
 import React from 'react'
 // import { render } from 'react-dom'
 import ReactTable from 'react-table'
-// import styled from 'styled-components'
+import styled from 'styled-components'
 
-// import PartsTableDetails from '../PartsTableDetails'
+import PartsTableDetails from '../PartsTableDetails'
 import 'react-table/react-table.css'
 import AvatarGroup from '../../ui/AvatarGroup'
 import Avatar from '../../ui/Avatar'
-// import Paper from '../../ui/Paper'
+import Paper from '../../ui/Paper'
 
-// const PartDetailsContainer = styled(Paper)`
-//   margin: 10px 15px;
-// `
+const PartDetailsContainer = styled(Paper)`
+  margin: 10px 15px;
+`
 
 const utils = require('./utils')
-
-console.log('utils:', utils)
 
 const columns = [
   {
@@ -66,46 +64,38 @@ const columns = [
   }
 ]
 
+const partViewSubcomponent = row => {
+  return (
+    <PartDetailsContainer>
+      <PartsTableDetails />
+    </PartDetailsContainer>
+  )
+}
+
 export default class PartsTable extends React.Component {
   constructor() {
     super()
-    // this.state = {
-    //   data: utils.makeData()
-    // }
-
-    // console.log('this.state.data:', this.state.data)
+    utils.makeData()
+    this.state = {
+      data: utils.makeData()
+    }
   }
 
   render() {
-    // console.log('this.state.data:', this.state.data)
-    // const { data } = this.state
-    const data = utils.makeData()
-    console.log('data:', data)
-
-    // const partViewSubcomponent = row => {
-    //   console.log('row:', row)
-    //   return (
-    //     <PartDetailsContainer>
-    //       <PartsTableDetails />
-    //     </PartDetailsContainer>
-    //   )
-    // }
+    const { data } = this.state
 
     return (
       <div>
-        {/* <PartsTableDetails /> */}
+        <PartsTableDetails />
         <ReactTable
-          data={{
-            partName: 'Part Name'
-          }}
-          columns={{
-            Header: 'Part Name',
-            accessor: 'partName'
-          }}
+          data={data}
+          columns={columns}
           defaultPageSize={10}
           className="-striped -highlight"
+          SubComponent={row => {
+            return <div style={{ padding: '20px' }}>Another Sub Component!</div>
+          }}
         />
-        {/* <ReactTable data={data} columns={columns} defaultPageSize={10} className="-striped -highlight" /> */}
       </div>
     )
   }
