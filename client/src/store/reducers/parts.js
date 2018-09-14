@@ -10,8 +10,10 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'GET_PARTS':
+      return action.payload
     case 'ADD_PART':
-      console.log('payload is: ', action)
+      // console.log('payload is: ', action)
       return [
         ...state,
         {
@@ -24,8 +26,7 @@ const rootReducer = (state = initialState, action) => {
       ]
 
     default:
-      return [
-        {
+      return [{
           partName: 'Part 1',
           partNumber: '4-2019-100-101',
           Qty: 1,

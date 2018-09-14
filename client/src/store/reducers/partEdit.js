@@ -5,7 +5,7 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
-  console.log('payload is: ', action)
+  // console.log('payload is: ', action)
 
   const isMachinePresent = state.machines.filter(machine => machine === action.payload).length !== 0
 
