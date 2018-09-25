@@ -1,5 +1,5 @@
 import Component from './Component'
-import FirebaseListening from '../../hoc/FirebaseListening'
+// import FirebaseListening from '../../hoc/FirebaseListening'
 import { connect } from 'react-redux'
 // import {
 //   bindActionCreators
@@ -12,10 +12,9 @@ import { connect } from 'react-redux'
 const mapStateToProps = (state, ownProps) => {
   // Import anything from global state here
   // const {deskId} = state.auth
-
-  return {
-    refPath: '/testing',
-  }
+  // return {
+  //   refPath: '/parts',
+  // }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -36,7 +35,9 @@ const Container = Component
 //   )(Component)
 // )
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FirebaseListening(Container))
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Container)
+
+export default Container

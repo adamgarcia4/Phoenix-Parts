@@ -1,4 +1,4 @@
-import firebase from '../../modules/firebase'
+// import firebase from '../../modules/firebase'
 
 export function addPart(part) {
   // selectBook is an ActionCreator, it needs to return an action,
@@ -18,12 +18,12 @@ export function addMachine(machine) {
 }
 
 export const getParts = _ => async dispatch => {
-  firebase.partsRef.on('value', snapshot => {
-    dispatch({
-      type: 'GET_PARTS',
-      payload: snapshot.val()
-    })
-  })
+  // firebase.partsRef.on('value', snapshot => {
+  //   dispatch({
+  //     type: 'GET_PARTS',
+  //     payload: snapshot.val()
+  //   })
+  // })
 }
 
 export function updatePartForm(field, newValue) {

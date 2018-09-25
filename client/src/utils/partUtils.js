@@ -1,4 +1,3 @@
-import namor from 'namor'
 import faker from 'faker'
 
 const partsList = [

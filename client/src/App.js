@@ -8,6 +8,7 @@ import Dashboard from './scenes/dashboard'
 import Home from './scenes/home'
 import PartNumbering from './scenes/partNumbering'
 import PartsTable from './components/PartsTable'
+import LoginForm from './components/login'
 // import logo from './logo.svg'
 
 // const axios = require('axios')
@@ -20,12 +21,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header>
+        <Header appName='Phoenix Parts'>
           <Route exact path="/" component={Home} />
           <Route exact path="/partNumbering" component={PartNumbering} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/parts" component={PartsEntry} />
           <Route path="/partsTest" component={PartsTable} />
+          <Route path="/loginForm" component={LoginForm} />
         </Header>
       </div>
     )

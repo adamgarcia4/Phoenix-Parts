@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import Avatar from '../../ui/Avatar'
 import PropTypes from 'prop-types'
 
-class SimpleMenu extends React.Component {
+class AvatarHeader extends React.Component {
   state = {
     anchorEl: null
   }
@@ -25,17 +25,29 @@ class SimpleMenu extends React.Component {
 
   render() {
     const { anchorEl } = this.state
+
+    // TODO: User is a Firebase implementation.  I can make it abstract then build Firebase adapter around it.
     const { user } = this.props
+
+    const getAvatar = user => {
+      const userDetails = {
+        photoUrl: (user && user.photoURL) || '',
+        displayName: (user && user.displayName) || ''
+      }
+
+      return <Avatar {...userDetails} />
+    }
 
     return (
       <div className={this.buttonStyles.display}>
+      
         <ButtonBase
           aria-owns={anchorEl ? 'simple-menu' : null}
           centerRipple={false}
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          <Avatar user={user} />
+          {getAvatar(user)}
         </ButtonBase>
         <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
           <MenuItem onClick={this.handleClose}>Profile</MenuItem>
@@ -47,8 +59,8 @@ class SimpleMenu extends React.Component {
   }
 }
 
-SimpleMenu.propTypes = {
-  user: PropTypes.object.isRequired
+AvatarHeader.propTypes = {
+  user: PropTypes.object
 }
 
 const mapStateToProps = state => {
@@ -56,7 +68,9 @@ const mapStateToProps = state => {
     user: state.user
   }
 }
-export default connect(
-  mapStateToProps,
-  null
-)(SimpleMenu)
+// export default connect(
+//   mapStateToProps,
+//   null
+// )(SimpleMenu)
+
+export default AvatarHeader

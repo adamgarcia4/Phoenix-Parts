@@ -8,15 +8,15 @@ import 'react-table/react-table.css'
 import AvatarGroup from '../../ui/AvatarGroup'
 import Avatar from '../../ui/Avatar'
 import Paper from '../../ui/Paper'
-import PartModel from '../../models/parts'
+// import PartModel from '../../models/parts'
 
 import firebase from '../../modules/firebase'
 
-const PartDetailsContainer = styled(Paper)`
+const PartDetailsContainer = styled(Paper) `
   margin: 10px 15px;
 `
 
-const utils = require('./utils')
+// const utils = require('./utils')
 
 const columns = [
   {
@@ -33,11 +33,11 @@ const columns = [
   },
   {
     Header: 'Total Quantity',
-    accessor: 'partsTotal'
+    accessor: 'totalQuantity'
   },
   {
     Header: 'Stock Material',
-    accessor: 'stockMaterial'
+    accessor: 'stock'
   },
   {
     Header: 'Cut Length',
@@ -75,33 +75,52 @@ const partViewSubcomponent = row => {
   )
 }
 
+const getPartsDataFromFb = data => {
+  return Object.keys(data).map(key => data[key])
+}
+
 class PartsTable extends React.Component {
   constructor(props) {
     super(props)
-    console.log('constructor claledd!')
-    utils.makeData()
-    this.state = {
-      data: utils.makeData()
-    }
+    this.state = {}
   }
-  
-  render() {
-    const { data } = this.state
-    console.log('props:', this.props)
+
+  componentDidMount() {
+    firebase.rebase.syncState('parts', {
+      context: this,
+      state: 'data',
+    })
+  }
+
+  getTable(snap) {
+
+    if(!snap) return 'No Data'
+
+    const data = getPartsDataFromFb(snap)
 
     return (
-      <div>
-        {/* <PartsTableDetails /> */}
-        <ReactTable
-          data={data}
-          columns={columns}
-          defaultPageSize={10}
-          className="-striped -highlight"
-          SubComponent={row => {
-            return <div style={{ padding: '20px' }}>Another Sub Component!</div>
-          }}
-        />
-      </div>
+      < ReactTable
+      data={data}
+      columns={columns}
+      defaultPageSize={10}
+      className="-striped -highlight"
+      // TODO: Add subcomponent which deals with scheduling....
+      SubComponent={row => {
+        return <PartsTableDetails />
+      }}
+    />
+    )
+
+
+  }
+
+  render() {
+    console.log('this.state:', this.state)
+    const { data = null } = this.state
+
+    return (
+
+        this.getTable(data)
     )
   }
 }

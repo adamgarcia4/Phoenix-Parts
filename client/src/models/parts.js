@@ -1,7 +1,7 @@
 import firebase from '../modules/firebase'
 
 const addPart = part => {
-  // TODO: part validation?
+  // TODO: part validation via JOI??
   return firebase.partsRef.push(part)
 }
 

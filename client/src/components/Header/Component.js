@@ -14,6 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import { mailFolderListItems, otherMailFolderListItems } from './tileData'
 import AvatarHeader from '../AvatarHeader'
+import firebase from '../../modules/firebase'
 
 const drawerWidth = 240
 
@@ -100,6 +101,7 @@ class MiniDrawer extends React.Component {
     this.setState({ open: false })
   }
 
+
   userObj = {
     auth: true,
     imgUrl:
@@ -108,30 +110,16 @@ class MiniDrawer extends React.Component {
     lastName: 'Garcia',
   }
 
+
   render() {
-    const { classes, theme } = this.props
+    const { classes, theme, appName, user } = this.props
 
-    // const HeaderBar = props => {
-    //   return (
-    //     <AppBar
-    //       position="absolute"
-    //       className={classNames(
-    //         classes.appBar,
-    //         this.state.open && classes.appBarShift
-    //       )}
-    //     >
-    //       {this.props.children}
-    //     </AppBar>
-    //   )
-    // }
+    console.log('userrender:', user)
 
-    return (
-      <div className={classes.root}>
-        <AppBar
-          position="absolute"
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-        >
-          <Toolbar disableGutters={!this.state.open}>
+    const getAppBar = () => {
+
+      const getToolbar = () => {
+        return (<Toolbar disableGutters={!this.state.open}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -141,11 +129,28 @@ class MiniDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap style={{ flex: 1 }}>
-              Phoenix Parts
+              {appName}
             </Typography>
-            <AvatarHeader user={this.userObj} style={{ marginRight: '50px' }} />
+            <AvatarHeader user={user} style={{ marginRight: '50px' }} />
           </Toolbar>
+        )
+      }
+
+      return (
+        <AppBar
+          position="absolute"
+          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+        >
+         {getToolbar()} 
         </AppBar>
+      )
+
+    }
+
+    return (
+      <div className={classes.root}>
+        {getAppBar()}
+
         <Drawer
           variant="permanent"
           classes={{

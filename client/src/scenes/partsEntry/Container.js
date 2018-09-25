@@ -13,7 +13,7 @@ import {
 import {
   withRouter
 } from 'react-router-dom'
-import FirebaseListening from '../../hoc/FirebaseListening'
+// import FirebaseListening from '../../hoc/FirebaseListening'
 
 const mapStateToProps = state => {
   return {

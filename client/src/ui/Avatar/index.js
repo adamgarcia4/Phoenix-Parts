@@ -7,7 +7,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 function LetterAvatars(props) {
-  const { isImage = true, overlap, border } = props // user
+  // user
+  const { isImage = true, overlap, border } = props
 
   // .avatar {
   //   display: inline-block;

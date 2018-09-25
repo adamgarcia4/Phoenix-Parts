@@ -5,6 +5,8 @@ import TextField from '../../ui/textField'
 import partUtils from '../../utils/partUtils'
 
 import partModel from '../../models/parts'
+
+import firebase from '../../modules/firebase'
 // import { withStyles } from '@material-ui/core'
 // import styled from 'styled-components'
 // import { Grid, Row, Col } from 'react-flexbox-grid'
@@ -17,14 +19,25 @@ class PartsEntry extends Component {
 
   getFormikForm() {
     const initialValues = partUtils.randomPart()
+    const {history} = this.props
+    
 
     const onSubmit = (values, formikBag) => {
       console.log('Submit!')
 
-      console.log('values:', values)
+      // TODO: Either move to centralized file or filter values through a validator
+      firebase.rebase.push('parts',{
+        data: values,
+        then: (err) => {
+          if(err) {
+            console.log('error in saving', err)
+            return
+          }
+          history.push('/dashboard')
+        }
+      })
 
-      partModel.addPart(values)
-      //   this.props.history.push('/dashboard')
+
     }
 
     const getForm = () => {
