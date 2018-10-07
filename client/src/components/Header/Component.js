@@ -12,8 +12,11 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+// import { Button } from 'react-bootstrap'
+
 import { mailFolderListItems, otherMailFolderListItems } from './tileData'
 import AvatarHeader from '../AvatarHeader'
+import firebase from '../../modules/firebase'
 
 const drawerWidth = 240
 
@@ -100,80 +103,68 @@ class MiniDrawer extends React.Component {
     this.setState({ open: false })
   }
 
-  userObj = {
-    auth: true,
-    imgUrl:
-      'https://media.licdn.com/dms/image/C5103AQHoTTrJ1xgdvA/profile-displayphoto-shrink_200_200/0?e=1528732800&v=beta&t=eLFcdSXLBD4qkK8nsRozMOSucy5UPPPFFRMB4ULDIgs',
-    firstName: 'Adam',
-    lastName: 'Garcia'
+  logout = () => {
+    firebase.auth.doSignOut().then(data => {
+      console.log('logout')
+      console.log('data:', data)
+    })
   }
 
   render() {
-    const { classes, theme } = this.props
+    const { classes, theme, appName, user } = this.props
 
-    const HeaderBar = props => {
-      return (
-        <AppBar
-          position="absolute"
-          className={classNames(
-            classes.appBar,
-            this.state.open && classes.appBarShift
-          )}
-        >
-          {this.props.children}
-        </AppBar>
-      )
-    }
-
-    return (
-      <div className={classes.root}>
-        <AppBar
-          position="absolute"
-          className={classNames(
-            classes.appBar,
-            this.state.open && classes.appBarShift
-          )}
-        >
-          <Toolbar disableGutters={!this.state.open}>
+    const getAppBar = () => {
+      const getToolbar = () => {
+        const getToolbarToggle = () => {
+          return (
             <IconButton
               color="inherit"
               aria-label="open drawer"
               onClick={this.handleDrawerOpen}
-              className={classNames(
-                classes.menuButton,
-                this.state.open && classes.hide
-              )}
+              className={classNames(classes.menuButton, this.state.open && classes.hide)}
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              variant="title"
-              color="inherit"
-              noWrap
-              style={{ flex: 1 }}
-            >
-              Phoenix Parts
-            </Typography>
-            <AvatarHeader user={this.userObj} style={{ marginRight: '50px' }} />
-          </Toolbar>
+          )
+        }
+        return (
+          <div>
+            <Toolbar disableGutters={!this.state.open}>
+              {getToolbarToggle()}
+              <Typography variant="title" color="inherit" noWrap style={{ flex: 1 }}>
+                {appName}
+              </Typography>
+              {/* <Button bsStyle="primary" bsSize="small">
+                Login
+              </Button>
+              <Button bsStyle="secondary" bsSize="small" onClick={this.logout}>
+                Logout
+              </Button> */}
+              <AvatarHeader user={user} style={{ marginRight: '50px' }} />
+            </Toolbar>
+          </div>
+        )
+      }
+
+      return (
+        <AppBar position="absolute" className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
+          {getToolbar()}
         </AppBar>
+      )
+    }
+
+    const getDrawer = () => {
+      return (
         <Drawer
           variant="permanent"
           classes={{
-            paper: classNames(
-              classes.drawerPaper,
-              !this.state.open && classes.drawerPaperClose
-            )
+            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose)
           }}
           open={this.state.open}
         >
           <div className={classes.toolbar}>
             <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </div>
           <Divider />
@@ -181,11 +172,25 @@ class MiniDrawer extends React.Component {
           <Divider />
           <List>{otherMailFolderListItems}</List>
         </Drawer>
+      )
+    }
 
+    const getContent = () => {
+      return (
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {this.props.children}
         </main>
+      )
+    }
+
+    return (
+      <div className={classes.root}>
+        {getAppBar()}
+
+        {getDrawer()}
+
+        {getContent()}
       </div>
     )
   }

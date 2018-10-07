@@ -1,4 +1,3 @@
-// const partsController = require('../controllers/partsController')
 import * as partsController from '../controllers/partsController'
 
 import * as express from 'express'

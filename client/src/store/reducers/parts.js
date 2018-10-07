@@ -1,17 +1,19 @@
 // import { ADD_ARTICLE } from '../constants/action-types'
 
 const initialState = {
-  parts: []
+  parts: [],
 }
 
-function getRandomArbitrary(min, max) {
-  return Math.floor(Math.random() * (max - min) + min)
-}
+// function getRandomArbitrary(min, max) {
+//   return Math.floor(Math.random() * (max - min) + min)
+// }
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'GET_PARTS':
+      return action.payload
     case 'ADD_PART':
-      console.log('payload is: ', action)
+      // console.log('payload is: ', action)
       return [
         ...state,
         {
@@ -19,29 +21,26 @@ const rootReducer = (state = initialState, action) => {
           partNumber: action.payload.partNumber || '4-2019-100-103',
           Qty: 1,
           Location: 'B12',
-          Action: 'none'
-        }
+          Action: 'none',
+        },
       ]
-      break
 
     default:
-      return [
-        {
+      return [{
           partName: 'Part 1',
           partNumber: '4-2019-100-101',
           Qty: 1,
           Location: 'B12',
-          Action: 'none'
+          Action: 'none',
         },
         {
           partName: 'Part 2',
           partNumber: '4-2019-100-102',
           Qty: 3,
           Location: 'B24',
-          Action: 'yes'
-        }
+          Action: 'yes',
+        },
       ]
-      break
   }
 
   // switch (action.type) {

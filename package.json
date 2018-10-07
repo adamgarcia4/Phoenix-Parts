@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/justAdevTV/Phoenix-Parts#readme",
   "dependencies": {
+    "firebase": "^5.4.2",
     "mdbootstrap": "^4.5.7",
+    "re-base": "^4.0.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "styled-components": "^3.4.2"
