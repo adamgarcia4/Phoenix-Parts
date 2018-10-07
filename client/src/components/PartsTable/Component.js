@@ -9,16 +9,23 @@ import AvatarGroup from '../../ui/AvatarGroup'
 import Avatar from '../../ui/Avatar'
 import Paper from '../../ui/Paper'
 // import PartModel from '../../models/parts'
+import statusUtils from '../../models/statusUtils'
 
 import firebase from '../../modules/firebase'
 
-const PartDetailsContainer = styled(Paper) `
+import treeTableHOC from 'react-table/lib/hoc/treeTable/'
+
+const TreeTable = treeTableHOC(ReactTable)
+
+const PartDetailsContainer = styled(Paper)`
   margin: 10px 15px;
 `
 
-// const utils = require('./utils')
-
 const columns = [
+  {
+    Header: 'Assembly Number',
+    accessor: 'assemblyNumber'
+  },
   {
     Header: 'Part Name',
     accessor: 'partName'
@@ -47,16 +54,16 @@ const columns = [
     Header: 'Status',
     accessor: 'status'
   },
-  {
-    Header: 'Drawn By',
-    accessor: 'Adam',
-    Cell: row => (
-      <AvatarGroup>
-        <Avatar isImage={false} />
-        <Avatar />
-      </AvatarGroup>
-    )
-  },
+  // {
+  //   Header: 'Drawn By',
+  //   accessor: 'Adam',
+  //   Cell: row => (
+  //     <AvatarGroup>
+  //       <Avatar isImage={false} />
+  //       <Avatar />
+  //     </AvatarGroup>
+  //   )
+  // },
   {
     Header: 'Machines Needed',
     accessor: 'machinesNeeded'
@@ -88,40 +95,67 @@ class PartsTable extends React.Component {
   componentDidMount() {
     firebase.rebase.syncState('parts', {
       context: this,
-      state: 'data',
+      state: 'data'
     })
   }
 
   getTable(snap) {
-
-    if(!snap) return 'No Data'
+    if (!snap) return 'No Data'
 
     const data = getPartsDataFromFb(snap)
 
+    console.log('data:', data)
     return (
-      < ReactTable
-      data={data}
-      columns={columns}
-      defaultPageSize={10}
-      className="-striped -highlight"
-      // TODO: Add subcomponent which deals with scheduling....
-      SubComponent={row => {
-        return <PartsTableDetails />
-      }}
-    />
+      <TreeTable
+        data={data}
+        pivotBy={['assemblyNumber']}
+        columns={columns}
+        defaultPageSize={10}
+        getTrProps={(state, rowInfo, column) => {
+          const status = rowInfo && rowInfo.row && rowInfo.row.status
+
+          const statusColor = status && statusUtils.statusMap[status] && statusUtils.statusMap[status].statusColor
+
+          return {
+            style: {
+              background: statusColor || ''
+            }
+          }
+        }}
+        className="-striped -highlight"
+        // TODO: Add subcomponent which deals with scheduling....
+      />
     )
 
+    // return (
+    //   <ReactTable
+    //     data={data}
+    //     columns={columns}
+    //     defaultPageSize={10}
+    //     getTrProps={(state, rowInfo, column) => {
+    //       const status = rowInfo && rowInfo.row && rowInfo.row.status
 
+    //       const statusColor = status && statusUtils.statusMap[status] && statusUtils.statusMap[status].statusColor
+
+    //       return {
+    //         style: {
+    //           background: statusColor || ''
+    //         }
+    //       }
+    //     }}
+    //     className="-striped -highlight"
+    //     // TODO: Add subcomponent which deals with scheduling....
+    //     SubComponent={row => {
+    //       return <PartsTableDetails />
+    //     }}
+    //   />
+    // )
   }
 
   render() {
-    console.log('this.state:', this.state)
     const { data = null } = this.state
 
-    return (
-
-        this.getTable(data)
-    )
+    return this.getTable(data)
   }
 }
 

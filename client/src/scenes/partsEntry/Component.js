@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Formik } from 'formik'
 import Paper from '../../ui/Paper'
 import TextField from '../../ui/textField'
+import { Radio, RadioGroup, FormControlLabel, MenuItem, FormControl, InputLabel, Select } from '@material-ui/core'
 import partUtils from '../../utils/partUtils'
-
+import styled from 'styled-components'
 import partModel from '../../models/parts'
-
+import { Form } from 'react-bootstrap'
 import firebase from '../../modules/firebase'
 // import { withStyles } from '@material-ui/core'
 // import styled from 'styled-components'
@@ -15,29 +16,25 @@ import firebase from '../../modules/firebase'
 // import ProcessPicker from '../../components/processPicker'
 
 class PartsEntry extends Component {
-  getRandomForm() {}
-
   getFormikForm() {
     const initialValues = partUtils.randomPart()
-    const {history} = this.props
-    
+    const { history } = this.props
 
     const onSubmit = (values, formikBag) => {
       console.log('Submit!')
 
+      console.log('values:', values)
       // TODO: Either move to centralized file or filter values through a validator
-      firebase.rebase.push('parts',{
+      firebase.rebase.push('parts', {
         data: values,
-        then: (err) => {
-          if(err) {
+        then: err => {
+          if (err) {
             console.log('error in saving', err)
             return
           }
-          history.push('/dashboard')
+          // history.push('/dashboard')
         }
       })
-
-
     }
 
     const getForm = () => {
@@ -53,50 +50,93 @@ class PartsEntry extends Component {
             // touched,
             // handleBlur,
             // isSubmitting,
-          }) => (
-            <form onSubmit={handleSubmit}>
-              <TextField name="partName" label="Part Name" value={values.partName} onChange={handleChange} />
+          }) => {
+            return (
+              <Form onSubmit={handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Type </Form.Label>
+                  <Form.Control as="select" name="type" value={values.type} onChange={handleChange}>
+                    <option>part</option>
+                    <option>assembly</option>
+                  </Form.Control>
+                </Form.Group>
 
-              <TextField name="partNumber" label="Part Number" value={values.partNumber} onChange={handleChange} />
+                <Form.Group>
+                  <Form.Label>Part Name </Form.Label>
+                  <Form.Control
+                    name="partName"
+                    placeholder="Enter Part Name"
+                    value={values.partName}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <TextField
-                name="partsPerRobot"
-                label="Parts Per Robot"
-                value={values.partsPerRobot}
-                onChange={handleChange}
-                type="number"
-              />
+                <Form.Group>
+                  <Form.Label>Part Number </Form.Label>
+                  <Form.Control
+                    name="partNumber"
+                    placeholder="Enter Part Number"
+                    value={values.partNumber}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <TextField
-                name="totalQuantity"
-                label="Total Quantity"
-                value={values.totalQuantity}
-                onChange={handleChange}
-              />
+                <Form.Group>
+                  <Form.Label>Parts Per Robot </Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="partsPerRobot"
+                    placeholder="Enter Parts per robot"
+                    value={values.partsPerRobot}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <TextField name="stock" label="Stock" value={values.stock} onChange={handleChange} />
+                <Form.Group>
+                  <Form.Label>Total Quantity </Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="totalQuantity"
+                    placeholder="Enter Total Quantity"
+                    value={values.totalQuantity}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <TextField name="cutLg" label="Cut Length" value={values.cutLg} onChange={handleChange} />
+                <Form.Group>
+                  <Form.Label>Stock Type </Form.Label>
+                  <Form.Control
+                    name="stock"
+                    placeholder="Enter Stock Type"
+                    value={values.stock}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <TextField name="status" label="Status" value={values.status} onChange={handleChange} />
+                <Form.Group>
+                  <Form.Label>Cut Length </Form.Label>
+                  <Form.Control
+                    name="cutLg"
+                    placeholder="Enter Length to Cut Raw stock to"
+                    value={values.cutLg}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <TextField
-                name="machinesNeeded"
-                label="Machines Needed"
-                value={values.machinesNeeded}
-                onChange={handleChange}
-              />
+                <Form.Group>
+                  <Form.Label> Status </Form.Label>
+                  <Form.Control
+                    name="status"
+                    placeholder="Enter Status"
+                    value={values.status}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <TextField
-                name="stockOrdered"
-                label="Stock Ordered?"
-                value={values.stockOrdered}
-                onChange={handleChange}
-              />
-
-              <button type="submit"> Submit </button>
-            </form>
-          )}
+                <button type="submit"> Submit </button>
+              </Form>
+            )
+          }}
         />
       )
     }
@@ -112,7 +152,6 @@ class PartsEntry extends Component {
   }
 
   render() {
-    console.log('this.props:', this.props)
     return this.getFormikForm()
   }
 }

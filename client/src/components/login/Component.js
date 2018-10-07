@@ -20,7 +20,7 @@ class LoginForm extends Component {
   getForm = () => {
     const onSubmit = (values, formikBag) => {
       console.log('Submit!')
-      const { history } = this.props
+      // const { history } = this.props
 
       console.log('values:', values)
 
@@ -108,7 +108,7 @@ class LoginForm extends Component {
   // }
 
   render() {
-    return this.getForm()
+    return <div>{this.getForm()}</div>
   }
 }
 

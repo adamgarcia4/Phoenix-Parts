@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+// import { Button } from 'react-bootstrap'
+
 import { mailFolderListItems, otherMailFolderListItems } from './tileData'
 import AvatarHeader from '../AvatarHeader'
 import firebase from '../../modules/firebase'
@@ -25,29 +27,29 @@ const styles = theme => ({
     zIndex: 1,
     overflow: 'scroll',
     position: 'relative',
-    display: 'flex',
+    display: 'flex'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+      duration: theme.transitions.duration.leavingScreen
+    })
   },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   menuButton: {
     marginLeft: 12,
-    marginRight: 36,
+    marginRight: 36
   },
   hide: {
-    display: 'none',
+    display: 'none'
   },
   drawerPaper: {
     position: 'relative',
@@ -55,42 +57,42 @@ const styles = theme => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   drawerPaperClose: {
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
     width: theme.spacing.unit * 7,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9,
-    },
+      width: theme.spacing.unit * 9
+    }
   },
   toolbar: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
-    ...theme.mixins.toolbar,
+    ...theme.mixins.toolbar
   },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
     height: '100vh',
-    overflow: 'auto',
+    overflow: 'auto'
   },
   avatar: {
-    marginLeft: '100px',
-  },
+    marginLeft: '100px'
+  }
 })
 
 class MiniDrawer extends React.Component {
   state = {
-    open: false,
+    open: false
   }
 
   handleDrawerOpen = () => {
@@ -101,25 +103,20 @@ class MiniDrawer extends React.Component {
     this.setState({ open: false })
   }
 
-
-  userObj = {
-    auth: true,
-    imgUrl:
-      'https://media.licdn.com/dms/image/C5103AQHoTTrJ1xgdvA/profile-displayphoto-shrink_200_200/0?e=1528732800&v=beta&t=eLFcdSXLBD4qkK8nsRozMOSucy5UPPPFFRMB4ULDIgs',
-    firstName: 'Adam',
-    lastName: 'Garcia',
+  logout = () => {
+    firebase.auth.doSignOut().then(data => {
+      console.log('logout')
+      console.log('data:', data)
+    })
   }
-
 
   render() {
     const { classes, theme, appName, user } = this.props
 
-    console.log('userrender:', user)
-
     const getAppBar = () => {
-
       const getToolbar = () => {
-        return (<Toolbar disableGutters={!this.state.open}>
+        const getToolbarToggle = () => {
+          return (
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -128,33 +125,40 @@ class MiniDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap style={{ flex: 1 }}>
-              {appName}
-            </Typography>
-            <AvatarHeader user={user} style={{ marginRight: '50px' }} />
-          </Toolbar>
+          )
+        }
+        return (
+          <div>
+            <Toolbar disableGutters={!this.state.open}>
+              {getToolbarToggle()}
+              <Typography variant="title" color="inherit" noWrap style={{ flex: 1 }}>
+                {appName}
+              </Typography>
+              {/* <Button bsStyle="primary" bsSize="small">
+                Login
+              </Button>
+              <Button bsStyle="secondary" bsSize="small" onClick={this.logout}>
+                Logout
+              </Button> */}
+              <AvatarHeader user={user} style={{ marginRight: '50px' }} />
+            </Toolbar>
+          </div>
         )
       }
 
       return (
-        <AppBar
-          position="absolute"
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
-        >
-         {getToolbar()} 
+        <AppBar position="absolute" className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
+          {getToolbar()}
         </AppBar>
       )
-
     }
 
-    return (
-      <div className={classes.root}>
-        {getAppBar()}
-
+    const getDrawer = () => {
+      return (
         <Drawer
           variant="permanent"
           classes={{
-            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose)
           }}
           open={this.state.open}
         >
@@ -168,11 +172,25 @@ class MiniDrawer extends React.Component {
           <Divider />
           <List>{otherMailFolderListItems}</List>
         </Drawer>
+      )
+    }
 
+    const getContent = () => {
+      return (
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {this.props.children}
         </main>
+      )
+    }
+
+    return (
+      <div className={classes.root}>
+        {getAppBar()}
+
+        {getDrawer()}
+
+        {getContent()}
       </div>
     )
   }
@@ -180,7 +198,7 @@ class MiniDrawer extends React.Component {
 
 MiniDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
 }
 
 export default withStyles(styles, { withTheme: true })(MiniDrawer)

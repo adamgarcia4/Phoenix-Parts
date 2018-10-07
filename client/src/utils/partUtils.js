@@ -36,25 +36,30 @@ const partsList = [
 ]
 
 const randomPart = () => {
+
+  const assemblyNum = faker.random.number({
+    min: 1,
+    max: 4
+  })
+
+  let subassemblyNum = faker.random.number({
+    min: 1,
+    max: 99
+  })
+
+  subassemblyNum = ('00' + subassemblyNum).slice(-3)
+
   const getPartName = () => {
     return partsList[faker.random.number() % partsList.length]
   }
 
   const getPartNumber = () => {
-    const assemblyNum = faker.random.number({
-      min: 1,
-      max: 9
-    })
-    let subassemblyNum = faker.random.number({
-      min: 1,
-      max: 99
-    })
-
-    if (subassemblyNum.toString().length == 1) {
-      subassemblyNum = '0' + subassemblyNum
-    }
-
-    return `04-${assemblyNum}00-${assemblyNum}${subassemblyNum}`
+    return `04-2018-0${assemblyNum}-${subassemblyNum}`
+  }
+  
+  const getAssemblyNumber = () => {
+    
+    return `04-2018-0${assemblyNum}-000`
   }
 
   const getPartsPerRobot = () => {
@@ -68,12 +73,14 @@ const randomPart = () => {
     partName: getPartName(),
     partNumber: getPartNumber(),
     partsPerRobot: getPartsPerRobot(),
+    assemblyNumber: getAssemblyNumber(),
     totalQuantity: getPartsPerRobot() * 2,
     stock: '60601 T6',
     cutLg: '4in',
     status: 'inProgress',
     machinesNeeded: 'Lathe, Mill',
-    stockOrdered: 'yes'
+    stockOrdered: 'yes',
+    type: 'part',
   }
 }
 
