@@ -1,6 +1,7 @@
 import React from 'react'
 import StatusBadge from '../../components/statusBadge'
 import CreatableSelect from 'react-select/lib/Creatable'
+import PartNumbering from '../../components/partNumbering'
 // var provider = new firebase.auth.GoogleAuthProvider();
 
 const Home = () => {
@@ -25,6 +26,8 @@ const Home = () => {
       <StatusBadge scotchbrite />
 
       <CreatableSelect isClearable onChange={handleChange} onInputChange={handleInputChange} options={options} />
+
+      <PartNumbering/>
     </div>
   )
 }

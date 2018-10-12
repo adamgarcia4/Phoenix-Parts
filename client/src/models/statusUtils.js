@@ -22,6 +22,11 @@ const statusMap = {
     display: 'Needs drawing',
     statusColor: 'rgba(173,209,158,1)'
   },
+  inProgress: {
+    style: 'primary',
+    display: 'Needs drawing',
+    statusColor: 'rgba(173,209,158,1)'
+  },
   ready: {
     style: 'primary',
     display: 'Ready to manufacture',
