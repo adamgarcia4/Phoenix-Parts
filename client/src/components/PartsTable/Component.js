@@ -17,7 +17,7 @@ import treeTableHOC from 'react-table/lib/hoc/treeTable/'
 
 const TreeTable = treeTableHOC(ReactTable)
 
-const PartDetailsContainer = styled(Paper)`
+const PartDetailsContainer = styled(Paper) `
   margin: 10px 15px;
 `
 
@@ -108,10 +108,10 @@ class PartsTable extends React.Component {
     return (
       <TreeTable
         data={data}
-        pivotBy={['assemblyNumber']}
+        // pivotBy={['assemblyNumber']}
         columns={columns}
         defaultPageSize={10}
-        getTrProps={(state, rowInfo, column) => {
+        getTdProps={(state, rowInfo, column) => {
           const status = rowInfo && rowInfo.row && rowInfo.row.status
 
           const statusColor = status && statusUtils.statusMap[status] && statusUtils.statusMap[status].statusColor
@@ -124,6 +124,9 @@ class PartsTable extends React.Component {
         }}
         className="-striped -highlight"
         // TODO: Add subcomponent which deals with scheduling....
+        SubComponent={row => {
+          return <PartsTableDetails />
+        }}
       />
     )
 
@@ -145,9 +148,7 @@ class PartsTable extends React.Component {
     //     }}
     //     className="-striped -highlight"
     //     // TODO: Add subcomponent which deals with scheduling....
-    //     SubComponent={row => {
-    //       return <PartsTableDetails />
-    //     }}
+
     //   />
     // )
   }

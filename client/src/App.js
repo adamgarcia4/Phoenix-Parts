@@ -3,12 +3,13 @@ import { Route } from 'react-router-dom'
 // import { connect } from 'react-redux'
 import './App.css'
 import Header from './components/Header'
-import PartsEntry from './scenes/partsEntry'
-import Dashboard from './scenes/dashboard'
-import Home from './scenes/home'
-import PartNumbering from './scenes/partNumbering'
+import PartsEntry from './components/partsEntry'
+import Dashboard from './components/dashboard'
+import Home from './components/home'
+import PartNumbering from './components/partNumbering'
 import PartsTable from './components/PartsTable'
 import LoginForm from './components/login'
+import OrderForm from './components/orderPage'
 // import logo from './logo.svg'
 
 // const axios = require('axios')
@@ -21,13 +22,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header appName='Phoenix Parts'>
+        <Header appName="Phoenix Parts">
           <Route exact path="/" component={Home} />
           <Route exact path="/partNumbering" component={PartNumbering} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/parts" component={PartsEntry} />
           <Route path="/partsTest" component={PartsTable} />
           <Route path="/loginForm" component={LoginForm} />
+          <Route path="/orders" component={OrderForm} />
         </Header>
       </div>
     )
