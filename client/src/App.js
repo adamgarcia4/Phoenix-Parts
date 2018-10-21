@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 // import { connect } from 'react-redux'
 import './App.css'
 import Header from './components/Header'
+import BootstrapHeader from './components/BootstrapHeader'
 import PartsEntry from './components/partsEntry'
 import Dashboard from './components/dashboard'
 import Home from './components/home'
@@ -22,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header appName="Phoenix Parts">
+        <BootstrapHeader appName="Phoenix Parts">
           <Route exact path="/" component={Home} />
           <Route exact path="/partNumbering" component={PartNumbering} />
           <Route exact path="/dashboard" component={Dashboard} />
@@ -30,7 +31,7 @@ class App extends React.Component {
           <Route path="/partsTest" component={PartsTable} />
           <Route path="/loginForm" component={LoginForm} />
           <Route path="/orders" component={OrderForm} />
-        </Header>
+        </BootstrapHeader>
       </div>
     )
   }
