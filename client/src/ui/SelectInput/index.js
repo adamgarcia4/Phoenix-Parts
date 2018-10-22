@@ -2,16 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const SelectInput = props => {
-
   const { options, onSelected } = props
 
-  console.log('options:', options)
-  console.log('onSelected:', onSelected)
-
-  const noneOption = [{
-    value: '',
-    label: 'None'
-  }]
+  const noneOption = [
+    {
+      value: '',
+      label: 'None'
+    }
+  ]
   const inputChanged = e => {
     const val = e.target.value
     onSelected(val)
@@ -20,9 +18,13 @@ const SelectInput = props => {
   const fullOptionsList = [...noneOption, ...options]
 
   return (
-    <select onChange={inputChanged} className='form-control'>
+    <select onChange={inputChanged} className="form-control">
       {fullOptionsList.map((option, index) => {
-        return <option value={option.value} key={index}>{option.label || option.value}</option>
+        return (
+          <option value={option.value} key={index}>
+            {option.label || option.value}
+          </option>
+        )
       })}
     </select>
   )
@@ -30,15 +32,16 @@ const SelectInput = props => {
 
 SelectInput.propTypes = {
   onSelected: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
-  }))
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired
+    })
+  )
 }
 
 SelectInput.defaultProps = {
   options: []
 }
-
 
 export default SelectInput

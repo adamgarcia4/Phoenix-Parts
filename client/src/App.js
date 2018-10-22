@@ -11,6 +11,7 @@ import PartNumbering from './components/partNumbering'
 import PartsTable from './components/PartsTable'
 import LoginForm from './components/login'
 import OrderForm from './components/orderPage'
+import MaterialEntry from './components/MaterialEntry'
 // import logo from './logo.svg'
 
 // const axios = require('axios')
@@ -25,6 +26,7 @@ class App extends React.Component {
       <div>
         <BootstrapHeader appName="Phoenix Parts">
           <Route exact path="/" component={Home} />
+          <Route exact path="/materialEntry" component={MaterialEntry} />
           <Route exact path="/partNumbering" component={PartNumbering} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/parts" component={PartsEntry} />

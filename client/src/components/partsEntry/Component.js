@@ -4,16 +4,9 @@ import Paper from '../../ui/Paper'
 import TextField from '../../ui/textField'
 import { Radio, RadioGroup, FormControlLabel, MenuItem, FormControl, InputLabel, Select } from '@material-ui/core'
 import partUtils from '../../utils/partUtils'
-import styled from 'styled-components'
-import partModel from '../../models/parts'
+import partsModel from '../../models/parts'
 import { Form } from 'react-bootstrap'
 import firebase from '../../modules/firebase'
-// import { withStyles } from '@material-ui/core'
-// import styled from 'styled-components'
-// import { Grid, Row, Col } from 'react-flexbox-grid'
-// import TextField from '@material-ui/core/TextField'
-// import Input from '../../ui/Input'
-// import ProcessPicker from '../../components/processPicker'
 
 class PartsEntry extends Component {
   getFormikForm() {
@@ -24,16 +17,9 @@ class PartsEntry extends Component {
       console.log('Submit!')
 
       console.log('values:', values)
-      // TODO: Either move to centralized file or filter values through a validator
-      firebase.rebase.push('parts', {
-        data: values,
-        then: err => {
-          if (err) {
-            console.log('error in saving', err)
-            return
-          }
-          // history.push('/dashboard')
-        }
+
+      partsModel.addPart(values).then(data => {
+        console.log('added part', data)
       })
     }
 
@@ -42,15 +28,7 @@ class PartsEntry extends Component {
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
-          render={({
-            values,
-            handleChange,
-            handleSubmit
-            // errors,
-            // touched,
-            // handleBlur,
-            // isSubmitting,
-          }) => {
+          render={({ values, handleChange, handleSubmit }) => {
             return (
               <Form onSubmit={handleSubmit}>
                 <Form.Group>

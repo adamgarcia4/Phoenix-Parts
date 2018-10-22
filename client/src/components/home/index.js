@@ -7,8 +7,7 @@ import firebase from '../../modules/firebase'
 import SelectInput from '../../ui/SelectInput'
 import AsyncSelectInput from '../../ui/AsyncSelectInput'
 
-import Select from 'react-select/lib/Select';
-
+import Select from 'react-select/lib/Select'
 
 const Home = () => {
   const handleChange = (newValue, actionMeta) => {
@@ -20,20 +19,16 @@ const Home = () => {
 
   const asyncMachineList = () => {
     return new Promise((resolve, reject) => {
-      
       const handle = firebase.rebase.fetch('parts', { context: this, asArray: true })
-      
-      handle.then(data => {
 
+      handle.then(data => {
         const optionFormat = data.map(row => ({
           value: row.partNumber,
           label: row.partName
         }))
         return resolve(optionFormat)
       })
-      
-
-    });
+    })
   }
 
   const handleInputChange = (inputValue, actionMeta) => {
@@ -43,25 +38,16 @@ const Home = () => {
     console.groupEnd()
   }
 
-  asyncMachineList().then(data => {
-    console.log('haiiii:', data)
-  })
-
-  const options = [
-    { value: '6061 T6', label: '6061 T6 Aluminum' },
-    { value: '6061 Ts', label: '6061 T6 Aluminum' }
-  ]
+  const options = [{ value: '6061 T6', label: '6061 T6 Aluminum' }, { value: '6061 Ts', label: '6061 T6 Aluminum' }]
 
   return (
     <div>
       <h1>Home Page</h1>
       <StatusBadge scotchbrite />
 
-      {/* <AsyncSelect cacheOptions defaultOptions loadOptions={getFire()} /> */}
-
       <AsyncSelectInput
         // options={options}
-        onSelected={(val) => {
+        onSelected={val => {
           console.log('valfrom outside:', val)
         }}
         asyncLoadOptions={asyncMachineList}
