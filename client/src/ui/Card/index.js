@@ -3,7 +3,7 @@ import Paper from '../Paper'
 import './Style.css'
 
 const CardPicture = props => {
-  return <div className="card-picture" title="Test" />
+  return <div className="card-picture" title="Test" style={{ backgroundImage: `url('${props.url}')` }} />
 }
 
 const CardContent = props => {
@@ -11,16 +11,7 @@ const CardContent = props => {
 }
 
 const CardContentActions = props => {
-  return (
-    <div className="card-content-actions">
-      <button type="button" className="btn btn-primary">
-        Go to part
-      </button>
-      <button type="button" className="btn btn-secondary">
-        Edit
-      </button>
-    </div>
-  )
+  return <div className="card-content-actions">{props.children}</div>
 }
 
 class Card extends Component {
