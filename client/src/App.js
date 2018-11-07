@@ -6,6 +6,7 @@ import Header from './components/Header'
 import BootstrapHeader from './components/BootstrapHeader'
 import PartsEntry from './components/partsEntry'
 import Dashboard from './components/dashboard'
+import PartsDashboard from './components/PartsDashboard'
 import Home from './components/home'
 import PartNumbering from './components/partNumbering'
 import PartsTable from './components/PartsTable'
@@ -29,8 +30,9 @@ class App extends React.Component {
           <Route exact path="/materialEntry" component={MaterialEntry} />
           <Route exact path="/partNumbering" component={PartNumbering} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/parts-dashboard" component={PartsDashboard} />
           <Route path="/parts" component={PartsEntry} />
-          <Route path="/partsTest" component={PartsTable} />
+          <Route path="/parts-dashboard" component={PartsTable} />
           <Route path="/loginForm" component={LoginForm} />
           <Route path="/orders" component={OrderForm} />
         </BootstrapHeader>

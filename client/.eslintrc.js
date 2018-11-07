@@ -1,8 +1,8 @@
 module.exports = {
-  extends: 'airbnb',
+  extends: ['airbnb', 'prettier', 'prettier/react'],
   parser: 'babel-eslint',
   env: {
-    es6: true,
+    es6: true
   },
   rules: {
     'react/jsx-filename-extension': 0,
@@ -11,6 +11,6 @@ module.exports = {
     'arrow-body-style': 0,
     'class-methods-use-this': 0,
     'no-shadow': 0,
-    'arrow-parens': 'as-neeed',
-  },
+    'arrow-parens': 'as-neeed'
+  }
 }

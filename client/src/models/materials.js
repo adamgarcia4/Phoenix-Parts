@@ -7,11 +7,20 @@ const addMaterial = data => {
   return firebase.rebase.push(DB_REF, { data })
 }
 
-const getAllMaterials = callback => {
+const getAllMaterials = () => {
   return firebase.rebase.fetch(DB_REF, { asArray: true })
+}
+
+const listenAllMaterials = callback => {
+  return firebase.rebase.listenTo(DB_REF, {
+    context: this,
+    asArray: true,
+    then: callback
+  })
 }
 
 export default {
   addMaterial,
-  getAllMaterials
+  getAllMaterials,
+  listenAllMaterials
 }

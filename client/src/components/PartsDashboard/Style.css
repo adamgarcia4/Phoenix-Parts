@@ -1,0 +1,27 @@
+.parts-title {
+  margin: 10px;
+}
+
+.parts-well {
+  width: 85%;
+  margin: auto;
+}
+
+.parts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.parts-item {
+  /* flex: 0; */
+  flex-basis: 30%;
+  margin: 0 8px 8px 0;
+}
+
+@media (min-width : 1224px) {
+  .parts-item {
+    flex-basis: 20%;
+  }
+}

@@ -8,6 +8,7 @@ import SelectInput from '../../ui/SelectInput'
 import AsyncSelectInput from '../../ui/AsyncSelectInput'
 
 import Select from 'react-select/lib/Select'
+import Card from '../../ui/Card'
 
 const Home = () => {
   const handleChange = (newValue, actionMeta) => {
@@ -43,7 +44,13 @@ const Home = () => {
   return (
     <div>
       <h1>Home Page</h1>
-      <StatusBadge scotchbrite />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+
+      {/* <StatusBadge scotchbrite />
 
       <AsyncSelectInput
         // options={options}
@@ -52,7 +59,7 @@ const Home = () => {
         }}
         asyncLoadOptions={asyncMachineList}
       />
-      <PartNumbering />
+      <PartNumbering /> */}
     </div>
   )
 }

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import { NavLink } from 'react-router-dom'
 import HeaderNavLink from '../HeaderNavLink'
+import styled from 'styled-components'
+
 const TOGGLE_HANDLE = 'app-navbar'
 
 class BootstrapHeader extends Component {
@@ -9,7 +11,7 @@ class BootstrapHeader extends Component {
     const getBrand = () => {
       return (
         <a className="navbar-brand" href="#">
-          Expand at md
+          Phoenix Parts
         </a>
       )
     }
@@ -37,7 +39,7 @@ class BootstrapHeader extends Component {
           <HeaderNavLink to="dashboard" title="Dashboard" />
           <HeaderNavLink to="materialEntry" title="Add Material" />
           <HeaderNavLink to="parts" title="Parts" exact />
-          <HeaderNavLink to="partsTest" title="Parts Table" />
+          <HeaderNavLink to="parts-dashboard" title="Parts Dashboard" />
         </ul>
       )
     }
@@ -50,9 +52,12 @@ class BootstrapHeader extends Component {
       )
     }
 
+    const HeaderStyle = styled.nav`
+      margin-bottom: 10px;
+    `
     return (
       <div>
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+        <HeaderStyle className="navbar navbar-expand-md navbar-dark bg-dark">
           {getBrand()}
           {getHamburgerToggle()}
 
@@ -61,7 +66,7 @@ class BootstrapHeader extends Component {
 
             {/* {getRightForm()} */}
           </div>
-        </nav>
+        </HeaderStyle>
         <div className="container-fluid">{this.props.children}</div>
       </div>
     )

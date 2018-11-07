@@ -2,17 +2,27 @@ import React, { Component } from 'react'
 import { Formik } from 'formik'
 import Paper from '../../ui/Paper'
 import TextField from '../../ui/textField'
+import DropdownItem from '../../ui/DropdownItem'
 
 import materialModel from '../../models/materials'
 import { Form } from 'react-bootstrap'
 import firebase from '../../modules/firebase'
-// import { withStyles } from '@material-ui/core'
-// import { Grid, Row, Col } from 'react-flexbox-grid'
-// import TextField from '@material-ui/core/TextField'
-// import Input from '../../ui/Input'
-// import ProcessPicker from '../../components/processPicker'
+import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretSquareDown } from '@fortawesome/fontawesome-free-solid'
+
+import { Accordion, AccordionItem, AccordionItemTitle, AccordionItemBody } from 'react-accessible-accordion'
+
+import 'react-accessible-accordion/dist/fancy-example.css'
 
 class MaterialEntry extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      materials: []
+    }
+  }
+
   getFormikForm() {
     const { history } = this.props
 
@@ -52,13 +62,37 @@ class MaterialEntry extends Component {
       )
     }
 
-    return <Paper style={{ width: '500px' }}>{getForm()}</Paper>
+    return <Paper>{getForm()}</Paper>
   }
 
-  componentWillMount() {}
+  getMaterialsDisplay() {
+    const MachineItem = styled.div`
+      height: 50px;
+      background-color: gray;
+      padding: 12px 10px 5px 15px;
+      border-radius: 7px;
+    `
+
+    return <DropdownItem />
+  }
+
+  componentWillMount() {
+    materialModel.listenAllMaterials(data => {
+      this.setState((state, props) => {
+        return {
+          materials: data
+        }
+      })
+    })
+  }
 
   render() {
-    return this.getFormikForm()
+    return (
+      <div className="row">
+        <div className="col-sm">{this.getFormikForm()}</div>
+        <div className="col-sm">{this.getMaterialsDisplay()}</div>
+      </div>
+    )
   }
 }
 

@@ -1,0 +1,51 @@
+.paper {
+  display: inline-block;
+  background-color: red;
+  overflow: scroll;
+  background-color: #fff;
+  margin: 10px;
+  border: 1px solid rgba(0, 0, 0, .125);
+  box-shadow:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.card-container {
+  width: 300px;
+  max-width: 400px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto';
+  flex: auto;
+}
+
+.card-content {
+  padding: 16px;
+  font-size: 1rem;
+}
+
+.card-content h2 {
+  font-size: 1.5rem;
+}
+
+.card-content-actions {
+  display: flex;
+  padding: 8px 4px;
+  box-sizing: border-box;
+  justify-content: flex-start;
+}
+
+.card-content-actions button {
+  margin: 0px 4px;
+}
+
+.card-picture {
+  background-image: url('http://media.team254.com/2014/02/951707c4-2014-02-18.jpg');
+  height: 140px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
