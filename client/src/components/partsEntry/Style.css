@@ -1,0 +1,41 @@
+.root-well {
+  min-width: 250px;
+}
+
+.mode-container {
+  display: flex;
+  width: 75%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: auto;
+  /* background-color: red; */
+}
+
+.mode-selection {
+  flex: 0 1 250px;
+  border-radius: 6px;
+  margin: 10px;
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+}
+
+.form-form {
+  flex-basis: 75%;
+  min-width: 300px;
+}
+
+.mode-selection h1 {
+  padding-top: 15px;
+  line-height: 1.75rem;
+}
+
+.mode-selection i {
+  padding: 15px 10px 0px;
+}
+
+.mode-selection.selected {
+  background-color: rgba(86, 207, 225, 0.5)
+}

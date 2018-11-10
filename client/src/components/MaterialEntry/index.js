@@ -15,6 +15,8 @@ import { Accordion, AccordionItem, AccordionItemTitle, AccordionItemBody } from 
 
 import 'react-accessible-accordion/dist/fancy-example.css'
 
+let fbRef = null
+
 class MaterialEntry extends Component {
   constructor(props) {
     super(props)
@@ -77,13 +79,17 @@ class MaterialEntry extends Component {
   }
 
   componentWillMount() {
-    materialModel.listenAllMaterials(data => {
+    fbRef = materialModel.listenAllMaterials(data => {
       this.setState((state, props) => {
         return {
           materials: data
         }
       })
     })
+  }
+
+  componentWillUnmount() {
+    firebase.rebase.removeBinding(fbRef)
   }
 
   render() {

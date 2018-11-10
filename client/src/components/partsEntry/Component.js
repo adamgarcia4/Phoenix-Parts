@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Formik } from 'formik'
 import Paper from '../../ui/Paper'
 import TextField from '../../ui/textField'
@@ -8,7 +8,17 @@ import partsModel from '../../models/parts'
 import { Form } from 'react-bootstrap'
 import firebase from '../../modules/firebase'
 
+import TestStepper from '../TestStepper'
+import cx from 'classnames'
+import Well from '../../ui/Well'
+import Card from '../../ui/Card'
+import './Style.css'
+
 class PartsEntry extends Component {
+  state = {
+    selected: null
+  }
+
   getFormikForm() {
     const initialValues = partUtils.randomPart()
     const { history } = this.props
@@ -119,7 +129,13 @@ class PartsEntry extends Component {
       )
     }
 
-    return <Paper style={{ width: '500px' }}>{getForm()}</Paper>
+    return (
+      <div className="form-container">
+        <Paper style={{ width: '500px', margin: '0 auto' }} className="form-form">
+          {getForm()}
+        </Paper>
+      </div>
+    )
   }
 
   componentWillMount() {
@@ -130,7 +146,35 @@ class PartsEntry extends Component {
   }
 
   render() {
-    return this.getFormikForm()
+    return (
+      <Fragment>
+        <Well>
+          <div className="mode-container">
+            <Paper
+              className={cx('mode-selection', this.state.selected === 'part' && 'selected')}
+              onClick={() => {
+                this.setState({ selected: 'part' })
+              }}
+            >
+              <h1>Part</h1>
+              <i className="fas fa-cog fa-7x" />
+            </Paper>
+            <Paper
+              className={cx('mode-selection', this.state.selected === 'assembly' && 'selected')}
+              onClick={() => {
+                this.setState({ selected: 'assembly' })
+              }}
+            >
+              <h1>Assembly</h1>
+              <i className="fas fa-cogs fa-7x" />
+            </Paper>
+          </div>
+
+          <TestStepper />
+          {this.getFormikForm()}
+        </Well>
+      </Fragment>
+    )
   }
 }
 
