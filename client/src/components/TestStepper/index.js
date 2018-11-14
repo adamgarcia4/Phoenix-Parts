@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
-import Step from '@material-ui/core/Step'
+// import Step from '@material-ui/core/Step'
+import Step from './Step'
 import StepLabel from '@material-ui/core/StepLabel'
+import StepLabel2 from './StepLabel'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
@@ -118,6 +120,9 @@ class HorizontalLinearStepper extends React.Component {
             )
           })}
         </Stepper>
+
+        <StepLabel2 />
+
         <div>
           {activeStep === steps.length ? (
             <div>

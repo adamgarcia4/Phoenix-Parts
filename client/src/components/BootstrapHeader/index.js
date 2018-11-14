@@ -35,7 +35,7 @@ class BootstrapHeader extends Component {
     const getItemLinks = () => {
       return (
         <ul className="navbar-nav mr-auto">
-          <HeaderNavLink to="" title="Home" exact />
+          {/* <HeaderNavLink to="" title="Home" exact /> */}
           <HeaderNavLink to="dashboard" title="Dashboard" />
           <HeaderNavLink to="materialEntry" title="Add Material" />
           <HeaderNavLink to="parts" title="Parts" exact />

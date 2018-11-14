@@ -171,6 +171,7 @@ class PartsEntry extends Component {
           </div>
 
           <TestStepper />
+
           {this.getFormikForm()}
         </Well>
       </Fragment>

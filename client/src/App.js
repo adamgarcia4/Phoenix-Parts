@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 // import { connect } from 'react-redux'
 import './App.css'
 import Header from './components/Header'
@@ -26,7 +26,7 @@ class App extends React.Component {
     return (
       <div>
         <BootstrapHeader appName="Phoenix Parts">
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
           <Route exact path="/materialEntry" component={MaterialEntry} />
           <Route exact path="/partNumbering" component={PartNumbering} />
           <Route exact path="/dashboard" component={Dashboard} />
