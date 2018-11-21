@@ -18,5 +18,5 @@ module.exports = {
         {
             'maximum': 1
         }
-  }
+    ]}
 }
