@@ -77,6 +77,14 @@ const statusMap = {
   }
 }
 
+const statusList = Object.keys(statusMap).map((item, key) => {
+  return {
+    label: statusMap[item].display,
+    value: item
+  }
+})
+
 module.exports = {
-  statusMap
+  statusMap,
+  statusList
 }

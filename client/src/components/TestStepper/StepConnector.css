@@ -1,0 +1,8 @@
+.root {}
+
+.test1 {
+  border-top-style: solid;
+  border-top-width: 1px;
+  display: block;
+  border-color: #bdbdbd;
+}

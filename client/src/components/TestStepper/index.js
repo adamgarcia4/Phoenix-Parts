@@ -6,6 +6,7 @@ import Stepper from '@material-ui/core/Stepper'
 import Step from './Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import StepLabel2 from './StepLabel'
+import StepConnector from './StepConnector'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
@@ -21,10 +22,6 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit
   }
 })
-
-function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad']
-}
 
 function getStepContent(step) {
   switch (step) {
@@ -98,11 +95,11 @@ class HorizontalLinearStepper extends React.Component {
 
   render() {
     const { classes } = this.props
-    const steps = getSteps()
+    const steps = this.props.steps.map(stepInfo => stepInfo.label)
     const { activeStep } = this.state
 
-    return (
-      <div className={classes.root}>
+    const getStepperRow = () => {
+      return (
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
             const props = {}
@@ -120,8 +117,40 @@ class HorizontalLinearStepper extends React.Component {
             )
           })}
         </Stepper>
+      )
+    }
 
+    const getActiveStepContent = () => {
+      return <Typography className={classes.instructions}>{this.props.steps[activeStep].content()}</Typography>
+    }
+
+    const getButtonRow = () => {
+      return (
+        <div>
+          <Button disabled={activeStep === 0} onClick={this.handleBack} className={classes.button}>
+            Back
+          </Button>
+          {this.isStepOptional(activeStep) && (
+            <Button variant="contained" color="primary" onClick={this.handleSkip} className={classes.button}>
+              Skip
+            </Button>
+          )}
+          <Button variant="contained" color="primary" onClick={this.handleNext} className={classes.button}>
+            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+          </Button>
+        </div>
+      )
+    }
+
+    return (
+      <div className={classes.root}>
+        {getStepperRow()}
+        {/* <Step>
+          <StepLabel2 />
+        </Step> */}
+        {/* <StepConnector />
         <StepLabel2 />
+        <StepLabel2 /> */}
 
         <div>
           {activeStep === steps.length ? (
@@ -133,20 +162,8 @@ class HorizontalLinearStepper extends React.Component {
             </div>
           ) : (
             <div>
-              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-              <div>
-                <Button disabled={activeStep === 0} onClick={this.handleBack} className={classes.button}>
-                  Back
-                </Button>
-                {this.isStepOptional(activeStep) && (
-                  <Button variant="contained" color="primary" onClick={this.handleSkip} className={classes.button}>
-                    Skip
-                  </Button>
-                )}
-                <Button variant="contained" color="primary" onClick={this.handleNext} className={classes.button}>
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-              </div>
+              {getActiveStepContent()}
+              {getButtonRow()}
             </div>
           )}
         </div>
@@ -156,7 +173,13 @@ class HorizontalLinearStepper extends React.Component {
 }
 
 HorizontalLinearStepper.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      content: PropTypes.func.isRequired
+    })
+  ).isRequired
 }
 
 export default withStyles(styles)(HorizontalLinearStepper)

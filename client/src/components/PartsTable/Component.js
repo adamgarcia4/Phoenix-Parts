@@ -17,7 +17,7 @@ import treeTableHOC from 'react-table/lib/hoc/treeTable/'
 
 const TreeTable = treeTableHOC(ReactTable)
 
-const PartDetailsContainer = styled(Paper) `
+const PartDetailsContainer = styled(Paper)`
   margin: 10px 15px;
 `
 
@@ -125,7 +125,7 @@ class PartsTable extends React.Component {
         className="-striped -highlight"
         // TODO: Add subcomponent which deals with scheduling....
         SubComponent={row => {
-          return <PartsTableDetails />
+          return <PartsTableDetails row={row} item={row.original} />
         }}
       />
     )

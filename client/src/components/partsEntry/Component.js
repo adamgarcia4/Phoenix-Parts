@@ -145,6 +145,25 @@ class PartsEntry extends Component {
     // const allParts = this.props.getParts()
   }
 
+  getStepContent() {
+    return [
+      {
+        label: 'Select campaign settings',
+        content: () => {
+          return `Select campaign settings...1`
+        }
+      },
+      {
+        label: 'Create an ad group',
+        content: () => 'What is an ad group anyways?2'
+      },
+      {
+        label: 'Create an ad',
+        content: () => 'This is the bit I really care about!3'
+      }
+    ]
+  }
+
   render() {
     return (
       <Fragment>
@@ -170,7 +189,7 @@ class PartsEntry extends Component {
             </Paper>
           </div>
 
-          <TestStepper />
+          <TestStepper steps={this.getStepContent()} />
 
           {this.getFormikForm()}
         </Well>

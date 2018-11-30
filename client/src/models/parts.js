@@ -11,7 +11,18 @@ const getAllParts = callback => {
   return firebase.rebase.fetch(DB_REF, { asArray: true })
 }
 
+const updatePart = (updateObj, partNumber) => {
+  const updates = {}
+
+  Object.keys(updateObj).map(partKey => {
+    updates[`${partNumber}/${partKey}`] = updateObj[partKey]
+  })
+
+  return firebase.db.ref(DB_REF).update(updates)
+}
+
 export default {
   addPart,
-  getAllParts
+  getAllParts,
+  updatePart
 }

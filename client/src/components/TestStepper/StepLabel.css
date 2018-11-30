@@ -1,13 +1,16 @@
 .step-label-container {
-  display: flex;
+  display: inline-flex;
   background-color: red;
-  /* width: 250px; */
+  /* width: 225px; */
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .icon {
   height: 1em;
   width: 1em;
   font-size: 24px;
+  margin-right: 8px;
 }
 
 .icon-circle {
@@ -15,7 +18,7 @@
 }
 
 .icon-text {
-  font-size: 1rem;
+  font-size: 0.75rem;
   fill: #fff;
 }
 
@@ -28,4 +31,5 @@
 .step-text {
   flex: 1;
   background-color: yellow;
+  font-size: 0.95rem;
 }

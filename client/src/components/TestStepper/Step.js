@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import warning from 'warning'
+import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
 
 export const styles = {
@@ -72,14 +72,6 @@ function Step(props) {
         if (!React.isValidElement(child)) {
           return null
         }
-
-        warning(
-          child.type !== React.Fragment,
-          [
-            "Material-UI: the Step component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.'
-          ].join('\n')
-        )
 
         return React.cloneElement(child, {
           active,

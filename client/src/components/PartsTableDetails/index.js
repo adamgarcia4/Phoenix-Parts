@@ -3,12 +3,16 @@ import ReactTable from 'react-table'
 
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import PropTypes from 'prop-types'
+import SelectInput from '../../ui/SelectInput'
+import { statusList } from '../../models/statusUtils'
 // import Button from '../../ui/Button'
 import Pill from '../../ui/Pill'
 import Paper from '../../ui/Paper'
 import Surface from '../../ui/Surface'
-
+import partUtils from '../../models/parts'
 import Avatar from '../../ui/Avatar'
+import './Style.css'
 
 const Container = styled.div`
   min-height: 20vh;
@@ -48,35 +52,35 @@ class PartsTableDetails extends Component {
       {
         Header: '#',
         accessor: 'processNumber',
-        width: 40,
+        width: 40
       },
       {
         Header: 'Machine Name',
-        accessor: 'machineName',
-      },
+        accessor: 'machineName'
+      }
     ]
 
     const data = [
       {
         processNumber: 0,
-        machineName: 'CNC Bandsaw',
+        machineName: 'CNC Bandsaw'
       },
       {
         processNumber: 1,
-        machineName: 'Manual Mill',
+        machineName: 'Manual Mill'
       },
       {
         processNumber: 2,
-        machineName: 'CNC Mill',
+        machineName: 'CNC Mill'
       },
       {
         processNumber: 3,
-        machineName: 'Debur',
+        machineName: 'Debur'
       },
       {
         processNumber: 4,
-        machineName: 'Anodize',
-      },
+        machineName: 'Anodize'
+      }
     ]
 
     return (
@@ -86,7 +90,7 @@ class PartsTableDetails extends Component {
         defaultPageSize={data.length}
         showPagination={false}
         style={{
-          maxHeight: '250px', // This will force the table body to overflow and scroll, since there is not enough room
+          maxHeight: '250px' // This will force the table body to overflow and scroll, since there is not enough room
         }}
       />
     )
@@ -115,12 +119,11 @@ class PartsTableDetails extends Component {
           <Avatar />
         </CommentAvatar>
         <Paper>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-          been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-          a galley of type and scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting, remaining essentially
-          unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
           PageMaker including versions of Lorem Ipsum.
         </Paper>
       </CommentContainer>
@@ -180,24 +183,12 @@ class PartsTableDetails extends Component {
       return (
         <InfoItem>
           <h4>General Details</h4>
-          General
-          {' '}
-          <br />
-          Part Per robot
-          {' '}
-          <br />
-          Part Quantity
-          {' '}
-          <br />
-          total stock material
-          {' '}
-          <br />
-          Cut Lg. in
-          {' '}
-          <br />
-          stock ordered
-          {' '}
-          <br />
+          General <br />
+          Part Per robot <br />
+          Part Quantity <br />
+          total stock material <br />
+          Cut Lg. in <br />
+          stock ordered <br />
         </InfoItem>
       )
     }
@@ -227,18 +218,32 @@ class PartsTableDetails extends Component {
     )
   }
 
-  render() {
+  getPartStatusButton() {
+    const {status} = this.props.item
+    
     return (
-      <Container>
-        {this.getHeader()}
-        {this.getInfo()}
-
-        <div className="row">
-          <div className="col-md-12">{this.getCommentsSection()}</div>
-        </div>
-      </Container>
+      <SelectInput
+        onSelected={change => {
+          console.log('change', change)
+          partUtils.updatePart({
+            status: change
+          },)
+        }}
+        options={statusList}
+      />
     )
   }
+
+  render() {
+    console.log(this.props)
+
+    return <div className="root">{this.getPartStatusButton()}</div>
+  }
+}
+
+PartsTableDetails.propTypes = {
+  row: PropTypes.object.isRequired,
+  item: PropTypes.object.isRequired
 }
 
 export default PartsTableDetails
