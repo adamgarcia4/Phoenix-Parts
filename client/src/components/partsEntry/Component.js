@@ -189,7 +189,7 @@ class PartsEntry extends Component {
             </Paper>
           </div>
 
-          <TestStepper steps={this.getStepContent()} />
+          {/* <TestStepper steps={this.getStepContent()} /> */}
 
           {this.getFormikForm()}
         </Well>

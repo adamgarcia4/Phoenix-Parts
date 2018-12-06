@@ -1,5 +1,5 @@
 // import { ADD_ARTICLE } from '../constants/action-types'
-
+import actionTypes from '../actionTypes'
 // const initialState = {
 //   firstName: 'Adam',
 //   lastName: 'Garcia',
@@ -11,6 +11,8 @@ const initialState = {}
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.user.successRegisterUser:
+      return Object.assign({}, state, { user: action.payload.user })
     default:
       return state
   }

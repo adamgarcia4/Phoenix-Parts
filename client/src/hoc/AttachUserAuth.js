@@ -28,10 +28,6 @@ const AttachUserAuth = WrappedComponent => {
 
     render() {
       const { user } = this.state
-
-      // const newProps = Object.assign({}, this.props, { user })
-      // console.log('newPropss:', newProps)
-      // return React.createElement(WrappedComponent, this.props, null)
       return <WrappedComponent {...this.props} user={user} />
     }
   }

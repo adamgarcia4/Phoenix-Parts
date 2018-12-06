@@ -1,4 +1,5 @@
 // import firebase from '../../modules/firebase'
+import userActions from './user'
 
 export function addPart(part) {
   // selectBook is an ActionCreator, it needs to return an action,
@@ -34,4 +35,8 @@ export function updatePartForm(field, newValue) {
       newValue
     }
   }
+}
+
+export default {
+  user: userActions
 }
