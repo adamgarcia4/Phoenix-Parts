@@ -17,24 +17,21 @@ class HeaderLogin extends Component {
     const getSubmitForm = () => {
       return (
         <Formik
+          // validate={values => {
+          //   console.log('values:', values)
+          // }}
           initialValues={{ email: `adam${Math.random() * Math.floor(1000)}@gmail.com`, password: 'Grimmick15' }}
           onSubmit={({ email, password }, options) => {
             registerUser(email, password)
           }}
         >
-          {({ values, handleSubmit, setFieldValue }) => (
+          {({ values, handleSubmit, setFieldValue, handleChange }) => (
             <form className="form-group" onSubmit={handleSubmit}>
-              <Input
-                placeholder="Email"
-                name="email"
-                initValue={values.email}
-                onChange={setFieldValue}
-                class="form-control"
-              />
+              <Input placeholder="Email" name="email" value={values.email} onChange={setFieldValue} />
               <Input
                 placeholder="Password"
                 name="password"
-                initValue={values.password}
+                value={values.password}
                 onChange={setFieldValue}
                 type="password"
               />

@@ -2,33 +2,19 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './Style.css'
 class Input extends Component {
-  state = {
-    inputValue: this.props.initValue
-  }
-
   updateInputValue(evt) {
     const { onChange, name } = this.props
-    evt.persist()
-    this.setState(
-      (props, state) => {
-        return {
-          inputValue: evt.target.value
-        }
-      },
-      () => {
-        const { inputValue } = this.state
-        onChange(name, inputValue)
-      }
-    )
+
+    onChange(name, evt.target.value)
   }
 
   render() {
-    const { placeholder, onChange, type, name } = this.props
+    const { placeholder, type, name } = this.props
     return (
       <input
         className="form-control padding"
         name={name}
-        value={this.state.inputValue}
+        value={this.props.value}
         onChange={evt => this.updateInputValue(evt)}
         type={type}
         placeholder={placeholder}
