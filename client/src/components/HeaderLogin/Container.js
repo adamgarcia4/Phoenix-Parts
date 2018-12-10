@@ -3,6 +3,16 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../../store/actions'
 
+const mapStateToProps = state => {
+  console.log('state:', state)
+  return {
+    user: state.user
+  }
+  // return {
+  //   partEdit: state.partEdit
+  // }
+}
+
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
@@ -13,6 +23,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Component)

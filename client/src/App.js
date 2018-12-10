@@ -13,6 +13,8 @@ import PartsTable from './components/PartsTable'
 import LoginForm from './components/login'
 import OrderForm from './components/orderPage'
 import MaterialEntry from './components/MaterialEntry'
+
+import Bindings from './hoc/Bindings'
 // import logo from './logo.svg'
 
 // const axios = require('axios')
@@ -47,7 +49,7 @@ class App extends React.Component {
 //   }
 // }
 
-export default App
+export default Bindings(App)
 // export default connect(
 //   mapStateToProps,
 //   null

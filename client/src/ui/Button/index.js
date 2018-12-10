@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import './Style.css'
 
 class Button extends Component {
   render() {
-    const { style, type } = this.props
+    const { style, type, width } = this.props
+
     return (
       <div>
-        <button type={type} className={`btn btn-${style} button`}>
+        <button
+          type={type}
+          className={cx(`btn btn-${style} button`, {
+            'btn-block': width
+          })}
+        >
           {this.props.children}
         </button>
       </div>
@@ -17,12 +24,14 @@ class Button extends Component {
 
 Button.propTypes = {
   type: PropTypes.string,
-  style: PropTypes.string
+  style: PropTypes.string,
+  width: PropTypes.boolean
 }
 
 Button.defaultProps = {
   style: 'primary',
-  type: 'button'
+  type: 'button',
+  width: false
 }
 
 export default Button

@@ -10,6 +10,7 @@ import Avatar from '../../ui/Avatar'
 import Paper from '../../ui/Paper'
 // import PartModel from '../../models/parts'
 import statusUtils from '../../models/statusUtils'
+import HeaderLogin from '../HeaderLogin'
 
 import firebase from '../../modules/firebase'
 
@@ -105,29 +106,33 @@ class PartsTable extends React.Component {
     const data = getPartsDataFromFb(snap)
 
     console.log('data:', data)
+
     return (
-      <TreeTable
-        data={data}
-        // pivotBy={['assemblyNumber']}
-        columns={columns}
-        defaultPageSize={10}
-        getTdProps={(state, rowInfo, column) => {
-          const status = rowInfo && rowInfo.row && rowInfo.row.status
+      <div>
+        <HeaderLogin />
+        <TreeTable
+          data={data}
+          // pivotBy={['assemblyNumber']}
+          columns={columns}
+          defaultPageSize={10}
+          getTdProps={(state, rowInfo, column) => {
+            const status = rowInfo && rowInfo.row && rowInfo.row.status
 
-          const statusColor = status && statusUtils.statusMap[status] && statusUtils.statusMap[status].statusColor
+            const statusColor = status && statusUtils.statusMap[status] && statusUtils.statusMap[status].statusColor
 
-          return {
-            style: {
-              background: statusColor || ''
+            return {
+              style: {
+                background: statusColor || ''
+              }
             }
-          }
-        }}
-        className="-striped -highlight"
-        // TODO: Add subcomponent which deals with scheduling....
-        SubComponent={row => {
-          return <PartsTableDetails row={row} item={row.original} />
-        }}
-      />
+          }}
+          className="-striped -highlight"
+          // TODO: Add subcomponent which deals with scheduling....
+          SubComponent={row => {
+            return <PartsTableDetails row={row} item={row.original} />
+          }}
+        />
+      </div>
     )
 
     // return (

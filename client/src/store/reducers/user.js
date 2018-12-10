@@ -1,6 +1,6 @@
 import actionTypes from '../actionTypes'
 
-const initialState = {}
+const initialState = { loggedIn: false }
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -13,7 +13,7 @@ const rootReducer = (state = initialState, action) => {
         user
       } = action.payload
 
-      return Object.assign({}, state, { uid, user, profile })
+      return Object.assign({}, state, { uid, user, profile, loggedIn: true })
     default:
       return state
   }

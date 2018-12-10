@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import './Style.css'
 import Button from '../../ui/Button'
 import Input from '../../ui/Input'
+import HeaderLogin from '../HeaderLogin'
+
 import { Formik } from 'formik'
 
 const TOGGLE_HANDLE = 'app-navbar'
@@ -48,39 +50,6 @@ class BootstrapHeader extends Component {
       )
     }
 
-    const getRightForm = () => {
-      const { registerUser } = this.props
-
-      const getSubmitForm = () => {
-        return (
-          <Formik
-            initialValues={{ email: `adam${Math.random() * Math.floor(1000)}@gmail.com`, password: 'Grimmick15' }}
-            onSubmit={({ email, password }, options) => {
-              registerUser(email, password)
-            }}
-          >
-            {({ values, handleSubmit, setFieldValue }) => (
-              <form className="form-inline my-2 my-md-0" onSubmit={handleSubmit}>
-                <Input placeholder="Email" name="email" initValue={values.email} onChange={setFieldValue} />
-                <Input
-                  placeholder="Password"
-                  name="password"
-                  initValue={values.password}
-                  onChange={setFieldValue}
-                  type="password"
-                />
-                <Button type="submit" style="primary">
-                  Submit
-                </Button>
-              </form>
-            )}
-          </Formik>
-        )
-      }
-
-      return getSubmitForm()
-    }
-
     const HeaderStyle = styled.nav`
       margin-bottom: 10px;
     `
@@ -93,8 +62,7 @@ class BootstrapHeader extends Component {
 
           <div className="collapse navbar-collapse" id={TOGGLE_HANDLE}>
             {getItemLinks()}
-
-            {getRightForm()}
+            <HeaderLogin />
           </div>
         </HeaderStyle>
         <div className="container-fluid">{this.props.children}</div>
