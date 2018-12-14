@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import {
-  withRouter
-} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import styled from 'styled-components'
-import { addPart } from '../../store/actions'
+
 import Fab from '../../ui/Fab'
 import PartsTable from '../../components/PartsTable'
 import Paper from '../../ui/Paper'
+import Tooltip from '../../ui/Tooltip'
+import actions from '../../store/actions'
 
 const PartTableContainer = styled.div`
   margin: 0px 10px 100px 10px;
@@ -48,15 +47,17 @@ class Dashboard extends Component {
 
   render() {
     // const { classes: { buttonStyle } = {} } = this.props
-
+    console.log('this.props:', this.props)
     return (
       <div>
         <h1>Parts Dashboard</h1>
-        <Paper>
+        <Tooltip />
+
+        {/* <Paper>
           <PartTableContainer>
             <PartsTable />
           </PartTableContainer>
-        </Paper>
+        </Paper> */}
         {this.getFabButton()}
       </div>
     )
@@ -68,21 +69,29 @@ class Dashboard extends Component {
 //   // classes: PropTypes.object.isRequired
 // }
 
+const mapStateToProps = state => {
+  console.log('state11:', state)
+
+  return {
+    user: state.user
+  }
+}
+
 // Anything returned from this function will end up as props
 // on the BookList container
 function mapDispatchToProps(dispatch) {
   // Whenever selectBook is called, the result shoudl be passed
   // to all of our reducers
-  return bindActionCreators({ addPart }, dispatch)
+  return bindActionCreators({}, dispatch)
 }
 
 const styledDashboard = Dashboard
 // const styledDashboard = withStyles(styles)(Dashboard)
 
-// export default connect(
-//   null,
-//   mapDispatchToProps
-// )(styledDashboard)
-export default withRouter(Dashboard)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(Dashboard))
+// export default withRouter(Dashboard)
 
 // export default withStyles(styles)(LetterAvatars)

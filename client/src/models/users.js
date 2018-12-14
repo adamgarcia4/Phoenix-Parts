@@ -1,6 +1,7 @@
 import firebase from '../modules/firebase'
 
 const registerEmailPassword = (email, password) => {
+  console.log('email:', email)
   return firebase.auth.doCreateUserWithEmailAndPassword(email, password)
 }
 

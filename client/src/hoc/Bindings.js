@@ -12,7 +12,7 @@ const bindingHOC = WrappedComponent => {
         context: this,
         asArray: true,
         then(newData) {
-          console.log('newData:', newData)
+          // console.log('newData:', newData)
           // set state
         }
       })

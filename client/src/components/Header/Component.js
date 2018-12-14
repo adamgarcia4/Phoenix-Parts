@@ -15,7 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 // import { Button } from 'react-bootstrap'
 
 import { mailFolderListItems, otherMailFolderListItems } from './tileData'
-import AvatarHeader from '../AvatarHeader'
+// import AvatarHeader from '../AvatarHeader'
 import firebase from '../../modules/firebase'
 
 const drawerWidth = 240
@@ -140,7 +140,7 @@ class MiniDrawer extends React.Component {
               <Button bsStyle="secondary" bsSize="small" onClick={this.logout}>
                 Logout
               </Button> */}
-              <AvatarHeader user={user} style={{ marginRight: '50px' }} />
+              {/* <AvatarHeader user={user} style={{ marginRight: '50px' }} /> */}
             </Toolbar>
           </div>
         )

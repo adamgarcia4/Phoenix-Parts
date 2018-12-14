@@ -12,7 +12,7 @@ class Button extends Component {
         <button
           type={type}
           className={cx(`btn btn-${style} button`, {
-            'btn-block': width
+            'btn-block': !!width
           })}
         >
           {this.props.children}
@@ -25,7 +25,7 @@ class Button extends Component {
 Button.propTypes = {
   type: PropTypes.string,
   style: PropTypes.string,
-  width: PropTypes.boolean
+  width: PropTypes.bool
 }
 
 Button.defaultProps = {
@@ -36,15 +36,15 @@ Button.defaultProps = {
 
 export default Button
 
-{
-  /* <button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
+// {
+//   /* <button type="button" class="btn btn-primary">Primary</button>
+// <button type="button" class="btn btn-secondary">Secondary</button>
+// <button type="button" class="btn btn-success">Success</button>
+// <button type="button" class="btn btn-danger">Danger</button>
+// <button type="button" class="btn btn-warning">Warning</button>
+// <button type="button" class="btn btn-info">Info</button>
+// <button type="button" class="btn btn-light">Light</button>
+// <button type="button" class="btn btn-dark">Dark</button>
 
-<button type="button" class="btn btn-link">Link</button> */
-}
+// <button type="button" class="btn btn-link">Link</button> */
+// }

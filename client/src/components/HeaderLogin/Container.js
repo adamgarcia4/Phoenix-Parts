@@ -8,9 +8,6 @@ const mapStateToProps = state => {
   return {
     user: state.user
   }
-  // return {
-  //   partEdit: state.partEdit
-  // }
 }
 
 const mapDispatchToProps = dispatch => {

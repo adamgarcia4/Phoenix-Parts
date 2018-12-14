@@ -1,0 +1,5 @@
+.tooltip-body {
+  display: inline-block;
+  background-color: red;
+  width: 600px;
+}

@@ -1,3 +1,15 @@
+.submit-form-container {
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  margin: 0px;
+  display: block;
+}
+
+.avatar {
+  margin: 0;
+}
+
 .login-input {
-  margin: 0px 10px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }

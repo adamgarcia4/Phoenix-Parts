@@ -1,0 +1,30 @@
+.Avatar {
+  /* General Box Sizing */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #bdbdbd;
+  color: white;
+  margin: 10px;
+  /* border: ${props => (props.border ? '2px solid #fff' : '')}; */
+  /* transform: ${props => (props.overlap ? 'translateX(-40px)' : '')}; */
+
+  /* Layout Formatting */
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* Allows for relative placement */
+
+  /* Other */
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1.25rem;
+  overflow: hidden;
+
+}
+
+.Avatar img {
+  height: 40px;
+  width: auto;
+}

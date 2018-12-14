@@ -15,9 +15,6 @@ import OrderForm from './components/orderPage'
 import MaterialEntry from './components/MaterialEntry'
 
 import Bindings from './hoc/Bindings'
-// import logo from './logo.svg'
-
-// const axios = require('axios')
 
 class App extends React.Component {
   componentWillMount() {
@@ -42,12 +39,6 @@ class App extends React.Component {
     )
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     state
-//   }
-// }
 
 export default Bindings(App)
 // export default connect(

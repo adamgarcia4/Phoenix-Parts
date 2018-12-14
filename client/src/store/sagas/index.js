@@ -3,34 +3,31 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { users } from '../../models'
 
 const defaultUserProfile = {
-  first_name: 'First',
-  last_name: 'Last',
-  img_url: 'https://static.licdn.com/scds/common/u/images/themes/katy/ghosts/person/ghost_person_200x200_v1.png'
+  first_name: 'Adam',
+  last_name: 'Garcia',
+  img_url: 'https://d1qb2nb5cznatu.cloudfront.net/users/4191934-large?1475518081'
 }
 
 function* registerUserSaga(action) {
   console.log('action:', action)
-  const {
-    payload: { email, password }
-  } = action
 
   try {
     // Sign up user
-    const registeredUser = yield call(users.registerEmailPassword, email, password)
+    const registeredUser = yield call(users.registerEmailPassword, action.payload.email, action.payload.password)
     console.log('registeredUser:', registeredUser)
 
-    const {
-      user: { uid }
-    } = registeredUser
     // Once user signed up, then generate default settings to be put in /users/uid
-    yield call(users.updateDatabase, uid, defaultUserProfile)
+    yield call(users.updateDatabase, registeredUser.user.uid, {
+      ...defaultUserProfile,
+      email: registeredUser.user.email,
+      uid: registeredUser.user.uid
+    })
 
-    const profile = yield call(users.getDatabase, uid)
+    const profile = yield call(users.getDatabase, registeredUser.user.uid)
 
     yield put({
       type: actionTypes.user.successRegisterUser,
       payload: {
-        user: registeredUser,
         profile
       }
     })
