@@ -1,9 +1,6 @@
 .submit-form-container {
-  position: absolute;
-  top: 50px;
-  right: 0px;
-  margin: 0px;
-  display: block;
+  margin-top: 10px;
+  display: inline-block;
 }
 
 .avatar {

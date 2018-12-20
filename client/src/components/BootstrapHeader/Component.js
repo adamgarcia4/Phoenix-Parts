@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 import { NavLink } from 'react-router-dom'
-import HeaderNavLink from '../HeaderNavLink'
 import styled from 'styled-components'
+import HeaderNavLink from '../HeaderNavLink'
 import './Style.css'
 // import Button from '../../ui/Button'
 // import Input from '../../ui/Input'
@@ -16,7 +16,9 @@ class BootstrapHeader extends Component {
   getHeader() {
     const getBrand = () => {
       return (
-        <a className="navbar-brand" href="#">
+        <a
+          className="navbar-brand"
+          href="#test">
           Phoenix Parts
         </a>
       )
@@ -42,10 +44,19 @@ class BootstrapHeader extends Component {
       return (
         <ul className="navbar-nav mr-auto">
           {/* <HeaderNavLink to="" title="Home" exact /> */}
-          <HeaderNavLink to="dashboard" title="Dashboard" />
-          <HeaderNavLink to="materialEntry" title="Add Material" />
-          <HeaderNavLink to="parts" title="Parts" exact />
-          <HeaderNavLink to="parts-dashboard" title="Parts Dashboard" />
+          <HeaderNavLink
+            to="dashboard"
+            title="Dashboard" />
+          <HeaderNavLink
+            to="materialEntry"
+            title="Add Material" />
+          <HeaderNavLink
+            to="parts"
+            title="Parts"
+            exact />
+          <HeaderNavLink
+            to="parts-dashboard"
+            title="Parts Dashboard" />
         </ul>
       )
     }
@@ -60,7 +71,9 @@ class BootstrapHeader extends Component {
           {getBrand()}
           {getHamburgerToggle()}
 
-          <div className="collapse navbar-collapse" id={TOGGLE_HANDLE}>
+          <div
+            className="collapse navbar-collapse"
+            id={TOGGLE_HANDLE}>
             {getItemLinks()}
             <HeaderLogin />
           </div>

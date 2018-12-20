@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 // import HeaderNavLink from '../HeaderNavLink'
 import './Style.css'
 import { Formik } from 'formik'
+import { Tooltip } from 'react-tippy'
 import Button from '../../ui/Button'
 import Input from '../../ui/Input'
 import Avatar from '../../ui/Avatar'
@@ -75,18 +76,16 @@ class HeaderLogin extends Component {
     const { user } = this.props
     return (
       <div>
-        <Avatar
-          className="avatar"
-          onClick={() => {
-            this.setState((state, props) => {
-              return {
-                expanded: !state.expanded
-              }
-            })
-          }}
-          user={user.profile}
-        />
-        {this.state.expanded ? this.getLoginSection() : null}
+        <Tooltip
+          html={this.getLoginSection()}
+          interactive
+          trigger='mouseenter focus click'>
+          <Avatar
+            className="avatar"
+            user={user.profile}
+          />
+        </Tooltip>
+        {/* {this.state.expanded ? this.getLoginSection() : null} */}
       </div>
     )
   }
