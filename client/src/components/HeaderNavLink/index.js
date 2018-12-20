@@ -3,7 +3,6 @@ import { NavLink, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class HeaderNavLink extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -15,7 +14,6 @@ class HeaderNavLink extends Component {
   // anything dynamic may not work
   onPath() {
     const { history, exact } = this.props
-    // console.log('this.props.history:', this.props.history)
 
     const comparisonTechniques = {
       exact: () => {
@@ -49,13 +47,14 @@ class HeaderNavLink extends Component {
   }
 
   render() {
-
     const { title } = this.props
-    const isActiveString = this.state.isActive && 'active' || null
+    const isActiveString = (this.state.isActive && 'active') || null
 
     return (
       <li className={`nav-item ${isActiveString}`}>
-        <NavLink to={this.getToLink()} className="nav-link">{title}</NavLink>
+        <NavLink to={this.getToLink()} className="nav-link">
+          {title}
+        </NavLink>
       </li>
     )
   }

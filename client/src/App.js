@@ -2,24 +2,18 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 // import { connect } from 'react-redux'
 import './App.css'
-import Header from './components/Header'
 import BootstrapHeader from './components/BootstrapHeader'
 import PartsEntry from './components/partsEntry'
 import Dashboard from './components/dashboard'
 import PartsDashboard from './components/PartsDashboard'
-import Home from './components/home'
 import PartNumbering from './components/partNumbering'
 import PartsTable from './components/PartsTable'
 import LoginForm from './components/login'
 import OrderForm from './components/orderPage'
 import MaterialEntry from './components/MaterialEntry'
 
-import Bindings from './hoc/Bindings'
-
 class App extends React.Component {
-  componentWillMount() {
-    // console.log('state is', this.props.state)
-  }
+  componentWillMount() {}
 
   render() {
     return (
@@ -40,7 +34,7 @@ class App extends React.Component {
   }
 }
 
-export default Bindings(App)
+export default App
 // export default connect(
 //   mapStateToProps,
 //   null

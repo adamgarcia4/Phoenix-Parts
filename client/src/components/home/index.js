@@ -11,12 +11,7 @@ import Select from 'react-select/lib/Select'
 import Card from '../../ui/Card'
 
 const Home = () => {
-  const handleChange = (newValue, actionMeta) => {
-    console.group('Value Changed')
-    console.log(newValue)
-    console.log(`Action: ${actionMeta.action}`)
-    console.groupEnd()
-  }
+  const handleChange = (newValue, actionMeta) => {}
 
   const asyncMachineList = () => {
     return new Promise((resolve, reject) => {
@@ -32,12 +27,7 @@ const Home = () => {
     })
   }
 
-  const handleInputChange = (inputValue, actionMeta) => {
-    console.group('Input Changed')
-    console.log(inputValue)
-    console.log(`Action: ${actionMeta.action}`)
-    console.groupEnd()
-  }
+  const handleInputChange = (inputValue, actionMeta) => {}
 
   const options = [{ value: '6061 T6', label: '6061 T6 Aluminum' }, { value: '6061 Ts', label: '6061 T6 Aluminum' }]
 

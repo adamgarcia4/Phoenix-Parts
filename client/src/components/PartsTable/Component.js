@@ -5,12 +5,9 @@ import styled from 'styled-components'
 
 import PartsTableDetails from '../PartsTableDetails'
 import 'react-table/react-table.css'
-import AvatarGroup from '../../ui/AvatarGroup'
-import Avatar from '../../ui/Avatar'
 import Paper from '../../ui/Paper'
 // import PartModel from '../../models/parts'
 import statusUtils from '../../models/statusUtils'
-import HeaderLogin from '../HeaderLogin'
 
 import firebase from '../../modules/firebase'
 
@@ -75,14 +72,6 @@ const columns = [
   }
 ]
 
-const partViewSubcomponent = row => {
-  return (
-    <PartDetailsContainer>
-      <PartsTableDetails />
-    </PartDetailsContainer>
-  )
-}
-
 const getPartsDataFromFb = data => {
   return Object.keys(data).map(key => data[key])
 }
@@ -94,10 +83,6 @@ class PartsTable extends React.Component {
   }
 
   componentDidMount() {
-    firebase.rebase.syncState('parts', {
-      context: this,
-      state: 'data'
-    })
   }
 
   getTable(snap) {
@@ -109,7 +94,6 @@ class PartsTable extends React.Component {
 
     return (
       <div>
-        <HeaderLogin />
         <TreeTable
           data={data}
           // pivotBy={['assemblyNumber']}

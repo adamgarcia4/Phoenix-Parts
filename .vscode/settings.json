@@ -2,6 +2,6 @@
   "prettier.semi": false,
   "prettier.singleQuote": true,
   "prettier.tabWidth": 2,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "typescript.tsdk": "node_modules/typescript/lib"
 }

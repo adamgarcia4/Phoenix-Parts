@@ -19,11 +19,6 @@ const initialValues = {
 class LoginForm extends Component {
   getForm = () => {
     const onSubmit = (values, formikBag) => {
-      console.log('Submit!')
-      // const { history } = this.props
-
-      console.log('values:', values)
-
       firebase.auth
         .doCreateUserWithEmailAndPassword(values.email, values.passwordone)
         .then(userObj => {

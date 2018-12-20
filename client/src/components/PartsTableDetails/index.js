@@ -219,15 +219,15 @@ class PartsTableDetails extends Component {
   }
 
   getPartStatusButton() {
-    const {status} = this.props.item
-    
+    const { status } = this.props.item
+
     return (
       <SelectInput
         onSelected={change => {
           console.log('change', change)
-          partUtils.updatePart({
+          partUtils.updatePart('111', {
             status: change
-          },)
+          })
         }}
         options={statusList}
       />

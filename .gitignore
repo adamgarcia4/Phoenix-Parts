@@ -1,3 +1,5 @@
+.idea/
+client/.idea/
 # Logs
 logs
 *.log

@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom'
 import HeaderNavLink from '../HeaderNavLink'
 import styled from 'styled-components'
 import './Style.css'
-import Button from '../../ui/Button'
-import Input from '../../ui/Input'
+// import Button from '../../ui/Button'
+// import Input from '../../ui/Input'
 import HeaderLogin from '../HeaderLogin'
 
-import { Formik } from 'formik'
+// import { Formik } from 'formik'
 
 const TOGGLE_HANDLE = 'app-navbar'
 
@@ -71,8 +71,6 @@ class BootstrapHeader extends Component {
   }
 
   render() {
-    // console.log('this.state:', this.state)
-    // console.log('this.props:', this.props)
     return this.getHeader()
   }
 }

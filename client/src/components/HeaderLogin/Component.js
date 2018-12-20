@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 
-import { NavLink } from 'react-router-dom'
-import HeaderNavLink from '../HeaderNavLink'
-import styled from 'styled-components'
+// import styled from 'styled-components'
+// import { NavLink } from 'react-router-dom'
+// import HeaderNavLink from '../HeaderNavLink'
 import './Style.css'
+import { Formik } from 'formik'
 import Button from '../../ui/Button'
 import Input from '../../ui/Input'
-import { Formik } from 'formik'
 import Avatar from '../../ui/Avatar'
 import Paper from '../../ui/Paper'
-import HoverHOC from '../../hoc/HoverHOC'
 
-const TOGGLE_HANDLE = 'app-navbar'
+// const TOGGLE_HANDLE = 'app-navbar'
 
 class HeaderLogin extends Component {
   constructor(props) {
@@ -22,7 +21,6 @@ class HeaderLogin extends Component {
   getLoginSection() {
     const { registerUser, user } = this.props
 
-    console.log('user:', user)
     const { profile } = user
     const getSubmitForm = () => {
       const getInitialValues = () => {
@@ -38,8 +36,14 @@ class HeaderLogin extends Component {
             }}
           >
             {({ values, handleSubmit, setFieldValue, handleChange }) => (
-              <form className="form-group" onSubmit={handleSubmit}>
-                <Input placeholder="Email" name="email" value={values.email} onChange={setFieldValue} />
+              <form
+                className="form-group"
+                onSubmit={handleSubmit}>
+                <Input
+                  placeholder="Email"
+                  name="email"
+                  value={values.email}
+                  onChange={setFieldValue} />
                 <Input
                   placeholder="Password"
                   name="password"
@@ -47,7 +51,10 @@ class HeaderLogin extends Component {
                   onChange={setFieldValue}
                   type="password"
                 />
-                <Button type="submit" style="primary" width={true}>
+                <Button
+                  type="submit"
+                  style="primary"
+                  width>
                   Submit
                 </Button>
               </form>
@@ -65,7 +72,6 @@ class HeaderLogin extends Component {
   }
 
   render() {
-    console.log('this.props333:', this.props)
     const { user } = this.props
     return (
       <div>
