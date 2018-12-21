@@ -24,8 +24,11 @@ class AsyncSelectInput extends Component {
   }
 
   render() {
+    const {options} = this.state
     return (
-      <SelectInput {...this.props} options={this.state.options} />
+      <SelectInput 
+      {...this.props}
+      options={options} />
     )
   }
 }

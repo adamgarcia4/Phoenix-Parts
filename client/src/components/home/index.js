@@ -1,35 +1,25 @@
 import React from 'react'
-import StatusBadge from '../../components/statusBadge'
-import PartNumbering from '../../components/partNumbering'
-// var provider = new firebase.auth.GoogleAuthProvider();
-import firebase from '../../modules/firebase'
-
-import SelectInput from '../../ui/SelectInput'
-import AsyncSelectInput from '../../ui/AsyncSelectInput'
-
-import Select from 'react-select/lib/Select'
 import Card from '../../ui/Card'
+// import firebase from '../../modules/firebase'
 
 const Home = () => {
-  const handleChange = (newValue, actionMeta) => {}
+  // const asyncMachineList = () => {
+  //   return new Promise((resolve, reject) => {
+  //     const handle = firebase.rebase.fetch('parts', { context: this, asArray: true })
 
-  const asyncMachineList = () => {
-    return new Promise((resolve, reject) => {
-      const handle = firebase.rebase.fetch('parts', { context: this, asArray: true })
+  //     handle.then(data => {
+  //       const optionFormat = data.map(row => ({
+  //         value: row.partNumber,
+  //         label: row.partName
+  //       }))
+  //       return resolve(optionFormat)
+  //     })
+  //   })
+  // }
 
-      handle.then(data => {
-        const optionFormat = data.map(row => ({
-          value: row.partNumber,
-          label: row.partName
-        }))
-        return resolve(optionFormat)
-      })
-    })
-  }
+  // const handleInputChange = (inputValue, actionMeta) => {}
 
-  const handleInputChange = (inputValue, actionMeta) => {}
-
-  const options = [{ value: '6061 T6', label: '6061 T6 Aluminum' }, { value: '6061 Ts', label: '6061 T6 Aluminum' }]
+  // const options = [{ value: '6061 T6', label: '6061 T6 Aluminum' }, { value: '6061 Ts', label: '6061 T6 Aluminum' }]
 
   return (
     <div>

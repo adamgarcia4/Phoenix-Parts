@@ -37,7 +37,8 @@
     "redux": "^4.0.0",
     "redux-saga": "^0.16.2",
     "styled-components": "^3.4.5",
-    "yup": "^0.26.6"
+    "yup": "^0.26.6",
+    "redux-devtools-extension": "^2.13.7"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -52,7 +53,6 @@
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
-    "redux-devtools-extension": "^2.13.7"
+    "eslint-plugin-react": "^7.11.1"
   }
 }

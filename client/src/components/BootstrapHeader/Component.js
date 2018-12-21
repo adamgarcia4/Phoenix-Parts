@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import HeaderNavLink from '../HeaderNavLink'
 import './Style.css'
@@ -14,6 +15,8 @@ const TOGGLE_HANDLE = 'app-navbar'
 
 class BootstrapHeader extends Component {
   getHeader() {
+    const {children} = this.props
+
     const getBrand = () => {
       return (
         <a
@@ -78,7 +81,7 @@ class BootstrapHeader extends Component {
             <HeaderLogin />
           </div>
         </HeaderStyle>
-        <div className="container-fluid">{this.props.children}</div>
+        <div className="container-fluid">{children}</div>
       </div>
     )
   }
@@ -87,5 +90,14 @@ class BootstrapHeader extends Component {
     return this.getHeader()
   }
 }
+
+BootstrapHeader.propTypes = {
+  children: PropTypes.array
+}
+
+BootstrapHeader.defaultProps = {
+  children: null
+}
+
 
 export default BootstrapHeader

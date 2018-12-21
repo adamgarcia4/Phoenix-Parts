@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { addMachine } from '../../store/actions/index'
-
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { addMachine } from '../../store/actions/index'
 import SimpleExpansionPanel from '../../ui/simplePanelAccordion'
 
 const machineList = [
@@ -23,12 +23,12 @@ const machineList = [
 
 class ProcessPicker extends Component {
   addMachinePart = processName => {
-    this.props.addMachine(processName)
+    const {addMachine} = this.props
+    
+    addMachine(processName)
   }
 
   render() {
-    const { classes } = this.props
-
     const machinePanels = machineList.map(details => {
       return (
         <SimpleExpansionPanel
@@ -47,12 +47,16 @@ class ProcessPicker extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  // Whatever is returned will show up as props
-  return {
-    parts: state.parts
-  }
+ProcessPicker.propTypes = {
+  addMachine: PropTypes.func
 }
+
+// function mapStateToProps(state) {
+  // Whatever is returned will show up as props
+  // return {
+    // parts: state.parts
+  // }
+// }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addMachine }, dispatch)

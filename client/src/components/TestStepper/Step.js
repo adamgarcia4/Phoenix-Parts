@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import { withStyles } from '@material-ui/core/styles'
 
 export const styles = {
@@ -56,7 +56,9 @@ function Step(props) {
   )
 
   return (
-    <div className={className} {...other}>
+    <div
+      className={className}
+      {...other}>
       {connector &&
         alternativeLabel &&
         index !== 0 &&

@@ -12,7 +12,7 @@ class DropdownItem extends Component {
 
   // fat arrow means that THIS isn't reassigned
   clicked = () => {
-    this.setState((state, props) => {
+    this.setState((state, props) => { //eslint-disable-line
       return {
         expanded: !state.expanded
       }
@@ -24,7 +24,9 @@ class DropdownItem extends Component {
     return (
       <div>
         <span className="row machine-item">
-          <button onClick={this.clicked} />
+          <button
+            type='button'
+            onClick={this.clicked} />
           6061 T6 Aluminum
         </span>
         {expanded ? <span className="row machine-item">lasjdf</span> : null}

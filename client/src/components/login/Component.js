@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import firebase from '../../modules/firebase'
-import TextField from '../../ui/textField'
+import faker from 'faker'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import firebase from '../../modules/firebase'
+import TextField from '../../ui/textField'
 
-import faker from 'faker'
 
 const initialValues = {
   username: 'adamgarcia',
@@ -18,7 +18,7 @@ const initialValues = {
 
 class LoginForm extends Component {
   getForm = () => {
-    const onSubmit = (values, formikBag) => {
+    const onSubmit = (values, formikBag) => { // eslint-disable-line
       firebase.auth
         .doCreateUserWithEmailAndPassword(values.email, values.passwordone)
         .then(userObj => {
@@ -27,8 +27,7 @@ class LoginForm extends Component {
               displayName: values.displayName,
               photoURL: values.photoUrl
             })
-            .then(_ => {
-              // console.log('userObj:', userObj)
+            .then(_ => { //eslint-disable-line
             })
             .catch(err => {
               console.log('err in Updating Profile:', err)
@@ -61,22 +60,30 @@ class LoginForm extends Component {
           // handleBlur,
           // isSubmitting,
         }) => (
-          <form onSubmit={handleSubmit}>
-            <TextField name="username" label="Username" value={values.username} onChange={handleChange} />
+            <form onSubmit={handleSubmit}>
+              <TextField 
+                name="username"
+                label="Username"
+                value={values.username}
+                onChange={handleChange} />
 
-            <TextField name="email" label="Email" value={values.email} onChange={handleChange} />
+              <TextField
+                name="email"
+                label="Email"
+                value={values.email}
+                onChange={handleChange} />
 
-            <TextField
-              name="password"
-              label="Password"
-              value={values.passwordone}
-              onChange={handleChange}
-              type="password"
-            />
+              <TextField
+                name="password"
+                label="Password"
+                value={values.passwordone}
+                onChange={handleChange}
+                type="password"
+              />
 
-            <button type="submit"> Submit </button>
-          </form>
-        )}
+              <button type="submit"> Submit </button>
+            </form>
+          )}
       />
     )
   }

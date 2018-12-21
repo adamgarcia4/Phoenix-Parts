@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM, { findDOMNode } from 'react-dom'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 require('./Waves.css')
@@ -16,40 +16,38 @@ class Waves extends React.Component {
     }
   }
 
-  render() {
-    return (
-      <div
-        className={
-          'Ripple ' +
-          (this.props.outline || this.props.flat || this.props.dark ? 'Ripple-outline ' : '') +
-          (this.state.animate ? 'is-reppling' : '')
-        }
-        style={{
-          top: this.state.top + 'px',
-          left: this.state.left + 'px',
-          width: this.state.width + 'px',
-          height: this.state.height + 'px'
-        }}
-      />
-    )
+  componentWillReceiveProps({cursorPos}) {
+    const {animate} = this.state
+    const {cursorPos: cursorProps} = this.props
+    // Prevent Component duplicates do ripple effect at the same time
+    if (cursorPos.time !== cursorProps.time) {
+      // If Has Animated, set state to "false" First
+      if (animate) {
+        this.setState({ animate: false }, () => {
+          this.reppling(cursorPos)
+        })
+      }
+      // else, Do Reppling
+      else this.reppling(cursorPos)
+    }
   }
 
   reppling(cursorPos) {
     // Get the element
-    let $ripple = ReactDOM.findDOMNode(this)
-    let $button = $ripple.parentNode
+    const $ripple = ReactDOM.findDOMNode(this) //eslint-disable-line
+    const $button = $ripple.parentNode
 
-    let buttonStyle = window.getComputedStyle($button)
-    let buttonPos = $button.getBoundingClientRect()
+    // const buttonStyle = window.getComputedStyle($button)
+    const buttonPos = $button.getBoundingClientRect()
 
-    let buttonWidth = $button.offsetWidth
-    let buttonHeight = $button.offsetHeight
+    const buttonWidth = $button.offsetWidth
+    const buttonHeight = $button.offsetHeight
 
     // Make a Square Ripple
-    let rippleWidthShouldBe = Math.max(buttonHeight, buttonWidth)
+    const rippleWidthShouldBe = Math.max(buttonHeight, buttonWidth)
 
     // Make Ripple Position to be center
-    let centerize = rippleWidthShouldBe / 2
+    const centerize = rippleWidthShouldBe / 2
 
     this.setState({
       animate: true,
@@ -60,20 +58,26 @@ class Waves extends React.Component {
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    let cursorPos = nextProps.cursorPos
-
-    // Prevent Component duplicates do ripple effect at the same time
-    if (cursorPos.time !== this.props.cursorPos.time) {
-      // If Has Animated, set state to "false" First
-      if (this.state.animate) {
-        this.setState({ animate: false }, () => {
-          this.reppling(cursorPos)
-        })
-      }
-      // else, Do Reppling
-      else this.reppling(cursorPos)
-    }
+  render() {
+    const {outline, flat, dark} = this.props
+    const {animate, top, left, width, height} = this.state
+    return (
+      <div
+        className={
+          `
+          Ripple
+          ${(outline || flat || dark ? 'Ripple-outline ' : '')}
+          ${(animate ? 'is-reppling' : '')}
+          `
+        }
+        style={{
+          top: `${top}px`,
+          left: `${left}px`,
+          width: `${width}px`,
+          height: `${height}px`
+        }}
+      />
+    )
   }
 }
 
@@ -82,7 +86,8 @@ Waves.propTypes = {
   flat: PropTypes.bool,
   animate: PropTypes.bool,
   cursorPos: PropTypes.object,
-  children: PropTypes.node
+  // children: PropTypes.node,
+  dark: PropTypes.any
 }
 
 export default Waves

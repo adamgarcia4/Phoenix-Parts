@@ -18,7 +18,7 @@ export function addMachine(machine) {
   }
 }
 
-export const getParts = _ => async dispatch => {
+export const getParts = _ => async dispatch => { //eslint-disable-line
   // firebase.partsRef.on('value', snapshot => {
   //   dispatch({
   //     type: 'GET_PARTS',

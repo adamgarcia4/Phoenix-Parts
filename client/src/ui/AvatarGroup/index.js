@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 // TODO: Add onHover
 // .avatarGroup:hover .avatar {
@@ -12,8 +13,8 @@ const BaseAvatarGroup = styled.div`
 `
 class AvatarGroup extends Component {
   getAvatarGroup() {
-    const avatars = this.props.children
-    // return avatars
+    const {children} = this.props
+    const avatars = children
 
     return React.Children.map(avatars, (avatar, i) => {
       const isOverlap = i !== 0
@@ -27,4 +28,7 @@ class AvatarGroup extends Component {
   }
 }
 
+AvatarGroup.propTypes = {
+  children: PropTypes.any
+}
 export default AvatarGroup

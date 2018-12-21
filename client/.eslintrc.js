@@ -19,6 +19,12 @@ module.exports = {
       {
         maximum: 1
       }
-    ]
+    ],
+    'react/forbid-prop-types': [0],
+    'react/require-default-props': [0],
+    'no-plusplus': [0],
+    'array-callback-return': [0],
+    'no-return-assign': [0],
+    'react/no-array-index-key': [0]
   }
 }

@@ -3,7 +3,7 @@ import ReactTable from 'react-table'
 
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import SelectInput from '../../ui/SelectInput'
 import { statusList } from '../../models/statusUtils'
 // import Button from '../../ui/Button'
@@ -13,10 +13,6 @@ import Surface from '../../ui/Surface'
 import partUtils from '../../models/parts'
 import Avatar from '../../ui/Avatar'
 import './Style.css'
-
-const Container = styled.div`
-  min-height: 20vh;
-`
 
 const BackgroundBlue = styled.div`
   /* background-color: lightBlue; */
@@ -28,15 +24,21 @@ class PartsTableDetails extends Component {
       <Grid fluid>
         <BackgroundBlue>
           <Row>
-            <Col sm={12} md={4}>
+            <Col
+              sm={12}
+              md={4}>
               <Pill> Part Name</Pill>
               Drive Shaft
             </Col>
-            <Col sm={12} md={4}>
+            <Col
+              sm={12}
+              md={4}>
               <Pill> Part Number</Pill>
               04-101-100
             </Col>
-            <Col sm={12} md={4}>
+            <Col
+              sm={12}
+              md={4}>
               <Pill> Status </Pill>
               04-101-100
             </Col>
@@ -119,7 +121,7 @@ class PartsTableDetails extends Component {
           <Avatar />
         </CommentAvatar>
         <Paper>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys
           standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
           make a type specimen book. It has survived not only five centuries, but also the leap into electronic
           typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
@@ -160,7 +162,7 @@ class PartsTableDetails extends Component {
       flex-wrap: wrap;
     `
 
-    const InfoItem = styled(Paper)`
+    const InfoItem = styled(Paper) `
       flex: 0 1 30%;
 
       @media (max-width: 48em) {
@@ -219,8 +221,6 @@ class PartsTableDetails extends Component {
   }
 
   getPartStatusButton() {
-    const { status } = this.props.item
-
     return (
       <SelectInput
         onSelected={change => {
@@ -242,8 +242,6 @@ class PartsTableDetails extends Component {
 }
 
 PartsTableDetails.propTypes = {
-  row: PropTypes.object.isRequired,
-  item: PropTypes.object.isRequired
 }
 
 export default PartsTableDetails

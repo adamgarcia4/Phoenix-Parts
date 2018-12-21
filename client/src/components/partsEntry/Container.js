@@ -1,8 +1,8 @@
-import Component from './Component'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addPart, updatePartForm, getParts } from '../../store/actions'
 import { withRouter } from 'react-router-dom'
+import { addPart, updatePartForm, getParts } from '../../store/actions'
+import Component from './Component'
 
 const mapStateToProps = state => {
   return {

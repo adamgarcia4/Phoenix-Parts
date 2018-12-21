@@ -13,21 +13,45 @@ import OrderForm from './components/orderPage'
 import MaterialEntry from './components/MaterialEntry'
 
 class App extends React.Component {
-  componentWillMount() {}
+  componentWillMount() { }
 
   render() {
     return (
       <div>
         <BootstrapHeader appName="Phoenix Parts">
-          <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
-          <Route exact path="/materialEntry" component={MaterialEntry} />
-          <Route exact path="/partNumbering" component={PartNumbering} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/parts-dashboard" component={PartsDashboard} />
-          <Route path="/parts" component={PartsEntry} />
-          <Route path="/parts-dashboard" component={PartsTable} />
-          <Route path="/loginForm" component={LoginForm} />
-          <Route path="/orders" component={OrderForm} />
+          <Route
+            exact
+            path="/"
+            render={() => <Redirect to="/dashboard" />} />
+          <Route
+            exact
+            path="/materialEntry"
+            component={MaterialEntry} />
+          <Route
+            exact
+            path="/partNumbering"
+            component={PartNumbering} />
+          <Route
+            exact
+            path="/dashboard"
+            component={Dashboard} />
+          <Route
+            exact
+            path="/parts-dashboard"
+            component={PartsDashboard} />
+          <Route
+            path="/parts"
+            component={PartsEntry}/>
+          <Route
+            path="/parts-dashboard"
+            component={PartsTable} />
+          <Route
+            path="/loginForm"
+            component={LoginForm}/>
+
+          <Route
+            path="/orders"
+            component={OrderForm} />
         </BootstrapHeader>
       </div>
     )

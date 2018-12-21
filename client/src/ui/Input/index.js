@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './Style.css'
+
 class Input extends Component {
   updateInputValue(evt) {
     const { onChange, name } = this.props
@@ -9,12 +10,12 @@ class Input extends Component {
   }
 
   render() {
-    const { placeholder, type, name } = this.props
+    const { placeholder, type, name, value } = this.props
     return (
       <input
         className="form-control padding"
         name={name}
-        value={this.props.value}
+        value={value}
         onChange={evt => this.updateInputValue(evt)}
         type={type}
         placeholder={placeholder}
@@ -27,7 +28,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   name: PropTypes.string.isRequired,
-  initValue: PropTypes.string,
+  value: PropTypes.any,
   type: PropTypes.oneOf([
     'button',
     'checkbox',
@@ -58,7 +59,6 @@ Input.defaultProps = {
   placeholder: 'Placeholder...',
   onChange: () => {},
   type: 'text',
-  initValue: ''
 }
 
 export default Input

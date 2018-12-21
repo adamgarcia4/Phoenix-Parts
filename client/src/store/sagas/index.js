@@ -1,5 +1,5 @@
+import { call, put, takeLatest } from 'redux-saga/effects'
 import actionTypes from '../actionTypes'
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { users } from '../../models'
 
 const defaultUserProfile = {

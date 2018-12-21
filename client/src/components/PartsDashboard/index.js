@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import Card from '../../ui/Card'
 import Well from '../../ui/Well'
 import PartCard from '../PartCard'
 import './Style.css'
@@ -11,22 +10,22 @@ class PartsDashboard extends Component {
     const getCards = () => {
       const getCard = index => {
         return (
-          <div className="parts-item" key={index}>
+          <div
+            className="parts-item"
+            key={index}>
             <PartCard
-              partName={'Drive Shaft'}
-              picUrl={'http://media.team254.com/2014/02/951707c4-2014-02-18.jpg'}
+              partName="Drive Shaft"
+              picUrl="http://media.team254.com/2014/02/951707c4-2014-02-18.jpg"
               description={description}
             />
           </div>
         )
       }
-      const test = Array.apply(null, { length: 10 })
+      const test = Array(...{ length: 10 })
         .map(Number.call, Number)
         .map(num => {
           return getCard(num)
         })
-
-      console.log('test:', test)
 
       return test
     }

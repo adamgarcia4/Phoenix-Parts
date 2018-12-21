@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-
-// import styled from 'styled-components'
-// import { NavLink } from 'react-router-dom'
-// import HeaderNavLink from '../HeaderNavLink'
+import PropTypes from 'prop-types'
 import './Style.css'
 import { Formik } from 'formik'
 import { Tooltip } from 'react-tippy'
@@ -14,11 +11,6 @@ import Paper from '../../ui/Paper'
 // const TOGGLE_HANDLE = 'app-navbar'
 
 class HeaderLogin extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { expanded: false }
-  }
-
   getLoginSection() {
     const { registerUser, user } = this.props
 
@@ -32,11 +24,12 @@ class HeaderLogin extends Component {
         <Paper className="submit-form-container">
           <Formik
             initialValues={getInitialValues()}
-            onSubmit={({ email, password }, options) => {
+
+            onSubmit={({ email, password }, options) => { // eslint-disable-line
               registerUser(email, password)
             }}
           >
-            {({ values, handleSubmit, setFieldValue, handleChange }) => (
+            {({ values, handleSubmit, setFieldValue, handleChange }) => ( // eslint-disable-line
               <form
                 className="form-group"
                 onSubmit={handleSubmit}>
@@ -54,7 +47,7 @@ class HeaderLogin extends Component {
                 />
                 <Button
                   type="submit"
-                  style="primary"
+                  btnType="primary"
                   width>
                   Submit
                 </Button>
@@ -89,6 +82,11 @@ class HeaderLogin extends Component {
       </div>
     )
   }
+}
+
+HeaderLogin.propTypes = {
+  registerUser: PropTypes.object,
+  user: PropTypes.object
 }
 
 export default HeaderLogin

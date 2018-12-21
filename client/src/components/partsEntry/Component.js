@@ -1,17 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { Formik } from 'formik'
+import cx from 'classnames'
+// import PropTypes from 'prop-types'
+import { Form } from 'react-bootstrap'
 import Paper from '../../ui/Paper'
-import TextField from '../../ui/textField'
-import { Radio, RadioGroup, FormControlLabel, MenuItem, FormControl, InputLabel, Select } from '@material-ui/core'
 import partUtils from '../../utils/partUtils'
 import partsModel from '../../models/parts'
-import { Form } from 'react-bootstrap'
-import firebase from '../../modules/firebase'
-
-import TestStepper from '../TestStepper'
-import cx from 'classnames'
 import Well from '../../ui/Well'
-import Card from '../../ui/Card'
 import './Style.css'
 
 class PartsEntry extends Component {
@@ -21,9 +16,9 @@ class PartsEntry extends Component {
 
   getFormikForm() {
     const initialValues = partUtils.randomPart()
-    const { history } = this.props
+    // const { history } = this.props
 
-    const onSubmit = (values, formikBag) => {
+    const onSubmit = (values, formikBag) => { //eslint-disable-line
       console.log('Submit!')
 
       console.log('values:', values)
@@ -43,7 +38,11 @@ class PartsEntry extends Component {
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
                   <Form.Label>Type </Form.Label>
-                  <Form.Control as="select" name="type" value={values.type} onChange={handleChange}>
+                  <Form.Control
+                    as="select"
+                    name="type"
+                    value={values.type}
+                    onChange={handleChange}>
                     <option>part</option>
                     <option>assembly</option>
                   </Form.Control>
@@ -131,18 +130,13 @@ class PartsEntry extends Component {
 
     return (
       <div className="form-container">
-        <Paper style={{ width: '500px', margin: '0 auto' }} className="form-form">
+        <Paper
+          style={{ width: '500px', margin: '0 auto' }}
+          className="form-form">
           {getForm()}
         </Paper>
       </div>
     )
-  }
-
-  componentWillMount() {
-    // partsRef.on('value', snapshot => {
-    //   console.log('snapshot!', snapshot.val())
-    // })
-    // const allParts = this.props.getParts()
   }
 
   getStepContent() {
@@ -165,12 +159,13 @@ class PartsEntry extends Component {
   }
 
   render() {
+    const { selected } = this.state
     return (
       <Fragment>
         <Well>
           <div className="mode-container">
             <Paper
-              className={cx('mode-selection', this.state.selected === 'part' && 'selected')}
+              className={cx('mode-selection', selected === 'part' && 'selected')}
               onClick={() => {
                 this.setState({ selected: 'part' })
               }}
@@ -179,7 +174,7 @@ class PartsEntry extends Component {
               <i className="fas fa-cog fa-7x" />
             </Paper>
             <Paper
-              className={cx('mode-selection', this.state.selected === 'assembly' && 'selected')}
+              className={cx('mode-selection', selected === 'assembly' && 'selected')}
               onClick={() => {
                 this.setState({ selected: 'assembly' })
               }}
@@ -197,5 +192,9 @@ class PartsEntry extends Component {
     )
   }
 }
+
+// PartsEntry.propTypes = {
+//   history: PropTypes.object
+// }
 
 export default PartsEntry

@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import Paper from '../../ui/Paper'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import Paper from '../../ui/Paper'
 
 const getTitleBlock = () => {
   const TitleBlockContainer = styled.div`
     display: inline-block;
-    float: left;
+    /* float: left; */
     height: 100%;
     width: 200px;
   `
@@ -21,7 +21,7 @@ const getTitleBlock = () => {
 }
 
 const subAssemblyView = () => {
-  const SubAssemblyContainer = styled(Paper)``
+  const SubAssemblyContainer = styled(Paper) ``
 
   return (
     <SubAssemblyContainer>
@@ -36,25 +36,28 @@ const getAssemblyView = () => {
     <Paper>
       <Grid fluid>
         <Row>
-          <Col xs={3} style={{ backgroundColor: 'red' }}>
+          <Col
+            xs={3}
+            style={{ backgroundColor: 'red' }}>
             {getTitleBlock()}
           </Col>
-          <Col xs={9} style={{ backgroundColor: 'blue' }}>
+          <Col
+            xs={9}
+            style={{ backgroundColor: 'blue' }}>
             {subAssemblyView()}
           </Col>
         </Row>
       </Grid>
-      {/* {getTitleBlock()}
-
-      {subAssemblyView()} */}
     </Paper>
   )
 }
 
-class PartNumbering extends Component {
-  render() {
-    return <div>{getAssemblyView()}</div>
-  }
+const PartNumbering = () => {
+  return (
+    <div>
+      {getAssemblyView()}
+    </div>
+  )
 }
 
 export default PartNumbering

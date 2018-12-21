@@ -1,27 +1,30 @@
-import React, { Component } from 'react'
-import Card from '../../ui/Card'
+import React from 'react'
 import proptypes from 'prop-types'
+import Card from '../../ui/Card'
 
-class PartCard extends Component {
-  render() {
-    return (
-      <Card>
-        <Card.CardPicture url={this.props.picUrl} />
-        <Card.CardContent>
-          <h2>{this.props.partName}</h2>
-          {this.props.description}
-        </Card.CardContent>
-        <Card.CardContentActions>
-          <button type="button" className="btn btn-primary">
-            Go to part
+const PartCard = ({ picUrl, partName, description }) => {
+
+  return (
+    <Card>
+      <Card.CardPicture url={picUrl} />
+      <Card.CardContent>
+        <h2>{partName}</h2>
+        {description}
+      </Card.CardContent>
+      <Card.CardContentActions>
+        <button
+          type="button"
+          className="btn btn-primary">
+          Go to part
           </button>
-          <button type="button" className="btn btn-secondary">
-            Edit
+        <button
+          type="button"
+          className="btn btn-secondary">
+          Edit
           </button>
-        </Card.CardContentActions>
-      </Card>
-    )
-  }
+      </Card.CardContentActions>
+    </Card>
+  )
 }
 
 PartCard.propTypes = {

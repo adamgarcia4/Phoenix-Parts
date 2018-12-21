@@ -10,6 +10,14 @@ class HeaderNavLink extends Component {
     }
   }
 
+  componentDidMount() {
+    this.onPath()
+  }
+
+  componentWillReceiveProps() {
+    this.onPath()
+  }
+
   // TODO: Currently works for hardcoded routes
   // anything dynamic may not work
   onPath() {
@@ -24,21 +32,13 @@ class HeaderNavLink extends Component {
       }
     }
 
-    const compareFn = exact ? comparisonTechniques['exact'] : comparisonTechniques['includes']
+    const compareFn = exact ? comparisonTechniques.exact : comparisonTechniques.includes
 
     if (compareFn()) {
       this.setState({ isActive: true })
     } else {
       this.setState({ isActive: false })
     }
-  }
-
-  componentDidMount() {
-    this.onPath()
-  }
-
-  componentWillReceiveProps() {
-    this.onPath()
   }
 
   getToLink() {
@@ -48,11 +48,14 @@ class HeaderNavLink extends Component {
 
   render() {
     const { title } = this.props
-    const isActiveString = (this.state.isActive && 'active') || null
+    const { isActive } = this.state
+    const isActiveString = (isActive && 'active') || null
 
     return (
       <li className={`nav-item ${isActiveString}`}>
-        <NavLink to={this.getToLink()} className="nav-link">
+        <NavLink
+          to={this.getToLink()}
+          className="nav-link">
           {title}
         </NavLink>
       </li>
@@ -63,7 +66,8 @@ class HeaderNavLink extends Component {
 HeaderNavLink.propTypes = {
   to: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  exact: PropTypes.bool
+  exact: PropTypes.bool,
+  history: PropTypes.object
 }
 
 export default withRouter(HeaderNavLink)

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
 // import Step from '@material-ui/core/Step'
-import Step from './Step'
 import StepLabel from '@material-ui/core/StepLabel'
-import StepLabel2 from './StepLabel'
-import StepConnector from './StepConnector'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+// import StepLabel2 from './StepLabel'
+// import StepConnector from './StepConnector'
+import Step from './Step'
 
 const styles = theme => ({
   root: {
@@ -22,19 +22,6 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit
   }
 })
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return 'Select campaign settings...'
-    case 1:
-      return 'What is an ad group anyways?'
-    case 2:
-      return 'This is the bit I really care about!'
-    default:
-      return 'Unknown step'
-  }
-}
 
 class HorizontalLinearStepper extends React.Component {
   state = {
@@ -90,18 +77,19 @@ class HorizontalLinearStepper extends React.Component {
   }
 
   isStepSkipped(step) {
-    return this.state.skipped.has(step)
+    const { skipped } = this.state
+    return skipped.has(step)
   }
 
   render() {
-    const { classes } = this.props
-    const steps = this.props.steps.map(stepInfo => stepInfo.label)
+    const { classes, steps } = this.props
+    const stepsArr = steps.map(stepInfo => stepInfo.label)
     const { activeStep } = this.state
 
     const getStepperRow = () => {
       return (
         <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
+          {stepsArr.map((label, index) => {
             const props = {}
             const labelProps = {}
             if (this.isStepOptional(index)) {
@@ -111,7 +99,9 @@ class HorizontalLinearStepper extends React.Component {
               props.completed = false
             }
             return (
-              <Step key={label} {...props}>
+              <Step
+                key={label}
+                {...props}>
                 <StepLabel {...labelProps}>{label}</StepLabel>
               </Step>
             )
@@ -121,22 +111,34 @@ class HorizontalLinearStepper extends React.Component {
     }
 
     const getActiveStepContent = () => {
-      return <Typography className={classes.instructions}>{this.props.steps[activeStep].content()}</Typography>
+      const { steps } = this.props
+      return <Typography className={classes.instructions}>{steps[activeStep].content()}</Typography>
     }
 
     const getButtonRow = () => {
       return (
         <div>
-          <Button disabled={activeStep === 0} onClick={this.handleBack} className={classes.button}>
+          <Button
+            disabled={activeStep === 0}
+            onClick={this.handleBack}
+            className={classes.button}>
             Back
           </Button>
           {this.isStepOptional(activeStep) && (
-            <Button variant="contained" color="primary" onClick={this.handleSkip} className={classes.button}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleSkip}
+              className={classes.button}>
               Skip
             </Button>
           )}
-          <Button variant="contained" color="primary" onClick={this.handleNext} className={classes.button}>
-            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleNext}
+            className={classes.button}>
+            {activeStep === stepsArr.length - 1 ? 'Finish' : 'Next'}
           </Button>
         </div>
       )
@@ -153,19 +155,21 @@ class HorizontalLinearStepper extends React.Component {
         <StepLabel2 /> */}
 
         <div>
-          {activeStep === steps.length ? (
+          {activeStep === stepsArr.length ? (
             <div>
               <Typography className={classes.instructions}>All steps completed - you&quot;re finished</Typography>
-              <Button onClick={this.handleReset} className={classes.button}>
+              <Button
+                onClick={this.handleReset}
+                className={classes.button}>
                 Reset
               </Button>
             </div>
           ) : (
-            <div>
-              {getActiveStepContent()}
-              {getButtonRow()}
-            </div>
-          )}
+              <div>
+                {getActiveStepContent()}
+                {getButtonRow()}
+              </div>
+            )}
         </div>
       </div>
     )

@@ -1,6 +1,6 @@
-import Component from './Component'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Component from './Component'
 import actions from '../../store/actions'
 
 const mapDispatchToProps = dispatch => {

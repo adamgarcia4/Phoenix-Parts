@@ -58,6 +58,10 @@ class Dashboard extends Component {
   }
 }
 
+Dashboard.propTypes = {
+  history: PropTypes.any
+}
+
 // Dashboard.propTypes = {
 //   // addPart: PropTypes.func.isRequired,
 //   // classes: PropTypes.object.isRequired

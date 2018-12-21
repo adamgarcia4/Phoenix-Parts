@@ -4,9 +4,7 @@ import statusUtils from '../../models/statusUtils'
 
 class StatusBadge extends Component {
   render() {
-    const settings = {}
-
-    Object.keys(this.props).map(prop => {
+    Object.keys(this.props).map(prop => { //eslint-disable-line
       if (statusUtils.statusMap[prop]) {
         this.settings = statusUtils.statusMap[prop]
       }

@@ -1,40 +1,47 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik'
+import { Form } from 'react-bootstrap'
 import Paper from '../../ui/Paper'
-import TextField from '../../ui/textField'
 import DropdownItem from '../../ui/DropdownItem'
 
 import materialModel from '../../models/materials'
-import { Form } from 'react-bootstrap'
 import firebase from '../../modules/firebase'
-import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretSquareDown } from '@fortawesome/fontawesome-free-solid'
+// import styled from 'styled-components'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faCaretSquareDown } from '@fortawesome/fontawesome-free-solid'
 
-import { Accordion, AccordionItem, AccordionItemTitle, AccordionItemBody } from 'react-accessible-accordion'
+// import { Accordion, AccordionItem, AccordionItemTitle, AccordionItemBody } from 'react-accessible-accordion'
 
 import 'react-accessible-accordion/dist/fancy-example.css'
 
 let fbRef = null
 
 class MaterialEntry extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      materials: []
-    }
+
+  componentWillMount() {
+    fbRef = materialModel.listenAllMaterials(data => {
+      this.setState((state, props) => { //eslint-disable-line
+        return {
+          materials: data
+        }
+      })
+    })
+  }
+
+  componentWillUnmount() {
+    firebase.rebase.removeBinding(fbRef)
   }
 
   getFormikForm() {
-    const { history } = this.props
+    // const { history } = this.props
 
-    const onSubmit = (values, formikBag) => {
-      console.log('Submit!')
+    const onSubmit = (values, formikBag) => { //eslint-disable-line
+      // console.log('Submit!')
 
-      console.log('values:', values)
-      materialModel.addMaterial(values).then(data => {
-        console.log('added material')
-        console.log('data:', data)
+      // console.log('values:', values)
+      materialModel.addMaterial(values).then(data => { //eslint-disable-line
+        // console.log('added material')
+        // console.log('data:', data)
       })
     }
 
@@ -68,28 +75,7 @@ class MaterialEntry extends Component {
   }
 
   getMaterialsDisplay() {
-    const MachineItem = styled.div`
-      height: 50px;
-      background-color: gray;
-      padding: 12px 10px 5px 15px;
-      border-radius: 7px;
-    `
-
     return <DropdownItem />
-  }
-
-  componentWillMount() {
-    fbRef = materialModel.listenAllMaterials(data => {
-      this.setState((state, props) => {
-        return {
-          materials: data
-        }
-      })
-    })
-  }
-
-  componentWillUnmount() {
-    firebase.rebase.removeBinding(fbRef)
   }
 
   render() {

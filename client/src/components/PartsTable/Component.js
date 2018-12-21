@@ -1,23 +1,18 @@
 import React from 'react'
-// import { render } from 'react-dom'
 import ReactTable from 'react-table'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
-import PartsTableDetails from '../PartsTableDetails'
 import 'react-table/react-table.css'
-import Paper from '../../ui/Paper'
+import treeTableHOC from 'react-table/lib/hoc/treeTable/'
+import PartsTableDetails from '../PartsTableDetails'
+// import Paper from '../../ui/Paper'
 // import PartModel from '../../models/parts'
 import statusUtils from '../../models/statusUtils'
 
-import firebase from '../../modules/firebase'
+// import firebase from '../../modules/firebase'
 
-import treeTableHOC from 'react-table/lib/hoc/treeTable/'
 
 const TreeTable = treeTableHOC(ReactTable)
-
-const PartDetailsContainer = styled(Paper)`
-  margin: 10px 15px;
-`
 
 const columns = [
   {
@@ -99,7 +94,7 @@ class PartsTable extends React.Component {
           // pivotBy={['assemblyNumber']}
           columns={columns}
           defaultPageSize={10}
-          getTdProps={(state, rowInfo, column) => {
+          getTdProps={(state, rowInfo, column) => { //eslint-disable-line
             const status = rowInfo && rowInfo.row && rowInfo.row.status
 
             const statusColor = status && statusUtils.statusMap[status] && statusUtils.statusMap[status].statusColor
@@ -113,7 +108,9 @@ class PartsTable extends React.Component {
           className="-striped -highlight"
           // TODO: Add subcomponent which deals with scheduling....
           SubComponent={row => {
-            return <PartsTableDetails row={row} item={row.original} />
+            return <PartsTableDetails
+              row={row}
+              item={row.original} />
           }}
         />
       </div>

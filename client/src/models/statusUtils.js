@@ -77,7 +77,7 @@ const statusMap = {
   }
 }
 
-const statusList = Object.keys(statusMap).map((item, key) => {
+const statusList = Object.keys(statusMap).map((item, key) => { //eslint-disable-line
   return {
     label: statusMap[item].display,
     value: item

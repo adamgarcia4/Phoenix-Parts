@@ -47,7 +47,7 @@ const randomPart = () => {
     max: 99
   })
 
-  subassemblyNum = ('00' + subassemblyNum).slice(-3)
+  subassemblyNum = (`00${subassemblyNum}`).slice(-3)
 
   const getPartName = () => {
     return partsList[faker.random.number() % partsList.length]

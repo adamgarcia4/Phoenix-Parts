@@ -5,7 +5,8 @@ import './Style.css'
 
 class Avatar extends Component {
   render() {
-    let { img, fullName, user, onClick, className } = this.props
+    let { img, fullName } = this.props
+    const { user, onClick, className } = this.props
     console.log('this.propsavatar:', this.props)
 
     if (user) {
@@ -18,7 +19,9 @@ class Avatar extends Component {
 
       const getContent = () => {
         if (img) {
-          return <img src={img} alt={fullName} />
+          return <img
+            src={img}
+            alt={fullName} />
         }
 
         return initialedName
@@ -38,7 +41,9 @@ class Avatar extends Component {
 Avatar.propTypes = {
   img: PropTypes.string,
   fullName: PropTypes.string,
-  user: PropTypes.object
+  user: PropTypes.object,
+  onClick: PropTypes.func,
+  className: PropTypes.string
 }
 
 Avatar.defaultProps = {

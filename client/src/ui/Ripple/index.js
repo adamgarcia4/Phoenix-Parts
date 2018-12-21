@@ -55,7 +55,10 @@ class Ripple extends Component {
     // console.log('ripples', ripples.length);
 
     return (
-      <RippleContainer {...props} innerRef={el => (this.rippleContainer = el)} onMouseDown={this.createRipple}>
+      <RippleContainer 
+      {...props}
+       innerRef={el => (this.rippleContainer = el)}
+        onMouseDown={this.createRipple}>
         {children}
         {ripples.map((r, index) => (
           <RippleItem

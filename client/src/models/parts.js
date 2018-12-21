@@ -7,7 +7,7 @@ const addPart = data => {
   return firebase.rebase.push(DB_REF, { data })
 }
 
-const getAllParts = callback => {
+const getAllParts = callback => { //eslint-disable-line
   return firebase.rebase.fetch(DB_REF, { asArray: true })
 }
 

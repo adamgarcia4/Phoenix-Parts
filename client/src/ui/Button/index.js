@@ -1,36 +1,35 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import './Style.css'
 
-class Button extends Component {
-  render() {
-    const { style, type, width } = this.props
+const Button = props => {
+  const { style, btnType, width, children } = props
 
-    return (
-      <div>
-        <button
-          type={type}
-          className={cx(`btn btn-${style} button`, {
-            'btn-block': !!width
-          })}
-        >
-          {this.props.children}
-        </button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <button // eslint-disable-line react/button-has-type
+        type={btnType} 
+        className={cx(`btn btn-${style} button`, {
+          'btn-block': !!width
+        })}
+      >
+        {children}
+      </button>
+    </div>
+  )
 }
 
 Button.propTypes = {
-  type: PropTypes.string,
+  btnType: PropTypes.string,
   style: PropTypes.string,
-  width: PropTypes.bool
+  width: PropTypes.bool,
+  children: PropTypes.any
 }
 
 Button.defaultProps = {
   style: 'primary',
-  type: 'button',
+  btnType: 'button',
   width: false
 }
 

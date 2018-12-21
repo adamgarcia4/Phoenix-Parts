@@ -18,10 +18,14 @@ const SelectInput = props => {
   const fullOptionsList = [...noneOption, ...options]
 
   return (
-    <select onChange={inputChanged} className="form-control">
+    <select
+      onChange={inputChanged}
+      className="form-control">
       {fullOptionsList.map((option, index) => {
         return (
-          <option value={option.value} key={index}>
+          <option
+            value={option.value}
+            key={index}>
             {option.label || option.value}
           </option>
         )

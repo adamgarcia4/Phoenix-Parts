@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Form } from 'react-bootstrap'
+
 const OrderForm = styled.div`
   width: 45%;
   background-color: red;
@@ -17,30 +18,32 @@ const OrderList = styled.div`
 `
 
 const getOrderForm = () => {
-  const handleChange = () => {}
+  const handleChange = () => { }
 
-  const handleSubmit = () => {}
+  const handleSubmit = () => { }
 
   return (
-    
+
     <Form onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Label>Part Name </Form.Label>
-        <Form.Control name="partName" placeholder="Enter Part Name" value={'hi'} onChange={handleChange} />
+        <Form.Control
+          name="partName"
+          placeholder="Enter Part Name"
+          value='hi'
+          onChange={handleChange} />
       </Form.Group>
     </Form>
   )
 }
 
-class OrderPage extends Component {
-  render() {
-    return (
-      <div>
-        <OrderForm>{getOrderForm()}</OrderForm>
-        <OrderList />
-      </div>
-    )
-  }
+const OrderPage = () => {
+  return (
+    <div>
+      <OrderForm>{getOrderForm()}</OrderForm>
+      <OrderList />
+    </div>
+  )
 }
 
 export default OrderPage
