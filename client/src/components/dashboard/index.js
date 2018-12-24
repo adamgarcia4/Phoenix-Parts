@@ -9,6 +9,7 @@ import AddIcon from '@material-ui/icons/Add'
 import styled from 'styled-components'
 
 // import Fab from '../../ui/Fab'
+import ExpansionPanel from '../../ui/ExpansionPanel'
 import PartsTable from '../PartsTable'
 import Paper from '../../ui/Paper'
 // import Tooltip from '../../ui/Tooltip'
@@ -47,6 +48,8 @@ class Dashboard extends Component {
     return (
       <div>
         <h1>Parts Dashboard</h1>
+
+        <ExpansionPanel/>
         <Paper>
           <PartTableContainer>
             <PartsTable />

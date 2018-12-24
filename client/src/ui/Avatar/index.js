@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import cx from 'classnames'
 import './Style.css'
 
+/* border: ${props => (props.border ? '2px solid #fff' : '')}; */
+/* transform: ${props => (props.overlap ? 'translateX(-40px)' : '')}; */
 class Avatar extends Component {
   render() {
     let { img, fullName } = this.props
-    const { user, onClick, className } = this.props
-    console.log('this.propsavatar:', this.props)
+    const { user, onClick, className, onHover } = this.props
 
     if (user) {
       fullName = `${user.first_name || ''} ${user.last_name || ''}`
@@ -28,7 +29,12 @@ class Avatar extends Component {
       }
 
       return (
-        <div className={cx('Avatar', className)} onClick={onClick}>
+        <div //eslint-disable-line
+          className={cx('Avatar', className)}
+          onClick={onClick}
+          onMouseEnter={onHover(true)}
+          onMouseLeave={onHover(false)}
+          >
           {getContent()}
         </div>
       )
@@ -43,13 +49,15 @@ Avatar.propTypes = {
   fullName: PropTypes.string,
   user: PropTypes.object,
   onClick: PropTypes.func,
+  onHover: PropTypes.func,
   className: PropTypes.string
 }
 
 Avatar.defaultProps = {
   img: null,
   fullName: 'Not Available',
-  user: null
+  user: null,
+  onHover: () => {}
 }
 
 export default Avatar

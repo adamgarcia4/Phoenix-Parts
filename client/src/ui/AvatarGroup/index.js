@@ -1,34 +1,31 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import './Style.css'
 
-// TODO: Add onHover
-// .avatarGroup:hover .avatar {
-//   margin-left: 0px;
-// }
-
-const BaseAvatarGroup = styled.div`
-  display: flex;
-  justify-content: center;
-`
 class AvatarGroup extends Component {
   getAvatarGroup() {
-    const {children} = this.props
+    const { children, overlap } = this.props
+
     const avatars = children
 
     return React.Children.map(avatars, (avatar, i) => {
-      const isOverlap = i !== 0
-
-      return React.cloneElement(avatar, { overlap: isOverlap, border: true })
+      return <div style={{ marginLeft: i === 0 ? 0 : overlap }}>{avatar}</div>
     })
   }
 
   render() {
-    return <BaseAvatarGroup>{this.getAvatarGroup()}</BaseAvatarGroup>
+    return <div className="avatar-group">{this.getAvatarGroup()}</div>
   }
 }
 
 AvatarGroup.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  overlap: PropTypes.number
 }
+
+AvatarGroup.defaultProps = {
+  overlap: -30
+}
+
 export default AvatarGroup

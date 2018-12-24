@@ -1,0 +1,22 @@
+.header {
+  width: 600px;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  background-color: gray;
+  align-items: center;
+  font-size: 1.25em;
+}
+
+.process-number {
+  margin: 0px 10px;
+}
+
+.machine-name {
+  flex-grow: 1;
+}
+
+.avatarClass {
+  /* flex-grow: 1; */
+  flex-basis: 40px;
+}
