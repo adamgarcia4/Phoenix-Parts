@@ -1,15 +1,12 @@
 .header {
   width: 600px;
   display: flex;
-  flex: 1;
+  /* flex: 1; */
   flex-direction: row;
-  background-color: gray;
+  /* background-color: gray; */
   align-items: center;
-  font-size: 1.25em;
-}
-
-.process-number {
-  margin: 0px 10px;
+  font-size: 15px;
+  padding: 8px;
 }
 
 .machine-name {

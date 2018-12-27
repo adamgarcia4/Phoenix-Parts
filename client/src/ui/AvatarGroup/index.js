@@ -7,9 +7,7 @@ class AvatarGroup extends Component {
   getAvatarGroup() {
     const { children, overlap } = this.props
 
-    const avatars = children
-
-    return React.Children.map(avatars, (avatar, i) => {
+    return React.Children.map(children, (avatar, i) => {
       return <div style={{ marginLeft: i === 0 ? 0 : overlap }}>{avatar}</div>
     })
   }
@@ -25,7 +23,7 @@ AvatarGroup.propTypes = {
 }
 
 AvatarGroup.defaultProps = {
-  overlap: -30
+  overlap: 0
 }
 
 export default AvatarGroup
