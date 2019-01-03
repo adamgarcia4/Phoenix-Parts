@@ -10,6 +10,9 @@ import styled from 'styled-components'
 
 // import Fab from '../../ui/Fab'
 import ExpansionPanel from '../../ui/ExpansionPanel'
+import ExpansionContent from '../../ui/ExpansionContent'
+import AvatarGroup from '../../ui/AvatarGroup'
+import Avatar from '../../ui/Avatar'
 import PartsTable from '../PartsTable'
 import Paper from '../../ui/Paper'
 // import Tooltip from '../../ui/Tooltip'
@@ -17,6 +20,10 @@ import Paper from '../../ui/Paper'
 
 const PartTableContainer = styled.div`
   margin: 0px 10px 100px 10px;
+`
+
+const AvatarGroupWrapper = styled(AvatarGroup) `
+margin-right: 30px;
 `
 
 class Dashboard extends Component {
@@ -44,12 +51,37 @@ class Dashboard extends Component {
     )
   }
 
+
   render() {
     return (
       <div>
         <h1>Parts Dashboard</h1>
 
-        <ExpansionPanel/>
+        <ExpansionPanel
+          summary={
+            <React.Fragment>
+              <ExpansionContent>Bandsaw</ExpansionContent>
+              <ExpansionContent
+                flexGrow={5}
+                secondary>
+                Lorem Ipsum is
+            </ExpansionContent>
+              <ExpansionContent>
+                <AvatarGroupWrapper overlap={-8}>
+                  <Avatar className="avatar" />
+                  <Avatar className="avatar" />
+                  <Avatar className="avatar" />
+                  <Avatar className="avatar" />
+                </AvatarGroupWrapper>
+              </ExpansionContent>
+            </React.Fragment>
+          }
+          expansion={
+            <React.Fragment>
+              hii
+            </React.Fragment>
+          }
+        />
         <Paper>
           <PartTableContainer>
             <PartsTable />
