@@ -11,6 +11,7 @@ import PartsTable from './components/PartsTable'
 import LoginForm from './components/login'
 import OrderForm from './components/orderPage'
 import MaterialEntry from './components/MaterialEntry'
+import Test from './components/Test'
 
 class App extends React.Component {
   componentWillMount() { }
@@ -52,6 +53,9 @@ class App extends React.Component {
           <Route
             path="/orders"
             component={OrderForm} />
+          <Route
+            path="/test"
+            component={Test} />
         </BootstrapHeader>
       </div>
     )

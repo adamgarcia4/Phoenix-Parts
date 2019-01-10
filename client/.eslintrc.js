@@ -25,6 +25,7 @@ module.exports = {
     'no-plusplus': [0],
     'array-callback-return': [0],
     'no-return-assign': [0],
-    'react/no-array-index-key': [0]
+    'react/no-array-index-key': [0],
+    'react/prop-types': [1]
   }
 }
