@@ -1,8 +1,34 @@
-import React, { useState, useReducer } from 'react'
+/** @jsx jsx */
+import { useReducer } from 'react'
 import styled from '@emotion/styled'
+import { css, jsx } from '@emotion/core'
 import utils from './utils'
+import Button from '../../ui/Button'
+import Input, { useFormInput } from '../../ui/Input'
+import Paper from '../../ui/Paper'
 
 const { newItem } = utils
+
+const OrderTitle = styled.h2`
+margin: 0 auto;
+`
+
+const FlexForm = styled.form`
+display: flex;
+flex-basis: 400px;
+margin: 0 auto;
+flex-direction: column;
+`
+
+const Row = styled.div`
+display: flex;
+width: 75%;
+margin: 0 auto;
+`
+const Item = styled.div`
+flex: ${({ flex }) => flex || 1};
+border: 1px solid rgb(173, 163, 152);
+`
 
 const orderReducer = (state, { type, payload }) => {
   switch (type) {
@@ -21,44 +47,51 @@ const orderReducer = (state, { type, payload }) => {
   }
 }
 
-const OrderLayout = styled.div`
+const FlexParent = styled.div`
   display: flex;
 `
 
 const FlexChild = styled.div`
-  flex: ${props => props.flex || 1};
+  flex: ${({ flex }) => flex || 1};
+  padding: ${({ padding }) => {
+    if (!padding) return null
+
+    if (padding.length === 1) {
+      return `${padding[0]}px`
+    }
+    console.log('some padding wrong')
+    return null
+  }};
+`
+
+const OrderFlex = styled(FlexChild) `
+  display: flex;
 `
 
 const OrderPage = () => {
   const [state, dispatch] = useReducer(orderReducer, [newItem(0)])
 
   return (
-    <OrderLayout>
+    <FlexParent>
       <FlexChild
-        style={{ backgroundColor: 'red' }}
+        css={css`
+          /* background-color: red; */
+        `}
         flex={2}>
         <OrderList
           list={state}
           dispatch={dispatch} />
       </FlexChild>
-      <FlexChild style={{ backgroundColor: 'blue' }}>
+      <OrderFlex >
+      {/* <OrderFlex style={{ backgroundColor: 'blue' }}> */}
         <AddOrder
           onclick={item => {
             dispatch({ type: 'add', payload: item })
           }}
         />
-      </FlexChild>
-    </OrderLayout>
+      </OrderFlex>
+    </FlexParent>
   )
-}
-
-const useFormInput = initialVal => {
-  const [value, setValue] = useState(initialVal)
-
-  return {
-    value,
-    onChange: evt => setValue(evt.target.value)
-  }
 }
 
 function AddOrder({ onclick }) {
@@ -82,30 +115,45 @@ function AddOrder({ onclick }) {
     })
     event.preventDefault()
   }
+
   return (
-    <div>
-      <form onSubmit={submitForm}>
-        <input
+    <FlexForm onSubmit={submitForm}>
+    <OrderTitle>New Order</OrderTitle>
+      <FlexChild
+        padding={[5]}>
+        <Input
           name="item"
           {...item} />
-        <input
+      </FlexChild>
+      <FlexChild padding={[5]}>
+        <Input
           name="quantity"
           {...quantity} />
-        <input
+      </FlexChild>
+      <FlexChild padding={[5]}>
+        <Input
           name="price"
           {...price} />
-        <input
+      </FlexChild>
+      <FlexChild padding={[5]}>
+        <Input
           name="total"
           {...total} />
-        <input
+      </FlexChild>
+      <FlexChild padding={[5]}>
+        <Input
           name="ordered"
           {...ordered} />
-        <input
+      </FlexChild>
+      <FlexChild padding={[5]}>
+        <Input
           name="link"
           {...link} />
-        <button type="submit">Submit Form</button>
-      </form>
-    </div>
+      </FlexChild>
+      <FlexChild padding={[5]}>
+        <Button btnType="submit">Submit Form</Button>
+      </FlexChild>
+    </FlexForm>
   )
 }
 
@@ -118,15 +166,6 @@ function OrderList({ list, dispatch }) {
 }
 
 function OrderRow({ isChecked, item, quantity, price, totalPrice, ordered, link, changeChecked }) {
-  const Row = styled.div`
-    display: flex;
-    width: 75%;
-    margin: 0 auto;
-  `
-  const Item = styled.div`
-    flex: ${({ flex }) => flex || 1};
-    border: 1px solid black;
-  `
 
   return (
     <Row>
