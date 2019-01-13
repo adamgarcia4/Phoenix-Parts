@@ -1,11 +1,12 @@
 /** @jsx jsx */
-import { useReducer } from 'react'
+import { useReducer} from 'react'
 import styled from '@emotion/styled'
 import { css, jsx } from '@emotion/core'
 import utils from './utils'
 import Button from '../../ui/Button'
 import Input, { useFormInput } from '../../ui/Input'
 import Paper from '../../ui/Paper'
+import fireHooks from '../../hooks/firebase'
 
 const { newItem } = utils
 
@@ -28,6 +29,26 @@ margin: 0 auto;
 const Item = styled.div`
 flex: ${({ flex }) => flex || 1};
 border: 1px solid rgb(173, 163, 152);
+padding: 5px;
+text-align: center;
+`
+
+const InputContainer = styled.div`
+flex: 1;
+padding: 5px;
+display: flex;
+align-items: center;
+`
+
+const InputLabel = styled.span`
+flex: 1;
+text-align: center;
+justify-content: left;
+flex-basis: 35px;
+`
+
+const InputField = styled(Input) `
+flex: 4;
 `
 
 const orderReducer = (state, { type, payload }) => {
@@ -51,46 +72,39 @@ const FlexParent = styled.div`
   display: flex;
 `
 
-const FlexChild = styled.div`
-  flex: ${({ flex }) => flex || 1};
-  padding: ${({ padding }) => {
-    if (!padding) return null
-
-    if (padding.length === 1) {
-      return `${padding[0]}px`
-    }
-    console.log('some padding wrong')
-    return null
-  }};
-`
-
-const OrderFlex = styled(FlexChild) `
-  display: flex;
-`
-
 const OrderPage = () => {
   const [state, dispatch] = useReducer(orderReducer, [newItem(0)])
+  const [val, setVal] = fireHooks.syncSetWithFirebase('testing')
+
+  console.log('val:', val)
 
   return (
     <FlexParent>
-      <FlexChild
+      <Paper
         css={css`
-          /* background-color: red; */
-        `}
-        flex={2}>
+          flex: 2;
+      `}>
         <OrderList
           list={state}
           dispatch={dispatch} />
-      </FlexChild>
-      <OrderFlex >
-      {/* <OrderFlex style={{ backgroundColor: 'blue' }}> */}
+      </Paper>
+      <Paper
+        css={css`
+          flex: 1;
+        `}>
         <AddOrder
           onclick={item => {
             dispatch({ type: 'add', payload: item })
           }}
         />
-      </OrderFlex>
-    </FlexParent>
+      </Paper>
+      <button onClick={() => {
+        const rand = Math.round(Math.random()*10000)
+        setVal({hi: 'bye'})
+      }}>
+        Test
+      </button>
+    </FlexParent >
   )
 }
 
@@ -109,7 +123,7 @@ function AddOrder({ onclick }) {
       item: item.value,
       quantity: quantity.value,
       price: price.value,
-      total: total.value,
+      totalPrice: total.value,
       ordered: ordered.value,
       link: link.value
     })
@@ -118,41 +132,48 @@ function AddOrder({ onclick }) {
 
   return (
     <FlexForm onSubmit={submitForm}>
-    <OrderTitle>New Order</OrderTitle>
-      <FlexChild
-        padding={[5]}>
-        <Input
+      <OrderTitle>New Order</OrderTitle>
+      <InputContainer>
+        <InputLabel>Item</InputLabel>
+        <InputField
           name="item"
-          {...item} />
-      </FlexChild>
-      <FlexChild padding={[5]}>
-        <Input
+          {...item}
+        />
+      </InputContainer>
+      <InputContainer>
+        <InputLabel>Quantity</InputLabel>
+        <InputField
           name="quantity"
-          {...quantity} />
-      </FlexChild>
-      <FlexChild padding={[5]}>
-        <Input
+          {...quantity}
+        />
+      </InputContainer>
+      <InputContainer>
+        <InputLabel>Price</InputLabel>
+        <InputField
           name="price"
           {...price} />
-      </FlexChild>
-      <FlexChild padding={[5]}>
-        <Input
+      </InputContainer>
+      <InputContainer>
+        <InputLabel>Total</InputLabel>
+        <InputField
           name="total"
           {...total} />
-      </FlexChild>
-      <FlexChild padding={[5]}>
-        <Input
+      </InputContainer>
+      <InputContainer>
+        <InputLabel>Ordered</InputLabel>
+        <InputField
           name="ordered"
           {...ordered} />
-      </FlexChild>
-      <FlexChild padding={[5]}>
-        <Input
+      </InputContainer>
+      <InputContainer>
+        <InputLabel>Link</InputLabel>
+        <InputField
           name="link"
           {...link} />
-      </FlexChild>
-      <FlexChild padding={[5]}>
+      </InputContainer>
+      <InputContainer>
         <Button btnType="submit">Submit Form</Button>
-      </FlexChild>
+      </InputContainer>
     </FlexForm>
   )
 }

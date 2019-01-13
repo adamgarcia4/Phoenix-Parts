@@ -23,21 +23,6 @@ const Input = styled.input`
   }
 `
 
-const Input2 = ({ placeholder, type, name, value, onChange, style }) => {
-  return (
-    <input
-      className="form-control"
-      name={name}
-      placeholder={placeholder}
-      type={type}
-      style={style}
-      // provided by useFormInput
-      value={value}
-      onChange={onChange}
-    />
-  )
-}
-
 Input.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
