@@ -52,6 +52,7 @@ flex: 4;
 `
 
 const orderReducer = (state, { type, payload }) => {
+  // console.log('state:', state)
   switch (type) {
     case 'add':
       return [...state, payload]
@@ -63,6 +64,8 @@ const orderReducer = (state, { type, payload }) => {
         }
         return orderItem
       })
+    case 'reset':
+      return payload
     default:
       return state
   }
@@ -73,10 +76,14 @@ const FlexParent = styled.div`
 `
 
 const OrderPage = () => {
-  const [state, dispatch] = useReducer(orderReducer, [newItem(0)])
-  const [val, setVal] = fireHooks.syncSetWithFirebase('testing')
+  // const [orders, setOrders] = fireHooks.syncSetWithFirebase('orders')
+  // console.log('orders:', orders)
+  // const [state, dispatch] = useReducer(orderReducer, orders)
 
-  console.log('val:', val)
+  const [orders, dispatch] = fireHooks.syncSetWithFirebaseDispatch(orderReducer)
+  // I want a react hook that can update the state of an extra variable.
+
+  console.log('orders:', orders)
 
   return (
     <FlexParent>
@@ -85,7 +92,7 @@ const OrderPage = () => {
           flex: 2;
       `}>
         <OrderList
-          list={state}
+          list={orders}
           dispatch={dispatch} />
       </Paper>
       <Paper
@@ -98,12 +105,9 @@ const OrderPage = () => {
           }}
         />
       </Paper>
-      <button onClick={() => {
-        const rand = Math.round(Math.random()*10000)
-        setVal({hi: 'bye'})
-      }}>
-        Test
-      </button>
+      {/* <button onClick={() => setOrders('hii')}>
+        testing
+      </button> */}
     </FlexParent >
   )
 }
@@ -179,6 +183,8 @@ function AddOrder({ onclick }) {
 }
 
 function OrderList({ list, dispatch }) {
+  if(!list) return ''
+
   return list.map(listItem => (
     <OrderRow
       {...listItem}
