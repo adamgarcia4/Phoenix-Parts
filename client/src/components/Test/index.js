@@ -52,7 +52,7 @@ flex: 4;
 `
 
 const orderReducer = (state, { type, payload }) => {
-  // console.log('state:', state)
+  // console.log('payload:', payload)
   switch (type) {
     case 'add':
       return [...state, payload]
@@ -80,10 +80,8 @@ const OrderPage = () => {
   // console.log('orders:', orders)
   // const [state, dispatch] = useReducer(orderReducer, orders)
 
-  const [orders, dispatch] = fireHooks.syncSetWithFirebaseDispatch(orderReducer)
+  const [orders, dispatch] = fireHooks.syncSetWithFirebaseDispatch('orders', orderReducer, [])
   // I want a react hook that can update the state of an extra variable.
-
-  console.log('orders:', orders)
 
   return (
     <FlexParent>
