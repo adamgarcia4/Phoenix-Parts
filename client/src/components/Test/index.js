@@ -64,8 +64,6 @@ const orderReducer = (state, { type, payload }) => {
         }
         return orderItem
       })
-    case 'reset':
-      return payload
     default:
       return state
   }
@@ -81,8 +79,6 @@ const OrderPage = () => {
   // const [state, dispatch] = useReducer(orderReducer, orders)
 
   const [orders, dispatch] = fireHooks.syncSetWithFirebaseDispatch('orders', orderReducer, [])
-  // I want a react hook that can update the state of an extra variable.
-
   return (
     <FlexParent>
       <Paper

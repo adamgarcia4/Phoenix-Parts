@@ -30,7 +30,17 @@ const syncSetWithFirebaseDispatch = (fbRef, reducer, initVal) => {
 
   const prevDisp = useRef(null)
   const newDisp = useRef(null)
-  const [state, dispatch] = useReducer(reducer, initVal)
+
+  const nullReducer = stateReducer => (state, {type, payload}) => {
+
+    if(type === 'reset') {
+      return payload
+    }
+    
+    return stateReducer(state, {type,payload})
+  }
+  
+  const [state, dispatch] = useReducer(nullReducer(reducer), initVal)
   
   useEffect(() => {
     if(prevDisp.current !== newDisp.current) {
@@ -52,7 +62,11 @@ const syncSetWithFirebaseDispatch = (fbRef, reducer, initVal) => {
   const newDispatch = action => {
     prevDisp.current = newDisp.current
     newDisp.current = Date.now()
+    const {type, payload} = action
+
     dispatch(action)
+
+
   }
 
   return [val, newDispatch]
